@@ -1,4 +1,11 @@
+(once) sudo npm i -g nodemon
+
 clone github repo
 cd client
 npm install
 npm start
+
+(on another terminal)
+cd server
+npm install
+nodemon index.js
