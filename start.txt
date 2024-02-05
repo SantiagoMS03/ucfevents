@@ -1,0 +1,4 @@
+clone github repo
+cd client
+npm install
+npm start
