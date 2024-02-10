@@ -13,7 +13,6 @@ app.set('view engine', 'html');
 
 // create an event
 app.post("/events", async (req, res) => {
-  res.send("hi!");
   try {
     const { name, category, description, date, length_minutes } = req.body;
     const eventInfoQuery = "INSERT INTO events (name, category, description, date, length_minutes) VALUES($1, $2, $3, $4, $5) RETURNING *"

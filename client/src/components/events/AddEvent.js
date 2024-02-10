@@ -2,15 +2,16 @@ import React, { useState, Fragment } from 'react'
 import EventFinder from '../../apis/EventFinder'
 
 const AddEvent = () => {
-  const { name, setName } = useState("");
-  const { category, setCategory } = useState("");
-  const { description, setDescription } = useState("");
-  const { date, setDate } = useState("");
-  const { length, setLength } = useState("");
+  const [name, setName] = useState("");
+  const [category, setCategory] = useState("");
+  const [description, setDescription] = useState("");
+  const [date, setDate] = useState("");
+  const [length, setLength] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+      console.log("here!")
       const response = await EventFinder.post("/", {
         name,
         category,
@@ -27,7 +28,7 @@ const AddEvent = () => {
   return (
     <Fragment>
       Hello!
-      <form>
+      <form action=''>
         <div>
           <input
             value={name}
@@ -69,6 +70,8 @@ const AddEvent = () => {
           />
         </div>
         <button
+          onClick={handleSubmit}
+          type='submit'
         >
         Confirm
         </button>
