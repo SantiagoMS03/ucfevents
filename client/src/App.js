@@ -1,8 +1,9 @@
 function App() {
   return (
-    <div className="App">
-      UCF Events!
-    </div>
+  <div className="App">
+    UCF Events!
+    
+  </div>
   );
 }
 
