@@ -5,7 +5,7 @@ function App() {
   <div className="App">
     UCF Events!
     <div>
-      <AddEvent></AddEvent>
+      <AddEvent/>
     </div>
   </div>
   );

@@ -19,7 +19,7 @@ const AddEvent = () => {
         date,
         length
       })
-      console.log(response.data.data)
+      console.log(response.data.rows[0]);
     } catch (err) {
       console.log(err);
     }
