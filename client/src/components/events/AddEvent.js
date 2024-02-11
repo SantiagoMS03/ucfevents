@@ -11,7 +11,6 @@ const AddEvent = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      console.log("here!")
       const response = await EventFinder.post("/", {
         name,
         category,
@@ -27,7 +26,6 @@ const AddEvent = () => {
 
   return (
     <Fragment>
-      Hello!
       <form action=''>
         <div>
           <input

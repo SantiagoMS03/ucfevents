@@ -1,4 +1,5 @@
 import AddEvent from "./components/events/AddEvent";
+import LogInPage from "./components/login/LogInPage"
 
 function App() {
   return (
@@ -6,6 +7,7 @@ function App() {
     UCF Events!
     <div>
       <AddEvent/>
+      <LogInPage/>
     </div>
   </div>
   );
