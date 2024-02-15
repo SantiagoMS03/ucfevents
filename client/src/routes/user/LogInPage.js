@@ -1,12 +1,10 @@
 import React, { Fragment } from 'react'
-import LogIn from './LogIn'
-import Register from './Register'
+import LogIn from '../../components/login'
 
 const LogInPage = () => {
   return (
     <Fragment>
       <LogIn/>
-      {/* <Register/> */}
     </Fragment>
   )
 }
