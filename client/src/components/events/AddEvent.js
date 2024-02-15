@@ -6,7 +6,7 @@ const AddEvent = () => {
   const [category, setCategory] = useState("");
   const [description, setDescription] = useState("");
   const [date, setDate] = useState("");
-  const [length, setLength] = useState("");
+  const [length_minutes, setLength] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -16,7 +16,7 @@ const AddEvent = () => {
         category,
         description,
         date,
-        length
+        length_minutes
       })
       console.log(response.data.rows[0]);
     } catch (err) {
@@ -61,7 +61,7 @@ const AddEvent = () => {
         </div>
         <div>
           <input
-            value={length}
+            value={length_minutes}
             onChange={(e) => setLength(e.target.value)}
             type='number'
             placeholder='length'
