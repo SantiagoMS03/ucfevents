@@ -1,5 +1,5 @@
-// import AddEvent from "./components/events/AddEvent";
-// import LogInPage from "./components/login/LogInPage"
+//import AddEvent from "./components/events/AddEvent";
+//import LogInPage from "./components/login/LogInPage"
 import { BrowserRouter, Routes, Route} from 'react-router-dom'
 import HomePage from "./routes/HomePage";
 import { EventsContextProvider } from "./context/EventsContext";
