@@ -1,45 +1,44 @@
 import React from 'react'
-import AddEvent from "../components/events/AddEvent"
 
 function HomePage() {
   return (
     <>
-      <div className="page-container">
-        <header className="header-container">
-          <h1 className="site-title">College Event Website</h1>
-          <p className="site-description">
+      <div className="page">
+        <header className="header-section">
+          <h1 className="title">College Event Website</h1>
+          <p className="description">
             Register your University, add clubs, and track events.
           </p>
         </header>
-        <main className="main-container">
+        <main className="main-page">
         <div className="divider"></div>
           <section className="login-section">
-            <Form />
+            <LoginForm />
           </section>
         </main>
       </div>
       <style jsx>
         {`
-          .page-container {
+          .page {
             display: flex;
             flex-direction: row;
             align-items: space-evenly;
             margin-top: 100px;
             width: 100%;
           }
-          .header-container {
+          .header-section {
             text-align: center;
             margin-top: -20px;
             margin-left: 100px;
             margin-right: -80px;
             flex-grow: 1;
           }
-          .site-title {
+          .title {
             text-align: start;
             font: 86px Inter, sans-serif;
             font-weight: lighter;
           }
-          .site-description {
+          .description {
             text-align: start;
             margin-top: -30px;
             font: 28px Inter, sans-serif;
@@ -48,26 +47,22 @@ function HomePage() {
           .divider {
             width: 1px;
             margin-top: -50px;
+            margin: 30 40px;
             height: 120%;
             background-color: #000;
-            margin: 30 40px;
           }
-          .main-container {
+          .main-page {
             width: 100%;
             display: flex;
-            justify-content: space-evenly;
             flex-grow: 1;
+            justify-content: space-evenly;
           }
           .login-section {
-            width: 80%;
             max-width: 500px;
-            flex-grow: 3;
             display: flex;
+            flex-grow: 3;
             margin-right: 30px;
             flex-direction: row;
-            align-items: center;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            background: #f9f9f9;
           }
         `}
       </style>
@@ -75,13 +70,11 @@ function HomePage() {
   );
 }
 
-function Form() {
+function LoginForm() {
   return (
     <form className="login-form" aria-label="Login form">
       <h2 className="form-title">Login</h2>
-      <label htmlFor="userId" className="visually-hidden">User ID</label>
       <input type="text" id="userId" className="form-input" placeholder="User ID" aria-label="User ID" />
-      <label htmlFor="password" className="visually-hidden">Password</label>
       <input type="password" id="password" className="form-input" placeholder="Password" aria-label="Password" />
       <button type="submit" className="submit-btn">Submit</button>
       <button type="button" className="account-btn">Create an Account</button>
@@ -128,16 +121,6 @@ function Form() {
           text-decoration: underline;
           background-color: #edeae5;
           cursor: pointer;
-        }
-        .visually-hidden {
-          position: absolute;
-          clip: rect(0 0 0 0);
-          clip-path: inset(50%);
-          width: 1px;
-          height: 1px;
-          margin: -1px;
-          overflow: hidden;
-          white-space: nowrap;
         }
       `}</style>
     </form>
