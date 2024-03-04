@@ -1,13 +1,6 @@
-<<<<<<< Updated upstream
-function App() {
-  return (
-    <div className="App">
-      Hello!
-    </div>
-=======
 // import AddEvent from "./components/events/AddEvent";
 // import LogInPage from "./components/login/LogInPage"
-import { BrowserRouter, Routes, Route} from 'react-router-dom'
+import { BrowserRouter, Routes, Route} from 'react-router-dom';
 import HomePage from "./routes/HomePage";
 import { EventsContextProvider } from "./context/EventsContext";
 import EventsPage from "./routes/events/EventsPage";
@@ -28,7 +21,6 @@ function App() {
         </Routes>
       </BrowserRouter>
     </EventsContextProvider>
->>>>>>> Stashed changes
   );
 }
 
