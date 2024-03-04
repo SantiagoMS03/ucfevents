@@ -78,29 +78,5 @@ router.delete('/:eventid', async (req, res) => {
         console.log(err);
     }
 });
-  
-// router.get('/', (req, res) => {
-//     res.send("list!");
-// })
-
-// router.post('/', (req, res) => {
-//     res.send("posting event!");
-// })
-
-// router.get('/:eventid', (req, res) => {
-//     res.send(`view event number ${req.params.eventid}`);
-// })
-
-// router.put('/:eventid', (req, res) => {
-//     res.send(`edit event number ${req.params.eventid}`);
-// })
-
-// router.post('/:eventid', (req, res) => {
-//     res.send(`comment on event ${req.params.eventid}`);
-// })
-
-// router.delete('/:eventid', (req, res) => {
-//     res.send(`delete event number ${req.params.eventid}`);
-// })
 
 module.exports = router;
