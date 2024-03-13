@@ -2,6 +2,7 @@ DROP TABLE IF EXISTS users CASCADE;
 DROP TABLE IF EXISTS rsos CASCADE;
 DROP TABLE IF EXISTS events CASCADE;
 DROP TABLE IF EXISTS attendees CASCADE;
+DROP TABLE IF EXISTS reviews CASCADE;
 
 CREATE TABLE users (
   user_id INT PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
@@ -32,5 +33,14 @@ CREATE TABLE attendees (
   event_id INT,
   is_attending BOOLEAN,
   CONSTRAINT fk_attendees FOREIGN KEY (user_id) REFERENCES users(user_id),
+  CONSTRAINT fk_event FOREIGN KEY (event_id) REFERENCES events(event_id)
+);
+
+CREATE TABLE reviews (
+  review_id INT PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
+  event_id INT,
+  name VARCHAR(255),
+  comment TEXT,
+  rating INT check(rating >=1 and rating <=5),
   CONSTRAINT fk_event FOREIGN KEY (event_id) REFERENCES events(event_id)
 );
