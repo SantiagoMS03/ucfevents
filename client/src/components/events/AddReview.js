@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import EventFinder from "../../apis/EventFinder";
-import { useLocation, useParams } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 const AddReview = () => {
 
@@ -10,10 +9,11 @@ const AddReview = () => {
     const [name, setName] = useState("");
     const [reviewComment, setReviewComment] = useState("");
     const [rating, setRating] = useState("Rating");
-
-    let navigate = useNavigate();
-    const location = useLocation();
    
+    function refreshPage() {
+        window.location.reload(false);
+      }
+
     const handleSubmitReview = async (e) => {
         e.preventDefault()
         try {
@@ -22,8 +22,7 @@ const AddReview = () => {
                 review: reviewComment,
                 rating
             });
-            navigate("/"); //page doesnt refresh
-            navigate(location.pathname);
+            refreshPage();
         } catch (err) {
         }
     };
