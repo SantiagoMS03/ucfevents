@@ -7,7 +7,7 @@ const AddReview = () => {
     const [rating, setRating] = useState("Rating");
    
     return (
-        <div className="mb-2">
+        <div className="mb-2 container">
             <form action="">
                 <div className="form-row">
                     <div className="form-group col-8">
