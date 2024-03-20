@@ -1,11 +1,14 @@
-import React, { useContext, useEffect } from 'react'
-import EventFinder from '../../apis/EventFinder'
+import React, { useContext, useEffect } from 'react';
+import EventFinder from '../../apis/EventFinder';
 import { EventsContext } from '../../context/EventsContext';
+import { useNavigate } from "react-router-dom";
 
 function EventsPage(props) {
-  const { events, setEvents } = useContext(EventsContext)
+  const { events, setEvents } = useContext(EventsContext);
   // run when this component renders
   //  [] not when any children rerender
+  let navigate = useNavigate()
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -17,6 +20,10 @@ function EventsPage(props) {
     };
     fetchData();
   }, [])
+
+  const handleEventSelect = (eventid) => { 
+    navigate(`/events/${eventid}`)
+  }
 
   return (
     <div className="list-group container">
@@ -35,7 +42,7 @@ function EventsPage(props) {
           {events &&
             events.map((event) => {
               return (
-                <tr key={event.event_id}>
+                <tr onClick={() => handleEventSelect(event.event_id)} key={event.event_id}>
                   <td>{event.name}</td>
                   <td>{event.description}</td>
                   <td>{event.category}</td>
