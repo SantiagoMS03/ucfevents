@@ -2,6 +2,8 @@ DROP TABLE IF EXISTS users CASCADE;
 DROP TABLE IF EXISTS rsos CASCADE;
 DROP TABLE IF EXISTS events CASCADE;
 DROP TABLE IF EXISTS attendees CASCADE;
+DROP TABLE IF EXISTS universities CASCADE;
+
 
 CREATE TABLE users (
   user_id INT PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
@@ -33,4 +35,11 @@ CREATE TABLE attendees (
   is_attending BOOLEAN,
   CONSTRAINT fk_attendees FOREIGN KEY (user_id) REFERENCES users(user_id),
   CONSTRAINT fk_event FOREIGN KEY (event_id) REFERENCES events(event_id)
+);
+
+CREATE TABLE universities (
+  university_id INT PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
+  name VARCHAR(255),
+  description VARCHAR(255),
+  location VARCHAR(255)
 );

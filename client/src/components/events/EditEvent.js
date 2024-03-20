@@ -12,17 +12,21 @@ const EditEvent = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const response = await EventFinder.get(`/${id}`);
-      console.log(response.data.data);
-      setName(response.data.data.event.name);
-      setCategory(response.data.data.event.category);
-      setDescription(response.data.data.event.description);
-      setDate(response.data.data.event.date);
-      setLength(response.data.data.event.length_minutes);
+      try {
+        const response = await EventFinder.get(`/${id}`);
+        const eventData = response.data.data.event;
+        setName(eventData.name);
+        setCategory(eventData.category);
+        setDescription(eventData.description);
+        setDate(eventData.date);
+        setLength(eventData.length_minutes);
+      } catch (err) {
+        console.log(err);
+      }
     };
 
     fetchData();
-  }, []);
+  }, [id]);
 
 
   const handleSubmit = async (e) => {
