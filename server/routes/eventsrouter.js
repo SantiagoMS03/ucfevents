@@ -37,14 +37,14 @@ try {
 // get event
 router.get('/:eventid', async (req, res) => {
 try {
-    const resturant = await db.query("SELECT * FROM events WHERE event_id = $1", [req.params.eventid]);
+    const event = await db.query("SELECT * FROM events WHERE event_id = $1", [req.params.eventid]);
 
     const reviews = await db.query("SELECT * FROM reviews WHERE event_id = $1", [req.params.eventid]);  //updated for reviews
     
     res.status(200).json({
     status: "success", 
     data: {
-        event: resturant.rows[0],
+        event: event.rows[0],
         reviews: reviews.rows,  //updated for reivews
     }
     });

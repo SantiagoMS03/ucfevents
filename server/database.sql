@@ -40,7 +40,7 @@ CREATE TABLE reviews (
   review_id INT PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
   event_id INT,
   name VARCHAR(255),
-  comment TEXT,
+  review TEXT,
   rating INT check(rating >=1 and rating <=5),
   CONSTRAINT fk_event FOREIGN KEY (event_id) REFERENCES events(event_id)
 );
