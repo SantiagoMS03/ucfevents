@@ -17,12 +17,13 @@ function EventsPage(props) {
     };
     fetchData();
   }, [])
+
   return (
-    <div>
+    <div className="list-group container">
       EventsPage
-      <table>
+      <table className="table table-hover table-lg">
         <thead>
-          <tr>
+          <tr className="bg-secondary text-white">
             <th>Name</th>
             <th>Description</th>
             <th>Category</th>
