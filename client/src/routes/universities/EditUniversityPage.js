@@ -1,5 +1,5 @@
 import React from 'react'
-import EditUniversity from '../../components/events/EditUniversity';
+import EditUniversity from '../../components/Universities/EditUniversity';
 
 const EditUniversityPage = () => {
   return (

@@ -7,6 +7,7 @@ import EventsPage from "./routes/events/EventsPage";
 import EventDetailPage from "./routes/events/EventDetailPage";
 import EditEventPage from "./routes/events/EditEventPage";
 import CreateEventPage from "./routes/events/CreateEventPage";
+import EditUniversityPage from "./routes/universities/EditUniversityPage";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
           <Route exact path="/events/:eventid" element={<EventDetailPage/>}/>
           <Route exact path="/events/:eventid/edit" element={<EditEventPage/>}/>
           <Route exact path="/newevent" element={<CreateEventPage/>}/>
+          <Route exact path="/universities/:universityid/edit" element={<EditUniversityPage/>}/>
         </Routes>
       </BrowserRouter>
     </EventsContextProvider>
