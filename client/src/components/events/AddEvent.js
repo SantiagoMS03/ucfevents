@@ -1,44 +1,24 @@
-import React, { useState, useEffect, Fragment } from 'react'
+import React, { useState, Fragment } from 'react'
 import EventFinder from '../../apis/EventFinder'
-import { useParams } from "react-router-dom";
 
-const EditEvent = () => {
-  const { id } = useParams();
+const AddEvent = () => {
   const [name, setName] = useState("");
   const [category, setCategory] = useState("");
   const [description, setDescription] = useState("");
   const [date, setDate] = useState("");
   const [length_minutes, setLength] = useState("");
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await EventFinder.get(`/${id}`);
-        const eventData = response.data.data.event;
-        setName(eventData.name);
-        setCategory(eventData.category);
-        setDescription(eventData.description);
-        setDate(eventData.date);
-        setLength(eventData.length_minutes);
-      } catch (err) {
-        console.log(err);
-      }
-    };
-
-    fetchData();
-  }, [id]);
-
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const updatedEvent = await EventFinder.put(`/${id}`, {
+      const response = await EventFinder.post("/", {
         name,
         category,
         description,
         date,
         length_minutes
       })
+      console.log(response.data.rows[0]);
     } catch (err) {
       console.log(err);
     }
@@ -98,4 +78,4 @@ const EditEvent = () => {
   )
 }
 
-export default EditEvent;
+export default AddEvent;
