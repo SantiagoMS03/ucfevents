@@ -1,18 +1,35 @@
-import React, { useState, Fragment } from 'react'
+import React, { useState, useEffect, Fragment } from 'react'
 import RSOFinder from '../../apis/RSOFinder'
+import { useParams } from "react-router-dom";
 
-const AddRSO = () => {
+const EditRSO = () => {
+  const { rso_id } = useParams();
   const [name, setName] = useState("");
   const [adminID, setAdminID] = useState("");
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await RSOFinder.get(`/${rso_id}`);
+        const rsoData = response.data.data.rso;
+        setName(rsoData.name);
+        setAdminID(rsoData.adminID);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+
+    fetchData();
+  }, [rso_id]);
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await RSOFinder.post("/", {
+      const updatedRSO = await RSOFinder.put(`/${rso_id}`, {
         name,
         adminID
-    })
-      console.log(response.data.rows[0]);
+      })
     } catch (err) {
       console.log(err);
     }
@@ -48,4 +65,4 @@ const AddRSO = () => {
   )
 }
 
-export default AddRSO;
+export default EditRSO;
