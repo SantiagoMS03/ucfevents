@@ -21,7 +21,7 @@ app.set('view engine', 'html');
 //routes
 app.use('/events', eventsRouter);
 app.use('/universities', universityrouter);
-app.use('/reviews', reviewsRouter);
+app.use('/events', reviewsRouter);
 
 
 app.get('/login', (req, res) => {
