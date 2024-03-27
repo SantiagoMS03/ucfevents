@@ -1,9 +1,13 @@
-import React from 'react'
+import React, { Fragment } from 'react'
+import RegisterUser from "../../components/login/RegisterUser"
 
 const UserRegisterPage = () => {
  return (
     <div>
-        Register User
+        <div className="text-center display-4">Register User</div>
+            <Fragment>
+                <RegisterUser/>
+            </Fragment>
     </div>
  )
 }
