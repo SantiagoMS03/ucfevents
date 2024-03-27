@@ -1,13 +1,34 @@
 import React, { useState } from 'react'
+import EventFinder from "../../apis/EventFinder";
+import { useParams } from "react-router-dom";
 
 const AddReview = () => {
 
+    const {eventid} = useParams();
+    console.log(eventid);
     const [name, setName] = useState("");
     const [reviewComment, setReviewComment] = useState("");
     const [rating, setRating] = useState("Rating");
    
+    function refreshPage() {
+        window.location.reload(false);
+      }
+
+    const handleSubmitReview = async (e) => {
+        e.preventDefault()
+        try {
+            const response = await EventFinder.post(`/${eventid}/reviews`, {
+                name,
+                review: reviewComment,
+                rating
+            });
+            refreshPage();
+        } catch (err) {
+        }
+    };
+
     return (
-        <div className="mb-2">
+        <div className="mb-2 container">
             <form action="">
                 <div className="form-row">
                     <div className="form-group col-8">
@@ -33,7 +54,7 @@ const AddReview = () => {
                     <textarea value={reviewComment} onChange={e => setReviewComment(e.target.value)}
                     id="Review" className="form-control"></textarea>
                 </div>
-                <button className="btn btn-lg">Submit</button>
+                <button type = "submit" onClick={handleSubmitReview} className="btn btn-lg">Submit</button>
             </form>
         </div>
     )

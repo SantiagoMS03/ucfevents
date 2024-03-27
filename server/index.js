@@ -7,6 +7,7 @@ const PORT = 4000;
 // routes
 const eventsRouter = require("./routes/eventsrouter");
 const universityrouter = require("./routes/universityrouter");
+const rsosRouter = require("./routes/rsosrouter");
 
 //middleware
 //app.use(morgan("dev")); // optional
@@ -21,8 +22,8 @@ app.set('view engine', 'html');
 //routes
 app.use('/events', eventsRouter);
 app.use('/universities', universityrouter);
-app.use('/reviews', reviewsRouter);
-
+app.use('/events', reviewsRouter);
+app.use('/rsos', rsosRouter);
 
 app.get('/login', (req, res) => {
   res.send("hi!");
