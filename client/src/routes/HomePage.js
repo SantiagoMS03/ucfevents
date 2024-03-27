@@ -1,11 +1,11 @@
 import React from 'react'
-import AddEvent from "../components/events/AddEvent"
 
 function HomePage() {
   return (
     <div>
       HomePage
-      <AddEvent/>
+      <a href="/login"> Login</a>
+      <a href="/register"> Register </a>
     </div>
   )
 }

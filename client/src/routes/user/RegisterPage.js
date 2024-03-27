@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react'
-import Register from '../../components/register'
+import Register from "../../components/login/Register"
 
 const RegisterPage = () => {
   return (
@@ -9,4 +9,4 @@ const RegisterPage = () => {
   )
 }
 
-export default LogInPage;
+export default RegisterPage;
