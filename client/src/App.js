@@ -7,6 +7,9 @@ import EditEventPage from "./routes/events/EditEventPage";
 import CreateEventPage from "./routes/events/CreateEventPage";
 import LogInPage from "./routes/user/LogInPage";
 import RegisterPage from "./routes/user/RegisterPage";
+import UserRegisterPage from "./routes/user/UserRegisterPage";
+import AdminRegisterPage from "./routes/user/AdminRegisterPage";
+import SuperAdminRegisterPage from "./routes/user/SuperAdminRegisterPage";
 
 function App() {
   return (
@@ -20,6 +23,9 @@ function App() {
           <Route exact path="/newevent" element={<CreateEventPage/>}/>
           <Route exact path="/login" element={<LogInPage/>}/>
           <Route exact path="/register" element={<RegisterPage/>}/>
+          <Route exact path="/register/user" element={<UserRegisterPage/>}/>
+          <Route exact path="/register/admin" element={<AdminRegisterPage/>}/>
+          <Route exact path="/register/superadmin" element={<SuperAdminRegisterPage/>}/>
         </Routes>
       </BrowserRouter>
     </EventsContextProvider>
