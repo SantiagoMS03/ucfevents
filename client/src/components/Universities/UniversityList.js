@@ -1,6 +1,15 @@
-import React from 'react';
+import React, {useEffect} from 'react';
+import UniversityFinder from '../../apis/UniversityFinder';
 
 const UniversityList = () => {
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    useEffect(async() => {
+        try{
+            const response = await UniversityFinder.get("/");
+            console.log(response);
+        }catch(err){}
+    },[])
+
     return (
         <div>
             <table className="table">
