@@ -3,14 +3,14 @@ import RSOFinder from '../../apis/RSOFinder'
 
 const AddRSO = () => {
   const [name, setName] = useState("");
-  const [adminID, setAdminID] = useState("");
+  const [admin_id, setAdminID] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       const response = await RSOFinder.post("/", {
         name,
-        adminID
+        admin_id
     })
       console.log(response.data.rows[0]);
     } catch (err) {
@@ -31,10 +31,10 @@ const AddRSO = () => {
         </div>
         <div>
           <input
-            value={adminID}
+            value={admin_id}
             onChange={(e) => setAdminID(e.target.value)}
             type='number'
-            placeholder='adminID'
+            placeholder='admin_id'
           />
         </div>
         <button

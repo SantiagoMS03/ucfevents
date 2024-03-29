@@ -21,9 +21,9 @@ router.get('/', async (req, res) => {
 // create rso
 router.post('/', async (req, res) => {
     try {
-        const { name, adminid } = req.body;
-        const rsoInfoQuery = "INSERT INTO rsos (name, adminid) VALUES($1, $2) RETURNING *"
-        const newrso = await db.query(rsoInfoQuery, [name, adminid]);
+        const { name, admin_id } = req.body;
+        const rsoInfoQuery = "INSERT INTO rsos (name, admin_id) VALUES($1, $2) RETURNING *"
+        const newrso = await db.query(rsoInfoQuery, [name, admin_id]);
         res.status(201).json({
         status: "success",
         data: {
