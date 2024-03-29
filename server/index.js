@@ -8,10 +8,10 @@ const PORT = 4000;
 const eventsRouter = require("./routes/eventsrouter");
 const universityrouter = require("./routes/universityrouter");
 const rsosRouter = require("./routes/rsosrouter");
+const reviewsRouter = require("./routes/reviewsrouter");
 
 //middleware
 //app.use(morgan("dev")); // optional
-const reviewsRouter = require("./routes/reviewsrouter");
 
 //middleware
 app.use(cors());
