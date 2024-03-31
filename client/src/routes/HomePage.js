@@ -1,11 +1,21 @@
-import React from 'react'
-import AddEvent from "../components/events/AddEvent"
+import React from 'react';
+import { useNavigate } from "react-router-dom";
 
 function HomePage() {
+  let navigate = useNavigate()
+
+  const handleLoginSelect = () => { 
+    navigate(`/login`)
+  }
+  const handleRegisterSelect = () => { 
+    navigate(`/register`)
+  }
+
   return (
     <div>
       HomePage
-      <AddEvent/>
+      <button type="button" onClick={handleLoginSelect}>Login</button>
+      <button type="button" onClick={handleRegisterSelect}>Register</button>
     </div>
   )
 }

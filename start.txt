@@ -9,3 +9,6 @@ npm start
 cd server
 npm install
 nodemon index.js
+
+other installs:
+npm i react-multi-select-component 

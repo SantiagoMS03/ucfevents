@@ -1,8 +1,0 @@
-back end router -> passport authentication -> users in sql =>
-
-
-
-back end router
-
-work on authentication
-https://stackoverflow.com/questions/19707568/use-express-bodyparser-and-passport-js

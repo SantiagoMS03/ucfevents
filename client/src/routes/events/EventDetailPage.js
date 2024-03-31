@@ -12,7 +12,7 @@ const EventDetailPage = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await EventFinder.get(`/${eventid}`); //issue is here
+        const response = await EventFinder.get(`/${eventid}`);
         console.log(response);
         setSelectedEvent(response.data.data);
       } catch (err) {
