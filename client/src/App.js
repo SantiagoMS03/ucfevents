@@ -21,6 +21,7 @@ import SuperAdminRegisterPage from "./routes/user/SuperAdminRegisterPage";
 function App() {
   return (
     <EventsContextProvider>
+      <RSOContextProvider>
       <BrowserRouter>
         <Routes>
           <Route exact path="/" element={<HomePage/>}/>
@@ -43,6 +44,7 @@ function App() {
 
         </Routes>
       </BrowserRouter>
+     </RSOContextProvider>
     </EventsContextProvider>
   );
 }
