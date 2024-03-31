@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route} from 'react-router-dom';
 import HomePage from "./routes/HomePage";
 import { EventsContextProvider } from "./context/EventsContext";
+import { RSOContextProvider } from "./context/RSOContext";
 import EventsPage from "./routes/events/EventsPage";
 import UniversityPage from './routes/universities/UniversityPage';
 import EventDetailPage from "./routes/events/EventDetailPage";

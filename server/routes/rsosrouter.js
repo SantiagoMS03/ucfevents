@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const db = require("../db/db");
+const db = require("../db");
 
 // get all rsos
 router.get('/', async (req, res) => {
@@ -21,9 +21,9 @@ router.get('/', async (req, res) => {
 // create rso
 router.post('/', async (req, res) => {
     try {
-        const { name, adminid } = req.body;
-        const rsoInfoQuery = "INSERT INTO rsos (name, adminid) VALUES($1, $2) RETURNING *"
-        const newrso = await db.query(rsoInfoQuery, [name, adminid]);
+        const { name, admin_id } = req.body;
+        const rsoInfoQuery = "INSERT INTO rsos (name, admin_id) VALUES($1, $2) RETURNING *"
+        const newrso = await db.query(rsoInfoQuery, [name, admin_id]);
         res.status(201).json({
         status: "success",
         data: {
@@ -54,9 +54,9 @@ router.get('/:rsoid', async (req, res) => {
 router.put('/:rsoid', async (req, res) => {
     try {
         console.log("here!")
-        const { name, adminid } = req.body;
-        const query = "UPDATE rsos SET name = $1, adminid = $2 WHERE rso_id = $3 RETURNING *"
-        const results = await db.query(query, [name, adminid, req.params.rsoid]);
+        const { name, admin_id } = req.body;
+        const query = "UPDATE rsos SET name = $1, admin_id = $2 WHERE rso_id = $3 RETURNING *"
+        const results = await db.query(query, [name, admin_id, req.params.rsoid]);
         res.status(200).json({
         status: "success",
         data: {
