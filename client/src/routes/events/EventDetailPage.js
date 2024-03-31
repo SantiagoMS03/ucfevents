@@ -2,12 +2,12 @@ import React, {useContext, useEffect} from 'react';
 import {useParams} from "react-router-dom";
 import Reviews from "../../components/events/Reviews";
 import AddReview from "../../components/events/AddReview";
-import { EventsContext } from '../../context/EventsContext';
+import { Context } from '../../context/Context';
 import EventFinder from "../../apis/EventFinder";
 
 const EventDetailPage = () => {
   const {eventid} = useParams()
-  const {selectedEvent, setSelectedEvent} = useContext(EventsContext)
+  const {selectedEvent, setSelectedEvent} = useContext(Context)
 
   useEffect(() => {
     const fetchData = async () => {
