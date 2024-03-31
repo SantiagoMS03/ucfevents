@@ -39,3 +39,14 @@ CREATE TABLE reviews (
   review TEXT,
   rating INT check(rating >=1 and rating <=5)
 );
+
+CREATE TABLE universities (
+  university_id INT PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
+  name VARCHAR(255),
+  description VARCHAR(255),
+  location VARCHAR(255)
+);
+
+rso part of university
+student part of rso
+student of university
