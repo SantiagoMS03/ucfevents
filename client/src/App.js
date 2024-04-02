@@ -11,7 +11,6 @@ import CreateRSOPage from './routes/rsos/CreateRSOPage';
 import CreateUniversityPage from './routes/universities/CreateUniversityPage';
 import EditUniversityPage from "./routes/universities/EditUniversityPage";
 import UniversityDetailPage from "./routes/universities/UniversityDetailPage";
-import UniversityList from './components/Universities/UniversityList';
 import LogInPage from "./routes/user/LogInPage";
 import RegisterPage from "./routes/user/RegisterPage";
 import UserRegisterPage from "./routes/user/UserRegisterPage";

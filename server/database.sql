@@ -6,8 +6,12 @@ DROP TABLE IF EXISTS reviews CASCADE;
 
 CREATE TABLE users (
   user_id INT PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
-  username VARCHAR(255) UNIQUE,
-  full_name VARCHAR(255)
+  university_id INT,
+  access BOOLEAN,
+  email VARCHAR(255) UNIQUE,
+  password VARCHAR(255),
+  created date default current_date,
+  CONSTRAINT fk_university FOREIGN KEY(university_id) REFERENCES universities(university_id)
 );
 
 CREATE TABLE rsos (
@@ -43,4 +47,11 @@ CREATE TABLE reviews (
   review TEXT,
   rating INT check(rating >=1 and rating <=5),
   CONSTRAINT fk_event FOREIGN KEY (event_id) REFERENCES events(event_id)
+);
+
+CREATE TABLE universities (
+  university_id INT PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
+  name VARCHAR(255),
+  description VARCHAR(255),
+  location VARCHAR(255)
 );

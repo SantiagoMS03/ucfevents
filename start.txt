@@ -12,3 +12,10 @@ nodemon index.js
 
 other installs:
 npm i react-multi-select-component 
+npm install passport
+npm install passport-jwt
+npm install jsonwebtoken
+npm install express-validator
+npm install cookie-parser
+npm install bcryptjs
+npm install dotenv

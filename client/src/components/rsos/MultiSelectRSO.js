@@ -3,7 +3,6 @@ import React, { useState, useEffect } from 'react';
 import { MultiSelect } from "react-multi-select-component";
 
 function MultiSelectRSO({ options }) {
-    const [selectedValues] = useState([]);
     const [selected, setSelected] = useState([]);
 
     useEffect(() => {}, [options]);

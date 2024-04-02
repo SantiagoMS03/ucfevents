@@ -13,7 +13,7 @@ function HomePage() {
 
   return (
     <div>
-      HomePage
+      <h1>HomePage</h1>
       <button type="button" onClick={handleLoginSelect}>Login</button>
       <button type="button" onClick={handleRegisterSelect}>Register</button>
     </div>
