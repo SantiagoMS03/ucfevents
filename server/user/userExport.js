@@ -54,12 +54,7 @@ exports.login = async (req, res) => {
 }
 
 exports.logout = async (req, res) => {
-  let user = req.user
-  let payload = {id: user.user_id, email: user.email}
-
   try {
-    const token = await sign(payload, SECRET)
-
     return res.status(200).clearCookie('token', {httpOnly: true}).json({
       status: true,
       message: "logout success",
