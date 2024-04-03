@@ -6,9 +6,9 @@ const db = require("../db");
 // Create a university
 router.post('/api/v1/universities/', async (req, res) => {
     try {
-        const { name, location, description } = req.body;
-        const query = "INSERT INTO universities (name, location, description) VALUES ($1, $2, $3) RETURNING *";
-        const newUniversity = await db.query(query, [name, location, description]);
+        const { name, location, description, students } = req.body;
+        const query = "INSERT INTO universities (name, location, description, students) VALUES ($1, $2, $3, $4) RETURNING *";
+        const newUniversity = await db.query(query, [name, location, description, students]);
         res.status(201).json({
             status: "success",
             data: {

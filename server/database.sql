@@ -53,5 +53,6 @@ CREATE TABLE universities (
   university_id INT PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
   name VARCHAR(255),
   description VARCHAR(255),
-  location VARCHAR(255)
+  location VARCHAR(255),
+  students INT,
 );
