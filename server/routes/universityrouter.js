@@ -4,7 +4,7 @@ const db = require("../db");
 
 
 // Create a university
-router.post('/api/v1/universities', async (req, res) => {
+router.post('/api/v1/universities/', async (req, res) => {
     try {
         const { name, location, description } = req.body;
         const query = "INSERT INTO universities (name, location, description) VALUES ($1, $2, $3) RETURNING *";
@@ -22,7 +22,7 @@ router.post('/api/v1/universities', async (req, res) => {
 });
 
 // Get all universities
-router.get('/api/v1/universities', async (req, res) => {
+router.get('/api/v1/universities/', async (req, res) => {
     try {
         const results = await db.query("SELECT * FROM universities");
         res.status(200).json({
