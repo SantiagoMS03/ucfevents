@@ -4,7 +4,7 @@ const db = require("../db/db");
 
 
 // Create a university
-router.post('/api/v1/universities', async (req, res) => {
+router.post('/', async (req, res) => {
     try {
         const { name, location, description } = req.body;
         const query = "INSERT INTO universities (name, location, description) VALUES ($1, $2, $3) RETURNING *";
@@ -22,7 +22,7 @@ router.post('/api/v1/universities', async (req, res) => {
 });
 
 // Get all universities
-router.get('/api/v1/universities', async (req, res) => {
+router.get('/', async (req, res) => {
     try {
         const results = await db.query("SELECT * FROM universities");
         res.status(200).json({
@@ -40,7 +40,7 @@ router.get('/api/v1/universities', async (req, res) => {
 
 
 // Get a single university
-router.get('/api/v1/universities/:universityId', async (req, res) => {
+router.get('/:universityId', async (req, res) => {
     try {
         const results = await db.query("SELECT * FROM universities WHERE id = $1", [req.params.universityId]);
         if (results.rows.length === 0) {
@@ -59,7 +59,7 @@ router.get('/api/v1/universities/:universityId', async (req, res) => {
 });
 
 // Update a university
-router.put('/api/v1/universities/:universityId', async (req, res) => {
+router.put('/:universityId', async (req, res) => {
     try {
         const { name, location, description } = req.body;
         const query = "UPDATE universities SET name = $1, location = $2, description = $3 WHERE university_id = $4 RETURNING *";
@@ -80,7 +80,7 @@ router.put('/api/v1/universities/:universityId', async (req, res) => {
 });
 
 // Delete a university
-router.delete('/api/v1/universities/:universityId', async (req, res) => {
+router.delete('/:universityId', async (req, res) => {
     try {
         const results = await db.query("DELETE FROM universities WHERE university_id = $1", [req.params.universityId]);
         if (results.rowCount === 0) {

@@ -19,30 +19,32 @@ import SuperAdminRegisterPage from "./routes/user/SuperAdminRegisterPage";
 
 function App() {
   return (
-    <ContextProvider>
-        <Routes>
-          <Route exact path="/" element={<HomePage/>}/>
-          <Route exact path="/home" element={<HomePage/>}/>
-          <Route exact path="/newuniversity" element={<CreateUniversityPage/>}/>
-          <Route exact path="/universities" element={<UniversityPage/>}/>
+      <ContextProvider>
+        <BrowserRouter>
+          <Routes>
+            <Route exact path="/" element={<HomePage/>}/>
+            <Route exact path="/home" element={<HomePage/>}/>
+            <Route exact path="/newuniversity" element={<CreateUniversityPage/>}/>
+            <Route exact path="/universities" element={<UniversityPage/>}/>
 
-          <Route exact path="/universities/:universityid" element={<UniversityDetailPage/>}/>
-          <Route exact path="/universities/:universityid/edit" element={<EditUniversityPage/>}/>
-          <Route exact path="/universities/:universityid/newrso" element={<CreateRSOPage/>}/>
-          {/* <Route exact path="/universities/:universityid/rsos/:rsoid" element={<RSODetailPage/>}/> */}
-          <Route exact path="/universities/:universityid/rsos/:rsoid/events" element={<EventsPage/>}/>
-          <Route exact path="/universities/:universityid/rsos/:rsoid/events/:eventid" element={<EventDetailPage/>}/>
-          <Route exact path="/universities/:universityid/rsos/:rsoid/events/:eventid/edit" element={<EditEventPage/>}/>
-          <Route exact path="/universities/:universityid/rsos/:rsoid//newevent" element={<CreateEventPage/>}/>
+            <Route exact path="/universities/:universityid" element={<UniversityDetailPage/>}/>
+            <Route exact path="/universities/:universityid/edit" element={<EditUniversityPage/>}/>
+            <Route exact path="/universities/:universityid/newrso" element={<CreateRSOPage/>}/>
+            {/* <Route exact path="/universities/:universityid/rsos/:rsoid" element={<RSODetailPage/>}/> */}
+            <Route exact path="/universities/:universityid/rsos/:rsoid/events" element={<EventsPage/>}/>
+            <Route exact path="/universities/:universityid/rsos/:rsoid/events/:eventid" element={<EventDetailPage/>}/>
+            <Route exact path="/universities/:universityid/rsos/:rsoid/events/:eventid/edit" element={<EditEventPage/>}/>
+            <Route exact path="/universities/:universityid/rsos/:rsoid//newevent" element={<CreateEventPage/>}/>
 
-          <Route exact path="/login" element={<LogInPage/>}/>
-          <Route exact path="/register" element={<RegisterPage/>}/>
+            <Route exact path="/login" element={<LogInPage/>}/>
+            <Route exact path="/register" element={<RegisterPage/>}/>
 
-          <Route exact path="/register/user" element={<UserRegisterPage/>}/>
-          <Route exact path="/register/admin" element={<AdminRegisterPage/>}/>
-          <Route exact path="/register/superadmin" element={<SuperAdminRegisterPage/>}/>
-        </Routes>
-    </ContextProvider>
+            <Route exact path="/register/user" element={<UserRegisterPage/>}/>
+            <Route exact path="/register/admin" element={<AdminRegisterPage/>}/>
+            <Route exact path="/register/superadmin" element={<SuperAdminRegisterPage/>}/>
+          </Routes>
+        </BrowserRouter>
+      </ContextProvider>
   );
 }
 
