@@ -1,7 +1,6 @@
 import React, { Fragment, useState, useEffect, useContext }from 'react';
 import SearchRSO from '../rsos/SearchRSO';
 import UserFinder from '../../apis/UserFinder'
-import Select from 'react-dropdown-select';
 import UniversityFinder from '../../apis/UniversityFinder';
 import { UniversityContext } from '../../context/UniversityContext';
 
@@ -67,6 +66,7 @@ function RegisterUser(props) {
                 type='password'
                 onChange={(e) => setPassword(e.target.value)}
               />
+              <h3>To do: Select rsos</h3>
           <button onClick={handleClick}>Sign Up!</button>
         </form>
       </Fragment>
