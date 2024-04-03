@@ -11,7 +11,9 @@ npm install
 nodemon index.js
 
 other installs:
-npm i react-multi-select-component 
+npm i react-multi-select-component
+npm install --save react-dropdown-select
+
 npm install passport
 npm install passport-jwt
 npm install jsonwebtoken
