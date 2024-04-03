@@ -1,5 +1,6 @@
 import React, { Fragment } from 'react'
 import RegisterUser from "../../components/login/RegisterUser"
+import Register from '../../components/login/Register'
 
 const UserRegisterPage = () => {
  return (
