@@ -1,6 +1,7 @@
 import React, { useState, Fragment } from 'react';
 import UniversityFinder from '../../apis/UniversityFinder'; // Assuming you have a separate API module for universities
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from 'react-router-dom';
+import "./AddUniversity.css";
 
 const AddUniversity = () => {
   const [name, setName] = useState("");
@@ -26,48 +27,66 @@ const AddUniversity = () => {
   }
 
   return (
-    <Fragment>
-      <form action=''>
+    <div className="container">
+      <h1 className="title">Add University</h1>
+      <form className="form-container">
+      <div className="back-button">
+          <Link to="/register">Back</Link>
+        </div>
         <div>
+          <label className="label" htmlFor="name">Name</label>
           <input
+            id="name"
+            className="input"
             value={name}
             onChange={(e) => setName(e.target.value)}
-            type='text'
-            placeholder='Name'
+            type="text"
+            placeholder="Name"
           />
         </div>
         <div>
+          <label className="label" htmlFor="location">Location</label>
           <input
+            id="location"
+            className="input"
             value={location}
             onChange={(e) => setLocation(e.target.value)}
-            type='text'
-            placeholder='Location'
+            type="text"
+            placeholder="Location"
           />
         </div>
         <div>
+          <label className="label" htmlFor="description">Description</label>
           <input
+            id="description"
+            className="input"
             value={description}
             onChange={(e) => setDescription(e.target.value)}
-            type='text'
-            placeholder='Description'
+            type="text"
+            placeholder="Description"
           />
         </div>
         <div>
+          <label className="label" htmlFor="students">Number of Students</label>
           <input
+            id="students"
+            className="input"
             value={students}
             onChange={(e) => setStudents(e.target.value)}
-            type='number'
-            placeholder='Number of Students'
+            type="number"
+            placeholder="Number of Students"
           />
         </div>
         <button
+          className="button"
           onClick={handleSubmit}
-          type='submit'
-        >Confirm
+          type="submit"
+        >
+          Confirm
         </button>
       </form>
-    </Fragment>
-  )
+    </div>
+  );
 }
 
 export default AddUniversity;

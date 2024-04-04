@@ -1,5 +1,6 @@
 import React, { useState, Fragment } from 'react'
 import EventFinder from '../../apis/EventFinder'
+import "./AddEvent.css";
 
 const AddEvent = () => {
   const [name, setName] = useState("");
