@@ -35,6 +35,9 @@ app.use('/events', reviewsRouter);
 app.use('/rsos', rsosRouter);
 app.use('/users', userrouter);
 
+// relational
+
+
 app.get('/login', (req, res) => {
   res.send("hi!");
 })

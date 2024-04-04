@@ -11,15 +11,14 @@ CREATE TABLE users (
   access BOOLEAN,
   email VARCHAR(255) UNIQUE,
   password VARCHAR(255),
-  created date default current_date,
-  CONSTRAINT fk_university FOREIGN KEY(university_id) REFERENCES universities(university_id)
+  created date default current_date
 );
 
 CREATE TABLE rsos (
   rso_id INT PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
   name VARCHAR(255),
   admin_id INT,
-  CONSTRAINT fk_admin FOREIGN KEY(admin_id) REFERENCES users(user_id)
+  is_private BOOLEAN
 );
 
 CREATE TABLE events (
@@ -30,15 +29,15 @@ CREATE TABLE events (
   date DATE,
   length_minutes INT,
   rso_id INT,
-  CONSTRAINT fk_rso FOREIGN KEY(rso_id) REFERENCES rsos(rso_id)
+  is_private BOOLEAN,
+  is_rso BOOLEAN,
+  is_public BOOLEAN
 );
 
 CREATE TABLE attendees (
   user_id INT,
   event_id INT,
   is_attending BOOLEAN,
-  CONSTRAINT fk_attendees FOREIGN KEY (user_id) REFERENCES users(user_id),
-  CONSTRAINT fk_event FOREIGN KEY (event_id) REFERENCES events(event_id)
 );
 
 CREATE TABLE reviews (
@@ -47,7 +46,6 @@ CREATE TABLE reviews (
   name VARCHAR(255),
   review TEXT,
   rating INT check(rating >=1 and rating <=5),
-  CONSTRAINT fk_event FOREIGN KEY (event_id) REFERENCES events(event_id)
 );
 
 
@@ -58,3 +56,57 @@ CREATE TABLE universities (
   location VARCHAR(255),
   students INT,
 );
+
+CREATE TABLE universityrso {
+  university_id INT,
+  rso_id INT
+}
+
+CREATE TABLE rsoevent {
+  rso_id INT,
+  event_id INT
+}
+
+CREATE TABLE attending (
+  user_id INT,
+  event_id INT
+);
+
+CREATE TABLE rsouser {
+  user_id INT,
+  rso_id INT
+};
+
+CREATE TABLE eventreview {
+  event_id INT,
+  review_id INT
+}
+
+CREATE TABLE eventuser {
+  event_id INT,
+  user_id INT
+}
+
+
+-- Fill out database
+INSERT INTO TABLE users (username, full_name)
+VALUES
+("student1", "Jake"),
+("student2", "Finn"),
+("student3", "BMO"),
+("student4", "Bubblegum"),
+("student5", "Marceline");
+
+INSERT INTO TABLE rsos (name, admin_id)
+VALUES
+("rso1", 1)
+("rso2", 2)
+("rso3", 3);
+
+INSERT INTO TABLE universities (name, description, location)
+VALUES
+("UCF", "Big university with 70,000 students!", "Orlando");
+
+INSERT INTO TABLE events (name, category, description, date, length_minutes, rso_id)
+VALUES
+("Event1", "");
