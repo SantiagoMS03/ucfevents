@@ -18,6 +18,21 @@ exports.get = async (req, res) => {
     }
 };
 
+// exports.getUni = async (req, res) => {
+//   try {
+//     const results = await db.query("SELECT * FROM users");
+//     res.status(200).json({
+//       status: "success",
+//       results: results.rows.length,
+//       data: {
+//         users: results.rows
+//       }
+//     });
+//   } catch (err) {
+//     console.error(err);
+//   }
+// };
+
 exports.register = async (req, res) => {
   const {university_id, access, email, password} = req.body
     try {
