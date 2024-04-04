@@ -3,6 +3,7 @@ import SearchRSO from '../rsos/SearchRSO';
 import UserFinder from '../../apis/UserFinder'
 import UniversityFinder from '../../apis/UniversityFinder';
 import { UniversityContext } from '../../context/UniversityContext';
+import { useNavigate } from "react-router-dom";
 
 function RegisterUser(props) {
   const [university_id, setUniversityId] = useState("");
@@ -10,6 +11,8 @@ function RegisterUser(props) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const { unis, setUnis } = useContext(UniversityContext);
+
+  let navigate = useNavigate()
 
   useEffect(() => {
     const fetchData = async () => {
@@ -38,6 +41,7 @@ function RegisterUser(props) {
         email,
         password
     })
+    navigate('/login');
     } catch (err) {
       console.log(err);
     }
