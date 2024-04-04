@@ -2,7 +2,7 @@ import React, { useState, useEffect, Fragment } from 'react'
 import EventFinder from '../../apis/EventFinder'
 import { useParams } from "react-router-dom";
 
-const EditEvent = () => {
+const EditEvent = () =>  {
   const { id } = useParams();
   const [name, setName] = useState("");
   const [category, setCategory] = useState("");

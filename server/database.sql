@@ -1,3 +1,4 @@
+-- Setup
 DROP TABLE IF EXISTS users CASCADE;
 DROP TABLE IF EXISTS rsos CASCADE;
 DROP TABLE IF EXISTS events CASCADE;
@@ -44,3 +45,4 @@ CREATE TABLE reviews (
   rating INT check(rating >=1 and rating <=5),
   CONSTRAINT fk_event FOREIGN KEY (event_id) REFERENCES events(event_id)
 );
+

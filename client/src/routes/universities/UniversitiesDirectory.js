@@ -24,7 +24,7 @@ function UniversityPage(props) {
 
   return (
     <div className="list-group container">
-      <h1>University Page</h1>
+      <h1>Universities Directory</h1>
       <table className="table table-hover table-lg">
         <thead>
           <tr className="bg-secondary text-white">

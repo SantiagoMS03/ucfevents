@@ -2,7 +2,7 @@ import { BrowserRouter, Routes, Route} from 'react-router-dom';
 import HomePage from "./routes/HomePage";
 import { ContextProvider } from "./context/Context";
 import EventsPage from "./routes/events/EventsPage";
-import UniversityPage from './routes/universities/UniversityPage';
+import UniversitiesDirectory from './routes/universities/UniversitiesDirectory';
 import EventDetailPage from "./routes/events/EventDetailPage";
 import EditEventPage from "./routes/events/EditEventPage";
 import CreateEventPage from "./routes/events/CreateEventPage";
@@ -25,7 +25,7 @@ function App() {
             <Route exact path="/" element={<HomePage/>}/>
             <Route exact path="/home" element={<HomePage/>}/>
             <Route exact path="/newuniversity" element={<CreateUniversityPage/>}/>
-            <Route exact path="/universities" element={<UniversityPage/>}/>
+            <Route exact path="/universities" element={<UniversitiesDirectory/>}/>
 
             <Route exact path="/universities/:universityid" element={<UniversityDetailPage/>}/>
             <Route exact path="/universities/:universityid/edit" element={<EditUniversityPage/>}/>
