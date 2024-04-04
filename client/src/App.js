@@ -44,8 +44,8 @@ function App() {
               <Route exact path="/welcome" element={<WelcomePage/>}/>
 
               {/* <Route exact path="/rsos/:rsoid" element={<RSODetailPage/>}/> */}
-            </Routes>
-          </BrowserRouter>
+          </Routes>
+        </BrowserRouter>
       </UniversityContextProvider>
      </RSOContextProvider>
     </EventsContextProvider>
