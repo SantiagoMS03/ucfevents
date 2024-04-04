@@ -2,7 +2,7 @@ const { check } = require('express-validator');
 const db = require("../db");
 const { compare } = require('bcryptjs')
 
-const password = check('password').isLength({min: 3, max: 15}).withMessage('Password has to be between 3 and 15 characters.')
+const password = check('password').isLength({min: 1, max: 15}).withMessage('Password has to be between 3 and 15 characters.')
 const email = check('email').isEmail().withMessage('Provide a valid email.')
 
 const checkEmail = check('email').custom(async (value) => {

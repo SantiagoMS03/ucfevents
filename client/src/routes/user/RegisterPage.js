@@ -6,7 +6,7 @@ function RegisterPage() {
   let navigate = useNavigate()
 
   const handleSuperAdminSelect = () => { 
-    navigate(`/register/superadmin`)
+    navigate(`/newuniversity`)
   }
   const handleAdminSelect = () => { 
     navigate(`/register/admin`)
