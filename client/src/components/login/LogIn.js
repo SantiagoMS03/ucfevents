@@ -1,6 +1,6 @@
 import React, { Fragment, useState }from 'react'
 import UserFinder from '../../apis/UserFinder';
-
+import GetCookie from './Cookie';
 
 const LogIn = () => {
 
@@ -10,11 +10,13 @@ const LogIn = () => {
       const response = await UserFinder.post("/login", {
         email,
         password
-    })
-    console.log("success")
+      })
+      const id = response.data.data.payload.id;
+      document.cookie = `user_id=${id}; path=/`;
     } catch (err) {
       console.log(err);
     }
+
   }
 
   const [email, setEmail] = useState("");
