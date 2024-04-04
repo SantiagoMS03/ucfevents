@@ -1,25 +1,33 @@
 import React, { Fragment, useState }from 'react'
+import UserFinder from '../../apis/UserFinder';
+
 
 const LogIn = () => {
-  const handleClick = async (e) => {
+
+    const handleClick = async (e) => {
     e.preventDefault();
     try {
-        console.log('hi!');
+      const response = await UserFinder.post("/login", {
+        email,
+        password
+    })
+    console.log("success")
     } catch (err) {
-      console.error(err);
+      console.log(err);
     }
   }
-  const [username, setUsername] = useState("");
+
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   return (
     <Fragment>
       <form action=''>
-        <label htmlFor='username'>Username</label>
+        <label htmlFor='username'>Email</label>
         <input
-          id='username'
-          value={username}
+          id='email'
+          value={email}
           type='text'
-          onChange={(e) => setUsername(e.target.value)}
+          onChange={(e) => setEmail(e.target.value)}
         />
         <label htmlFor='password'>Password</label>
         <input

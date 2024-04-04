@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route} from 'react-router-dom';
 import HomePage from "./routes/HomePage";
 import { ContextProvider } from "./context/Context";
+import { UniversityContextProvider } from "./context/UniversityContext";
 import EventsPage from "./routes/events/EventsPage";
 import UniversitiesDirectory from './routes/universities/UniversitiesDirectory';
 import EventDetailPage from "./routes/events/EventDetailPage";
@@ -10,12 +11,12 @@ import CreateRSOPage from './routes/rsos/CreateRSOPage';
 import CreateUniversityPage from './routes/universities/CreateUniversityPage';
 import EditUniversityPage from "./routes/universities/EditUniversityPage";
 import UniversityDetailPage from "./routes/universities/UniversityDetailPage";
-import UniversityList from './components/Universities/UniversityList';
 import LogInPage from "./routes/user/LogInPage";
 import RegisterPage from "./routes/user/RegisterPage";
 import UserRegisterPage from "./routes/user/UserRegisterPage";
 import AdminRegisterPage from "./routes/user/AdminRegisterPage";
 import SuperAdminRegisterPage from "./routes/user/SuperAdminRegisterPage";
+import WelcomePage from "./routes/WelcomePage";
 
 function App() {
   return (
@@ -36,6 +37,7 @@ function App() {
             <Route exact path="/universities/:universityid/rsos/:rsoid/events/:eventid/edit" element={<EditEventPage/>}/>
             <Route exact path="/universities/:universityid/rsos/:rsoid//newevent" element={<CreateEventPage/>}/>
 
+            <Route exact path="/welcome" element={<WelcomePage/>}/>
             <Route exact path="/login" element={<LogInPage/>}/>
             <Route exact path="/register" element={<RegisterPage/>}/>
 

@@ -3,16 +3,14 @@ import SearchRSO from '../rsos/SearchRSO';
 import UserFinder from '../../apis/UserFinder'
 import UniversityFinder from '../../apis/UniversityFinder';
 import { UniversityContext } from '../../context/UniversityContext';
-import { useNavigate } from "react-router-dom";
+import AddEvent from '../events/AddEvent';
 
-function RegisterUser(props) {
+function RegisterAdmin(props) {
   const [university_id, setUniversityId] = useState("");
-  const [access] = useState("false");
+  const [access] = useState("true");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const { unis, setUnis } = useContext(UniversityContext);
-
-  let navigate = useNavigate()
 
   useEffect(() => {
     const fetchData = async () => {
@@ -41,7 +39,6 @@ function RegisterUser(props) {
         email,
         password
     })
-    navigate('/login');
     } catch (err) {
       console.log(err);
     }
@@ -70,12 +67,13 @@ function RegisterUser(props) {
                 type='password'
                 onChange={(e) => setPassword(e.target.value)}
               />
-              <h3>To do: Select rsos</h3>
           <button onClick={handleClick}>Sign Up!</button>
         </form>
+        <h3>To do: select students</h3>
+        <AddEvent/>
       </Fragment>
     </div>
   );
 }
 
-export default RegisterUser;
+export default RegisterAdmin;
