@@ -1,12 +1,12 @@
 import React, { useContext, useEffect } from 'react';
 import EventFinder from '../../apis/EventFinder';
-import { EventsContext } from '../../context/EventsContext';
+import { Context } from '../../context/Context';
 import { useNavigate } from "react-router-dom";
 import Header from "../../components/Header.js";
 import "./EventsPage.css";
 
 function EventsPage(props) {
-  const { events, setEvents } = useContext(EventsContext);
+  const { events, setEvents } = useContext(Context);
   // run when this component renders
   //  [] not when any children rerender
   let navigate = useNavigate()
