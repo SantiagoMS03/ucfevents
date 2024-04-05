@@ -13,6 +13,7 @@ function RegisterAdmin(props) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const { unis, setUnis } = useContext(UniversityContext);
+  let navigate = useNavigate()
 
   useEffect(() => {
     const fetchData = async () => {
@@ -41,6 +42,7 @@ function RegisterAdmin(props) {
         email,
         password
     })
+    navigate('/login');
     } catch (err) {
       console.log(err);
     }

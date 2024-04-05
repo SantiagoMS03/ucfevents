@@ -2,10 +2,14 @@ import React, { Fragment, useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import UserFinder from '../../apis/UserFinder';
 import "./LogIn.css"; // Import your CSS file
+import GetCookie from './Cookie';
+import { useNavigate } from "react-router-dom";
 
 const LogIn = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  let navigate = useNavigate()
 
   const handleClick = async (e) => {
     e.preventDefault();
@@ -13,8 +17,10 @@ const LogIn = () => {
       const response = await UserFinder.post("/login", {
         email,
         password
-      });
-      console.log("success");
+      })
+      const id = response.data.data.payload.id;
+      document.cookie = `user_id=${id}; path=/`;
+      navigate(`/welcome`)
     } catch (err) {
       console.log(err);
     }

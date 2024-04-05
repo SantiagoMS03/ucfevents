@@ -18,6 +18,21 @@ exports.get = async (req, res) => {
     }
 };
 
+// exports.getUni = async (req, res) => {
+//   try {
+//     const results = await db.query("SELECT * FROM users");
+//     res.status(200).json({
+//       status: "success",
+//       results: results.rows.length,
+//       data: {
+//         users: results.rows
+//       }
+//     });
+//   } catch (err) {
+//     console.error(err);
+//   }
+// };
+
 exports.register = async (req, res) => {
   const {university_id, access, email, password} = req.body
     try {
@@ -40,13 +55,14 @@ exports.register = async (req, res) => {
 exports.login = async (req, res) => {
   let user = req.user
   let payload = {id: user.user_id, email: user.email}
- 
+
   try {
     const token = await sign(payload, SECRET)
     return res.status(200).cookie('token', token, {httpOnly: true}).json({
+      data: {payload},
       status: true,
-      message: "login success",
-    })
+      message: "success",
+    }) 
   } catch (err) {
     console.error(err);
   }

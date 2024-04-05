@@ -2,6 +2,7 @@ import React, { Fragment, useState, useEffect, useContext }from 'react';
 import UserFinder from '../../apis/UserFinder'
 import UniversityFinder from '../../apis/UniversityFinder';
 import { UniversityContext } from '../../context/UniversityContext';
+import { useNavigate } from "react-router-dom";
 
 function RegisterSuperAdmin(props) {
   const [university_id, setUniversityId] = useState("");
@@ -9,6 +10,7 @@ function RegisterSuperAdmin(props) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const { unis, setUnis } = useContext(UniversityContext);
+  let navigate = useNavigate()
 
   useEffect(() => {
     const fetchData = async () => {
@@ -37,6 +39,7 @@ function RegisterSuperAdmin(props) {
         email,
         password
     })
+    navigate('/login');
     } catch (err) {
       console.log(err);
     }
