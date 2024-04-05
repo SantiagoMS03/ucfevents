@@ -29,7 +29,7 @@ CREATE TABLE events (
   date DATE,
   length_minutes INT,
   rso_id INT,
-  CONSTRAINT fk_rso FOREIGN KEY(rso_id) REFERENCES rsos(rso_id)
+  visibility VARCHAR(255)
 );
 
 CREATE TABLE attendees (
