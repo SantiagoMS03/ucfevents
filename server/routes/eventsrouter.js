@@ -59,7 +59,7 @@ try {
     console.log("here!")
     const { name, category, description, date, length_minutes, rso_id, visibility } = req.body;
     const query = "UPDATE events SET name = $1, category = $2, description = $3, date = $4, length_minutes = $5, , rso_id = $6, visibility = $7 WHERE event_id = $8 RETURNING *"
-    const results = await db.query(query, [name, category, description, date, length_minutes, , rso_id, visibility, req.params.eventid]);
+    const results = await db.query(query, [name, category, description, date, length_minutes, rso_id, visibility, req.params.eventid]);
     res.status(200).json({
     status: "success",
     data: {
