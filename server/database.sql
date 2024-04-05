@@ -9,7 +9,6 @@ DROP TABLE IF EXISTS rsoevent CASCADE;
 DROP TABLE IF EXISTS attending CASCADE;
 DROP TABLE IF EXISTS rsouser CASCADE;
 DROP TABLE IF EXISTS eventreview CASCADE;
-DROP TABLE IF EXISTS eventuser CASCADE;
 
 CREATE TABLE users (
   user_id INT PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
@@ -82,31 +81,121 @@ CREATE TABLE eventreview (
   review_id INT
 );
 
-CREATE TABLE eventuser (
-  event_id INT,
-  user_id INT
-);
-
 
 -- Fill out database
-INSERT INTO users (email, password)
+INSERT INTO users (email)
 VALUES
-('student1@ucf.edu', 'password1'),
-('student2@ucf.edu', 'password2'),
-('student3@ucf.edu', 'password3'),
-('student4@ucf.edu', 'password4'),
-('student5@ucf.edu', 'password5');
+('student1@ucf.edu'),
+('student2@ucf.edu'),
+('student3@ucf.edu'),
+('student4@ucf.edu'),
+('student5@ucf.edu'),
+('student6@ucf.edu'),
+('student7@ucf.edu'),
+('student8@ucf.edu'),
+('student9@ucf.edu'),
+('student10@ucf.edu');
 
 INSERT INTO rsos (name, admin_id)
 VALUES
 ('rso1', 1),
 ('rso2', 2),
-('rso3', 3);
+('rso3', 3),
+('rso4', 4),
+('rso5', 5);
 
-INSERT INTO universities (name, description, location)
+INSERT INTO universities (name)
 VALUES
-('UCF', 'Big university with 70,000 students!', 'Orlando');
+('UCF');
 
-INSERT INTO events (name, category)
+INSERT INTO events (name)
 VALUES
-('Event1', 'Cat 1');
+('Event1'),
+('Event2'),
+('Event3'),
+('Event4'),
+('Event5'),
+('Event6'),
+('Event7'),
+('Event8'),
+('Event9'),
+('Event10'),
+('Event11'),
+('Event12'),
+('Event13'),
+('Event14'),
+('Event15'),
+('Event16'),
+('Event17'),
+('Event18'),
+('Event19'),
+('Event20');
+
+INSERT INTO universityrso (university_id, rso_id)
+VALUES
+(1, 1),
+(1, 2),
+(1, 3),
+(1, 4),
+(1, 5);
+
+INSERT INTO rsoevent (rso_id, event_id)
+VALUES
+(1, 1),
+(1, 2),
+(1, 3),
+(1, 4),
+(2, 5),
+(2, 6),
+(2, 7),
+(2, 8),
+(3, 9),
+(3, 10),
+(3, 11),
+(3, 12),
+(4, 13),
+(4, 14),
+(4, 15),
+(4, 16),
+(5, 17),
+(5, 18),
+(5, 19),
+(5, 20);
+
+INSERT INTO attending (user_id, event_id)
+VALUES
+(1, 1),
+(1, 2),
+(2, 3),
+(2, 4),
+(3, 5),
+(3, 6),
+(4, 7),
+(4, 8),
+(5, 9),
+(5, 10),
+(6, 11),
+(6, 12),
+(7, 13),
+(7, 14),
+(8, 15),
+(8, 16),
+(9, 17),
+(9, 18),
+(10, 19),
+(10, 20);
+
+INSERT INTO rsouser (user_id, rso_id)
+VALUES
+(1, 1),
+(2, 1),
+(3, 2),
+(4, 2),
+(5, 3),
+(6, 3),
+(7, 4),
+(8, 4),
+(9, 5),
+(10, 5);
+
+-- EVENT REVIEW
