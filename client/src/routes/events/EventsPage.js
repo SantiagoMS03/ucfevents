@@ -25,6 +25,25 @@ function EventsPage(props) {
     navigate(`/events/${eventid}`)
   }
 
+  const handleDelete = async (e, eventid) => {
+    e.stopPropagation();
+    try {
+      const response = await EventFinder.delete(`/${eventid}`);
+      setEvents(
+        events.filter((event) => {
+          return event.event_id !== eventid;
+        })
+      );
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const handleUpdate = (e, eventid) => {
+    e.stopPropagation();
+    navigate(`/events/${eventid}/edit`);
+  };
+
   return (
     <div className="list-group container">
       EventsPage
@@ -48,6 +67,22 @@ function EventsPage(props) {
                   <td>{event.category}</td>
                   <td>{event.date}</td>
                   <td>{event.length_minutes}</td>
+                  <td>
+                    <button
+                      onClick={(e) => handleUpdate(e, event.event_id)}
+                      className="btn btn-lg"
+                    >
+                      Update
+                    </button>
+                  </td>
+                  <td>
+                    <button
+                      onClick={(e) => handleDelete(e, event.event_id)}
+                      className="btn btn-lg"
+                    >
+                      Delete
+                    </button>
+                  </td>
                 </tr>
               )
           })}
