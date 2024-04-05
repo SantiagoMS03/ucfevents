@@ -2,8 +2,14 @@
 DROP TABLE IF EXISTS users CASCADE;
 DROP TABLE IF EXISTS rsos CASCADE;
 DROP TABLE IF EXISTS events CASCADE;
-DROP TABLE IF EXISTS attendees CASCADE;
+DROP TABLE IF EXISTS universities CASCADE;
 DROP TABLE IF EXISTS reviews CASCADE;
+DROP TABLE IF EXISTS universityrso CASCADE;
+DROP TABLE IF EXISTS rsoevent CASCADE;
+DROP TABLE IF EXISTS attending CASCADE;
+DROP TABLE IF EXISTS rsouser CASCADE;
+DROP TABLE IF EXISTS eventreview CASCADE;
+DROP TABLE IF EXISTS eventuser CASCADE;
 
 CREATE TABLE users (
   user_id INT PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
@@ -34,18 +40,12 @@ CREATE TABLE events (
   is_public BOOLEAN
 );
 
-CREATE TABLE attendees (
-  user_id INT,
-  event_id INT,
-  is_attending BOOLEAN,
-);
-
 CREATE TABLE reviews (
   review_id INT PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
   event_id INT,
   name VARCHAR(255),
   review TEXT,
-  rating INT check(rating >=1 and rating <=5),
+  rating INT check(rating >=1 and rating <=5)
 );
 
 
@@ -54,59 +54,59 @@ CREATE TABLE universities (
   name VARCHAR(255),
   description VARCHAR(255),
   location VARCHAR(255),
-  students INT,
+  students INT
 );
 
-CREATE TABLE universityrso {
+CREATE TABLE universityrso (
   university_id INT,
   rso_id INT
-}
+);
 
-CREATE TABLE rsoevent {
+CREATE TABLE rsoevent (
   rso_id INT,
   event_id INT
-}
+);
 
 CREATE TABLE attending (
   user_id INT,
   event_id INT
 );
 
-CREATE TABLE rsouser {
+CREATE TABLE rsouser (
   user_id INT,
   rso_id INT
-};
+);
 
-CREATE TABLE eventreview {
+CREATE TABLE eventreview (
   event_id INT,
   review_id INT
-}
+);
 
-CREATE TABLE eventuser {
+CREATE TABLE eventuser (
   event_id INT,
   user_id INT
-}
+);
 
 
 -- Fill out database
-INSERT INTO TABLE users (username, full_name)
+INSERT INTO users (email, password)
 VALUES
-("student1", "Jake"),
-("student2", "Finn"),
-("student3", "BMO"),
-("student4", "Bubblegum"),
-("student5", "Marceline");
+('student1@ucf.edu', 'password1'),
+('student2@ucf.edu', 'password2'),
+('student3@ucf.edu', 'password3'),
+('student4@ucf.edu', 'password4'),
+('student5@ucf.edu', 'password5');
 
-INSERT INTO TABLE rsos (name, admin_id)
+INSERT INTO rsos (name, admin_id)
 VALUES
-("rso1", 1)
-("rso2", 2)
-("rso3", 3);
+('rso1', 1),
+('rso2', 2),
+('rso3', 3);
 
-INSERT INTO TABLE universities (name, description, location)
+INSERT INTO universities (name, description, location)
 VALUES
-("UCF", "Big university with 70,000 students!", "Orlando");
+('UCF', 'Big university with 70,000 students!', 'Orlando');
 
-INSERT INTO TABLE events (name, category, description, date, length_minutes, rso_id)
+INSERT INTO events (name, category)
 VALUES
-("Event1", "");
+('Event1', 'Cat 1');
