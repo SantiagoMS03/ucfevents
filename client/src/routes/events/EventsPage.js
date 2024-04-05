@@ -31,7 +31,6 @@ function EventsPage(props) {
     <div>
       <Header />
       <div className="list-group">
-        EventsPage
         <table className="table table-hover table-lg">
           <thead>
             <tr className="bg-secondary text-white">

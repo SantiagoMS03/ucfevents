@@ -33,7 +33,7 @@ function Header() {
                 <div className="dropdown">
                   <button className="div-9-button">Events</button>
                   <div className="dropdown-content">
-                  <Link to="/events">All Events</Link>
+                  <Link to="/universities/:universityid/rsos/:rsoid/events">All Events</Link>
                     <a href="#">Attending</a>
                     <a href="#">RSO Events</a>
                   </div>
