@@ -1,10 +1,10 @@
 import React, { useContext, useEffect } from "react";
 import RSOFinder from '../../apis/RSOFinder';
-import { RSOContext } from '../../context/RSOContext';
+import { Context } from '../../context/Context';
 import MultiSelectRSO from "./MultiSelectRSO";
 
   const SearchRSO = () => {
-    const {rsos, setRSOs} = useContext(RSOContext);
+    const {rsos, setRSOs} = useContext(Context);
     const option = item => ({ label: item.name, value: item.rso_id });
   
     useEffect(() => {
