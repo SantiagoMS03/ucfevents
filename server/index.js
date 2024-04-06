@@ -19,7 +19,7 @@ const userrouter = require("./routes/userrouter");
 const relationalRouter = require("./routes/relationalrouter")
 
 //middleware
-//app.use(morgan("dev")); // optional
+// app.use(morgan("dev")); // optional
 
 //middleware
 app.use(express.json());
@@ -35,7 +35,7 @@ app.use('/universities', universityrouter);
 app.use('/events', reviewsRouter);
 app.use('/rsos', rsosRouter);
 app.use('/users', userrouter);
-// app.use('/relational', relationalRouter);
+app.use('/relational', relationalRouter);
 
 // relational
 
