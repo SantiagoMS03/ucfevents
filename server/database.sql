@@ -1,4 +1,3 @@
--- Setup
 DROP TABLE IF EXISTS users CASCADE;
 DROP TABLE IF EXISTS rsos CASCADE;
 DROP TABLE IF EXISTS events CASCADE;
@@ -34,18 +33,8 @@ CREATE TABLE events (
   date DATE,
   length_minutes INT,
   rso_id INT,
-  is_private BOOLEAN,
   is_rso BOOLEAN,
   is_public BOOLEAN
-  visibility VARCHAR(255)
-);
-
-CREATE TABLE attendees (
-  user_id INT,
-  event_id INT,
-  is_attending BOOLEAN,
-  CONSTRAINT fk_attendees FOREIGN KEY (user_id) REFERENCES users(user_id),
-  CONSTRAINT fk_event FOREIGN KEY (event_id) REFERENCES events(event_id)
 );
 
 CREATE TABLE reviews (
@@ -91,7 +80,6 @@ CREATE TABLE eventreview (
 );
 
 
--- Fill out database
 INSERT INTO users (email)
 VALUES
 ('student1@ucf.edu'),
@@ -206,5 +194,3 @@ VALUES
 (8, 4),
 (9, 5),
 (10, 5);
-
--- EVENT REVIEW
