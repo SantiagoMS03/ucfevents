@@ -3,7 +3,7 @@ import SearchRSO from '../rsos/SearchRSO';
 import UserFinder from '../../apis/UserFinder'
 import UniversityFinder from '../../apis/UniversityFinder';
 import { UniversityContext } from '../../context/UniversityContext';
-import AddEvent from '../events/AddEvent';
+import AddRSO from '../rsos/AddRSO';
 import { useNavigate } from "react-router-dom";
 
 function RegisterAdmin(props) {
@@ -73,7 +73,7 @@ function RegisterAdmin(props) {
           <button onClick={handleClick}>Sign Up!</button>
         </form>
         <h3>To do: select students</h3>
-        <AddEvent/>
+        <AddRSO/>
       </Fragment>
     </div>
   );
