@@ -32,9 +32,7 @@ CREATE TABLE events (
   description VARCHAR(255),
   date DATE,
   length_minutes INT,
-  rso_id INT,
-  is_rso BOOLEAN,
-  is_public BOOLEAN
+  visibility VARCHAR(255)
 );
 
 CREATE TABLE reviews (
