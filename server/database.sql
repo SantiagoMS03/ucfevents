@@ -37,6 +37,15 @@ CREATE TABLE events (
   is_private BOOLEAN,
   is_rso BOOLEAN,
   is_public BOOLEAN
+  visibility VARCHAR(255)
+);
+
+CREATE TABLE attendees (
+  user_id INT,
+  event_id INT,
+  is_attending BOOLEAN,
+  CONSTRAINT fk_attendees FOREIGN KEY (user_id) REFERENCES users(user_id),
+  CONSTRAINT fk_event FOREIGN KEY (event_id) REFERENCES events(event_id)
 );
 
 CREATE TABLE reviews (
