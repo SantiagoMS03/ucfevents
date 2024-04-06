@@ -1,6 +1,6 @@
 import React, { useState, Fragment, useContext, useEffect } from 'react'
 import EventFinder from '../../apis/EventFinder'
-import { RSOContext } from '../../context/RSOContext';
+import { Context } from '../../context/Context';
 import RSOFinder from '../../apis/RSOFinder';
 import { useNavigate } from "react-router-dom";
 
@@ -12,7 +12,7 @@ const AddEvent = () => {
   const [length_minutes, setLength] = useState("");
   const [rso_id, setRSOId] = useState("");
   const [visibility, setVisibility] = useState("");
-  const { rsos, setRSOs } = useContext(RSOContext);
+  const { rsos, setRSOs } = useContext(Context);
 
   let navigate = useNavigate()
 
