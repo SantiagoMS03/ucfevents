@@ -1,9 +1,10 @@
 import React, { useState, Fragment, useContext, useEffect } from 'react'
 import EventFinder from '../../apis/EventFinder'
 // import { useParams } from "react-router-dom";
-import { RSOContext } from '../../context/RSOContext';
+import "./AddEvent.css";
+import { Context } from '../../context/Context';
 import RSOFinder from '../../apis/RSOFinder';
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 const AddEvent = () => {
   const [name, setName] = useState("");
@@ -15,7 +16,7 @@ const AddEvent = () => {
   // const { universityid, } = useParams();
   const [rso_id, setRSOId] = useState("");
   const [visibility, setVisibility] = useState("");
-  const { rsos, setRSOs } = useContext(RSOContext);
+  const { rsos, setRSOs } = useContext(Context);
 
   let navigate = useNavigate()
 
@@ -62,69 +63,61 @@ const AddEvent = () => {
 
   return (
     <Fragment>
-      <form action=''>
-        <div>
+      <div className="container">
+        <form className="form-container" action=''>
+        <div className="back-button">
+          <Link to="/welcome">Back</Link>
+        </div>
+        <h2 className="title">Add Event</h2>
           <input
             value={name}
             onChange={(e) => setName(e.target.value)}
             type='text'
-            placeholder='name'
+            placeholder='Name'
           />
-        </div>
-        <div>
           <input
             value={category}
             onChange={(e) => setCategory(e.target.value)}
             type='text'
-            placeholder='category'
+            placeholder='Category'
           />
-        </div>
-        <div>
           <input
             value={description}
             onChange={(e) => setDescription(e.target.value)}
             type='text'
-            placeholder='description'
+            placeholder='Description'
           />
-        </div>
-        <div>
           <input
             value={date}
             onChange={(e) => setDate(e.target.value)}
             type='date'
-            placeholder='date'
+            placeholder='Date'
           />
-        </div>
-        <div>
           <input
             value={length_minutes}
             onChange={(e) => setLength(e.target.value)}
             type='number'
-            placeholder='length'
+            placeholder='Length'
           />
-        </div>
-        <div>
-        <select value={rso_id} onChange={handleRSOChange}> 
+          <select value={rso_id} onChange={handleRSOChange}> 
             <option value=""> Select an RSO </option>
             {rsos.map((rso) => (
               <option value={rso.rso_id} key={rso.rso_id}>{rso.name}</option>))}
           </select>
-        </div>
-        <div>
           <select value={visibility} onChange={handleVisChange}> 
             <option value=""> Select Visibility </option>
             <option value="private">Private</option>
-            <option value="public">Pulbic</option>
-            <option value="rso">Rso Event</option>
+            <option value="public">Public</option>
+            <option value="rso">RSO Event</option>
           </select>
-        </div>
-        <button
-          onClick={handleSubmit}
-          type='submit'
-        >
-        Confirm
-        </button>
-      </form>
+          <button
+            onClick={handleSubmit}
+            type='submit'
+          >
+            Confirm
+          </button>
+        </form>
+      </div>
     </Fragment>
   )
 }

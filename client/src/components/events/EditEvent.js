@@ -1,6 +1,7 @@
 import React, { useState, useEffect, Fragment } from 'react'
 import EventFinder from '../../apis/EventFinder'
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
+import '../../routes/events/EditEventPage.css';
 
 const EditEvent = () =>  {
   const { eventid } = useParams();
@@ -46,54 +47,65 @@ const EditEvent = () =>  {
 
   return (
     <Fragment>
-      <form action=''>
-        <div>
-          <input
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            type='text'
-            placeholder='name'
-          />
+      <div className="container">
+        <form className="form-container" onSubmit={handleSubmit}>
+        <div className="back-button">
+          <Link to="/welcome">Back</Link>
         </div>
-        <div>
-          <input
-            value={category}
-            onChange={(e) => setCategory(e.target.value)}
-            type='text'
-            placeholder='category'
-          />
-        </div>
-        <div>
-          <input
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}
-            type='text'
-            placeholder='description'
-          />
-        </div>
-        <div>
-          <input
-            value={date}
-            onChange={(e) => setDate(e.target.value)}
-            type='date'
-            placeholder='date'
-          />
-        </div>
-        <div>
-          <input
-            value={length_minutes}
-            onChange={(e) => setLength(e.target.value)}
-            type='number'
-            placeholder='length'
-          />
-        </div>
-        <button
-          onClick={handleSubmit}
-          type='submit'
-        >
-        Confirm
-        </button>
-      </form>
+        <h2 className="title">Edit Event</h2>
+          <div>
+            <input
+              className="input"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              type='text'
+              placeholder='Name'
+            />
+          </div>
+          <div>
+            <input
+              className="input"
+              value={category}
+              onChange={(e) => setCategory(e.target.value)}
+              type='text'
+              placeholder='Category'
+            />
+          </div>
+          <div>
+            <input
+              className="input"
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
+              type='text'
+              placeholder='Description'
+            />
+          </div>
+          <div>
+            <input
+              className="input"
+              value={date}
+              onChange={(e) => setDate(e.target.value)}
+              type='date'
+              placeholder='Date'
+            />
+          </div>
+          <div>
+            <input
+              className="input"
+              value={length_minutes}
+              onChange={(e) => setLength(e.target.value)}
+              type='number'
+              placeholder='Length'
+            />
+          </div>
+          <button
+            className="button"
+            type='submit'
+          >
+            Confirm
+          </button>
+        </form>
+      </div>
     </Fragment>
   )
 }

@@ -3,7 +3,8 @@ import SearchRSO from '../rsos/SearchRSO';
 import UserFinder from '../../apis/UserFinder'
 import UniversityFinder from '../../apis/UniversityFinder';
 import { UniversityContext } from '../../context/UniversityContext';
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
+import "./RegisterUser.css";
 
 function RegisterUser(props) {
   const [university_id, setUniversityId] = useState("");
@@ -48,32 +49,38 @@ function RegisterUser(props) {
   }
 
   return (
-    <div>
-      <Fragment>
-        <form action=''>
-          <select value={university_id} onChange={handleChange}> 
-            <option value=""> Select a University </option>
+    <div className="container">
+      <h1 className="title">Register User</h1>
+      <div className="box">
+        <form className="form-container">
+        <div className="back-arrow">
+          <Link to="/register">Back</Link>
+        </div>
+          <select className="input" value={university_id} onChange={handleChange}>
+            <option value="">Select a University</option>
             {unis.map((uni) => (
-              <option value={uni.university_id} key={uni.university_id}>{uni.name}</option>))}
+              <option value={uni.university_id} key={uni.university_id}>{uni.name}</option>
+            ))}
           </select>
-          <label htmlFor='email'>Email</label>
-              <input
-                id='email'
-                value={email}
-                type='text'
-                onChange={(e) => setEmail(e.target.value)}
-              />
-          <label htmlFor='password'>Password</label>
-              <input
-                id='password'
-                value={password}
-                type='password'
-                onChange={(e) => setPassword(e.target.value)}
-              />
-              <h3>To do: Select rsos</h3>
-          <button onClick={handleClick}>Sign Up!</button>
+          <label className="label" htmlFor="email">Email</label>
+          <input
+            id="email"
+            className="input"
+            value={email}
+            type="text"
+            onChange={(e) => setEmail(e.target.value)}
+          />
+          <label className="label" htmlFor="password">Password</label>
+          <input
+            id="password"
+            className="input"
+            value={password}
+            type="password"
+            onChange={(e) => setPassword(e.target.value)}
+          />
+          <button className="button" onClick={handleClick}>Sign Up!</button>
         </form>
-      </Fragment>
+      </div>
     </div>
   );
 }

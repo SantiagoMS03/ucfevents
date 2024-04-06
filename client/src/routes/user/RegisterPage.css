@@ -1,0 +1,59 @@
+.register-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Center vertically */
+  }
+  
+  .register-box {
+    padding: 20px;
+    border: 2px solid #d9d9d9; /* Add border */
+    border-radius: 10px; /* Rounded corners */
+  }
+  
+  .register-title {
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+  }
+  
+  .register-subtitle {
+    font-size: 20px;
+    text-align: center;
+  }
+  
+  .register-button-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+  }
+  
+  .register-button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
+  .register-button:hover {
+    background-color: #0056b3;
+  }
+  
+  .login-button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff; /* Blue color */
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
+  .login-button:hover {
+    background-color: #0056b3; /* Darker shade of blue on hover */
+  }
+  
+  

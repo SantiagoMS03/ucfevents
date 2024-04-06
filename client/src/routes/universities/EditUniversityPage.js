@@ -4,7 +4,6 @@ import EditUniversity from '../../components/Universities/EditUniversity';
 const EditUniversityPage = () => {
   return (
     <div>
-      EditUniversityPage
       <EditUniversity/>
     </div>
   )

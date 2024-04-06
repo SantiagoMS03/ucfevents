@@ -1,6 +1,7 @@
 import React, { useState, useEffect, Fragment } from 'react';
 import UniversityFinder from '../../apis/UniversityFinder'; // Assuming you have a separate API module for universities
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
+import "./EditUniversity.css";
 
 const EditUniversity = () => {
   const { id } = useParams();
@@ -43,46 +44,57 @@ const EditUniversity = () => {
 
   return (
     <Fragment>
-      <form action=''>
-        <div>
-          <input
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            type='text'
-            placeholder='Name'
-          />
+      <div className="container">
+        <form className="form-container" action=''>
+        <div className="back-button">
+          <Link to="/welcome">Back</Link>
         </div>
-        <div>
-          <input
-            value={location}
-            onChange={(e) => setLocation(e.target.value)}
-            type='text'
-            placeholder='Location'
-          />
-        </div>
-        <div>
-          <input
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}
-            type='text'
-            placeholder='Description'
-          />
-        </div>
-        <div>
-          <input
-            value={ranking}
-            onChange={(e) => setRanking(e.target.value)}
-            type='number'
-            placeholder='Ranking'
-          />
-        </div>
-        <button
-          onClick={handleSubmit}
-          type='submit'
-        >
-          Confirm
-        </button>
-      </form>
+          <h2 className="title">Edit University</h2>
+          <div>
+            <input
+              className="input"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              type='text'
+              placeholder='Name'
+            />
+          </div>
+          <div>
+            <input
+              className="input"
+              value={location}
+              onChange={(e) => setLocation(e.target.value)}
+              type='text'
+              placeholder='Location'
+            />
+          </div>
+          <div>
+            <input
+              className="input"
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
+              type='text'
+              placeholder='Description'
+            />
+          </div>
+          <div>
+            <input
+              className="input"
+              value={ranking}
+              onChange={(e) => setRanking(e.target.value)}
+              type='number'
+              placeholder='Ranking'
+            />
+          </div>
+          <button
+            className="button"
+            onClick={handleSubmit}
+            type='submit'
+          >
+            Confirm
+          </button>
+        </form>
+      </div>
     </Fragment>
   )
 }

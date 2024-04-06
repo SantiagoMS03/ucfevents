@@ -1,0 +1,43 @@
+html,
+body {
+  height: 100%; /* Ensure full height */
+  margin: 0; /* Remove default margin */
+  padding: 0; /* Remove default padding */
+}
+
+.list-group {
+  background-color: #f9f9f9; /* Background color for the list group */
+  padding: 20px; /* Add padding */
+  border-radius: 10px; /* Rounded corners */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add shadow */
+  min-height: 100%; /* Minimum height to ensure it fills the available space */
+  display: flex; /* Use flexbox for layout */
+  flex-direction: column; /* Stack children vertically */
+}
+
+.table {
+  flex: 1; /* Fill remaining space */
+  width: 100%; /* Make the table full-width */
+  border-collapse: collapse; /* Collapse borders */
+}
+
+.table th,
+.table td {
+  padding: 10px; /* Add padding to table cells */
+  border-bottom: 1px solid #ddd; /* Add bottom border */
+}
+
+.table th {
+  background-color: #007bff; /* Header background color */
+  color: #fff; /* Header text color */
+  font-weight: bold; /* Header font weight */
+}
+
+.table td {
+  background-color: #fff; /* Cell background color */
+}
+
+.table tr:hover {
+  background-color: #f0f0f0; /* Hover background color */
+  cursor: pointer; /* Change cursor on hover */
+}
