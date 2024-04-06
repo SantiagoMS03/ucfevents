@@ -18,20 +18,24 @@ exports.get = async (req, res) => {
     }
 };
 
-// exports.getUni = async (req, res) => {
-//   try {
-//     const results = await db.query("SELECT * FROM users");
-//     res.status(200).json({
-//       status: "success",
-//       results: results.rows.length,
-//       data: {
-//         users: results.rows
-//       }
-//     });
-//   } catch (err) {
-//     console.error(err);
-//   }
-// };
+// Get a single universityid
+exports.getUni = async (req, res) => {
+  try {
+      const results = await db.query("SELECT university_id FROM users WHERE user_id = $1", [req.params.userid]);
+      if (results.rows.length === 0) {
+          return res.status(404).json({ status: "error", message: "University not found" });
+      }
+      res.status(200).json({
+          status: "success",
+          data: {
+              users: results.rows[0]
+          }
+      });
+  } catch (err) {
+      console.error(err);
+      res.status(500).json({ status: "error", message: "Internal server error" });
+  }
+};
 
 exports.register = async (req, res) => {
   const {university_id, access, email, password} = req.body

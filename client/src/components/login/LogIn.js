@@ -1,6 +1,6 @@
 import React, { Fragment, useState }from 'react'
 import UserFinder from '../../apis/UserFinder';
-import GetCookie from './Cookie';
+import GetCookie from '../Cookie';
 import { useNavigate } from "react-router-dom";
 
 const LogIn = () => {
