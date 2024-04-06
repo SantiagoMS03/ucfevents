@@ -1,5 +1,6 @@
 import React, { useState, Fragment } from 'react'
 import EventFinder from '../../apis/EventFinder'
+// import { useParams } from "react-router-dom";
 
 const AddEvent = () => {
   const [name, setName] = useState("");
@@ -7,6 +8,8 @@ const AddEvent = () => {
   const [description, setDescription] = useState("");
   const [date, setDate] = useState("");
   const [length_minutes, setLength] = useState("");
+
+  // const { universityid, } = useParams();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -16,7 +19,8 @@ const AddEvent = () => {
         category,
         description,
         date,
-        length_minutes
+        length_minutes,
+
       })
       console.log(response.data.rows[0]);
     } catch (err) {

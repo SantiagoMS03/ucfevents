@@ -1,6 +1,8 @@
 const express = require("express");
 const router = express.Router();
 const db = require("../db");
+const relateUniversityRSO = require("../middleware/relational/universityrso");
+
 
 // get all rsos
 router.get('/', async (req, res) => {
@@ -21,9 +23,12 @@ router.get('/', async (req, res) => {
 // create rso
 router.post('/', async (req, res) => {
     try {
-        const { name, admin_id } = req.body;
+        const { name, admin_id, universityid } = req.body;
         const rsoInfoQuery = "INSERT INTO rsos (name, admin_id) VALUES($1, $2) RETURNING *"
         const newrso = await db.query(rsoInfoQuery, [name, admin_id]);
+        const newid = newrso.rows[0].rso_id;
+        console.log(newid);
+        await relateUniversityRSO(universityid, newid);
         res.status(201).json({
         status: "success",
         data: {

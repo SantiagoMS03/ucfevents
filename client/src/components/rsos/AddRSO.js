@@ -1,16 +1,20 @@
 import React, { useState, Fragment } from 'react'
 import RSOFinder from '../../apis/RSOFinder'
+import { useParams } from 'react-router-dom'
 
 const AddRSO = () => {
   const [name, setName] = useState("");
   const [admin_id, setAdminID] = useState("");
+
+  const { universityid } = useParams();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       const response = await RSOFinder.post("/", {
         name,
-        admin_id
+        admin_id,
+        universityid
     })
       console.log(response.data.rows[0]);
     } catch (err) {

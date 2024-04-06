@@ -3,7 +3,7 @@ import EventFinder from '../../apis/EventFinder'
 import { useParams } from "react-router-dom";
 
 const EditEvent = () =>  {
-  const { id } = useParams();
+  const { eventid } = useParams();
   const [name, setName] = useState("");
   const [category, setCategory] = useState("");
   const [description, setDescription] = useState("");
@@ -13,7 +13,7 @@ const EditEvent = () =>  {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await EventFinder.get(`/${id}`);
+        const response = await EventFinder.get(`/${eventid}`);
         const eventData = response.data.data.event;
         setName(eventData.name);
         setCategory(eventData.category);
@@ -26,13 +26,13 @@ const EditEvent = () =>  {
     };
 
     fetchData();
-  }, [id]);
+  }, [eventid]);
 
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const updatedEvent = await EventFinder.put(`/${id}`, {
+      const updatedEvent = await EventFinder.put(`/${eventid}`, {
         name,
         category,
         description,
