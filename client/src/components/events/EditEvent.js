@@ -1,6 +1,6 @@
 import React, { useState, useEffect, Fragment } from 'react'
 import EventFinder from '../../apis/EventFinder'
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import '../../routes/events/EditEventPage.css';
 
 const EditEvent = () =>  {
@@ -49,6 +49,9 @@ const EditEvent = () =>  {
     <Fragment>
       <div className="container">
         <form className="form-container" onSubmit={handleSubmit}>
+        <div className="back-button">
+          <Link to="/welcome">Back</Link>
+        </div>
         <h2 className="title">Edit Event</h2>
           <div>
             <input

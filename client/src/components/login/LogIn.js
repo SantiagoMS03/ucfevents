@@ -3,7 +3,7 @@ import { useNavigate, Link } from 'react-router-dom';
 import UserFinder from '../../apis/UserFinder';
 import "./LogIn.css"; // Import your CSS file
 import GetCookie from './Cookie';
-import { useNavigate } from "react-router-dom";
+
 
 const LogIn = () => {
   const [email, setEmail] = useState("");
