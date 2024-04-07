@@ -2,12 +2,12 @@ const express = require("express");
 const router = express.Router();
 const db = require("../db");
 
-router.post('/:eventid/reviews', async (req, res) => {
+router.post('/:eventid/:userid/reviews', async (req, res) => {
 
     try {
-        const { name, review, rating} = req.body;
-        const eventInfoQuery = "INSERT INTO reviews (event_id, name, review, rating) VALUES ($1, $2, $3, $4) RETURNING *;"
-        const newReview = await db.query(eventInfoQuery, [req.params.eventid, name, review, rating]);
+        const { name, review, rating } = req.body;
+        const eventInfoQuery = "INSERT INTO reviews (event_id, name, review, rating, user_id) VALUES ($1, $2, $3, $4, $5) RETURNING *;"
+        const newReview = await db.query(eventInfoQuery, [req.params.eventid, name, review, rating, req.params.userid]);
 
         res.status(201).json({
             status: "success",

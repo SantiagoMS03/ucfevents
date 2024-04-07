@@ -23,7 +23,6 @@ CREATE TABLE rsos (
   rso_id INT PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
   name VARCHAR(255),
   admin_id INT,
-  is_private BOOLEAN
 );
 
 CREATE TABLE events (
@@ -53,7 +52,8 @@ CREATE TABLE reviews (
   event_id INT,
   name VARCHAR(255),
   review TEXT,
-  rating INT check(rating >=1 and rating <=5)
+  rating INT check(rating >=1 and rating <=5),
+  user_id INT
 );
 
 

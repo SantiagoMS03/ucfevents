@@ -1,14 +1,28 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import EventFinder from "../../apis/EventFinder";
 import { useParams } from "react-router-dom";
+import GetCookies from '../Cookie'
 
 const AddReview = () => {
 
     const {eventid} = useParams();
-    console.log(eventid);
     const [name, setName] = useState("");
     const [reviewComment, setReviewComment] = useState("");
     const [rating, setRating] = useState("Rating");
+    const [userid, setUserID] = useState("")
+
+    useEffect(() => {
+        const fetchData = async () => {
+          try {
+                const id = GetCookies("user_id");
+                setUserID(id);
+          } catch (err) {
+            console.log(err);
+          }
+        };
+        fetchData();
+      }, []);
+    
    
     function refreshPage() {
         window.location.reload(false);
@@ -16,8 +30,9 @@ const AddReview = () => {
 
     const handleSubmitReview = async (e) => {
         e.preventDefault()
+        console.log(userid);
         try {
-            const response = await EventFinder.post(`/${eventid}/reviews`, {
+            const response = await EventFinder.post(`/${eventid}/${userid}/reviews`, {
                 name,
                 review: reviewComment,
                 rating
