@@ -1,10 +1,12 @@
 import React, { useState, Fragment } from 'react'
 import RSOFinder from '../../apis/RSOFinder'
 import EditUser from '../login/EditUser';
+import GetCookie from '../Cookie';
 
 const AddRSO = () => {
+  const id = GetCookie("user_id");
   const [name, setName] = useState("");
-  const [admin_id, setAdminID] = useState("");
+  const [admin_id, setAdminID] = useState({id});
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -29,14 +31,6 @@ const AddRSO = () => {
             onChange={(e) => setName(e.target.value)}
             type='text'
             placeholder='name'
-          />
-        </div>
-        <div>
-          <input
-            value={admin_id}
-            onChange={(e) => setAdminID(e.target.value)}
-            type='number'
-            placeholder='admin_id'
           />
         </div>
         <button
