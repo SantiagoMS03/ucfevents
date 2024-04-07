@@ -6,7 +6,7 @@ import GetCookie from '../Cookie';
 const AddRSO = () => {
   const id = GetCookie("user_id");
   const [name, setName] = useState("");
-  const [admin_id, setAdminID] = useState({id});
+  const [admin_id, setAdminID] = useState(id);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
