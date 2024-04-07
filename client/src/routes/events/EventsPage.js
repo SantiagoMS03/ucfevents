@@ -8,6 +8,7 @@ import GetCookies from '../../components/Cookie'
 function EventsPage(props) {
   const [userid, setUserID] = useState("");
   const [access, setAccess] = useState("");
+  const [uniid, setUniID] = useState("");
   const { events, setEvents } = useContext(Context);
   // run when this component renders
   //  [] not when any children rerender
@@ -20,9 +21,14 @@ function EventsPage(props) {
         setUserID(id);
         const perms = GetCookies("access");
         setAccess(perms);
+        const uniID = GetCookies("university_id");
+        setUniID(uniID);
 
         const response = await EventFinder.get("/");
-        setEvents(response.data.data.events);
+        const eventFilter = response.data.data.events.filter(event => {
+          return event.visibility === "public" && (event.visibility === "private") && ((event.visibility === "rso"));
+        });
+        setEvents(eventFilter)
       } catch (err) {
         console.error(err);
       }
