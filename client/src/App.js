@@ -17,6 +17,7 @@ import UserRegisterPage from "./routes/user/UserRegisterPage";
 import AdminRegisterPage from "./routes/user/AdminRegisterPage";
 import SuperAdminRegisterPage from "./routes/user/SuperAdminRegisterPage";
 import WelcomePage from "./routes/WelcomePage";
+import RSOsPage from './routes/rsos/RSOsPage';
 
 function App() {
   return (
@@ -32,7 +33,7 @@ function App() {
               <Route exact path="/universities/:universityid" element={<UniversityDetailPage/>}/>
               <Route exact path="/universities/:universityid/edit" element={<EditUniversityPage/>}/>
               <Route exact path="/universities/:universityid/newrso" element={<CreateRSOPage/>}/>
-              {/* <Route exact path="/universities/:universityid/rsos/:rsoid" element={<RSODetailPage/>}/> */}
+              <Route exact path="/universities/:universityid/rsos" element={<RSOsPage/>}/>
               <Route exact path="/universities/:universityid/rsos/:rsoid/events" element={<EventsPage/>}/>
               <Route exact path="/universities/:universityid/rsos/:rsoid/events/:eventid" element={<EventDetailPage/>}/>
               <Route exact path="/universities/:universityid/rsos/:rsoid/events/:eventid/edit" element={<EditEventPage/>}/>
