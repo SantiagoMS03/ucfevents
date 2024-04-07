@@ -18,11 +18,11 @@ router.get('/', async (req, res) => {
 });
 
 // create event
-router.post('/', async (req, res) => {
+router.post('/:adminid', async (req, res) => {
 try {
     const { name, category, description, date, length_minutes, rso_id, visibility } = req.body;
-    const eventInfoQuery = "INSERT INTO events (name, category, description, date, length_minutes, rso_id, visibility) VALUES($1, $2, $3, $4, $5, $6, $7) RETURNING *"
-    const newEvent = await db.query(eventInfoQuery, [name, category, description, date, length_minutes, rso_id, visibility]);
+    const eventInfoQuery = "INSERT INTO events (name, category, description, date, length_minutes, rso_id, visibility, admin_id) VALUES($1, $2, $3, $4, $5, $6, $7, $8) RETURNING *"
+    const newEvent = await db.query(eventInfoQuery, [name, category, description, date, length_minutes, rso_id, visibility, req.params.adminid]);
     res.status(201).json({
     status: "success",
     data: {

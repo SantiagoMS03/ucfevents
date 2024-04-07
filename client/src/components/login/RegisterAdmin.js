@@ -6,6 +6,7 @@ import { useNavigate, Link } from 'react-router-dom';
 import { UniversityContext } from '../../context/UniversityContext';
 import AddEvent from '../events/AddEvent';
 import "./RegisterAdmin.css";
+import AddRSO from '../rsos/AddRSO';
 
 function RegisterAdmin(props) {
   const [university_id, setUniversityId] = useState("");
@@ -89,7 +90,7 @@ function RegisterAdmin(props) {
         </button>
       </form>
       <h3>To do: select students</h3>
-      <AddEvent />
+      <AddRSO/>
     </Fragment>
   </div>
 );

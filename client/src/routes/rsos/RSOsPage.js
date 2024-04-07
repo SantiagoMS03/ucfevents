@@ -1,9 +1,10 @@
 import React, { useContext, useEffect } from 'react';
-import EventFinder from '../../apis/EventFinder';
+import RSOFinder from '../../apis/RSOFinder';
 import { useNavigate } from "react-router-dom";
+import { Context } from '../../context/Context';
 
 function RSOsPage(props) {
-  const { rsos, setRSOs } = useContext(RSOsContext);
+  const { rsos, setRSOs } = useContext(Context);
   // run when this component renders
   //  [] not when any children rerender
   let navigate = useNavigate()
@@ -11,7 +12,7 @@ function RSOsPage(props) {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await EventFinder.get("/");
+        const response = await RSOFinder.get("/");
         setRSOs(response.data.data.rsos);
       } catch (err) {
         console.error(err);
@@ -27,11 +28,11 @@ function RSOsPage(props) {
   return (
     <div className="list-group container">
       RSOsPage
+      <button>Create new RSO</button>
       <table className="table table-hover table-lg">
         <thead>
           <tr className="bg-secondary text-white">
             <th>Name</th>
-            <th>AdminID</th>
           </tr>
         </thead>
         <tbody>
@@ -40,7 +41,16 @@ function RSOsPage(props) {
               return (
                 <tr onClick={() => handleEventSelect(rso.rso_id)} key={rso.rso_id}>
                   <td>{rso.name}</td>
-                  <td>{rso.admin_id}</td>
+                  <td>
+                    <button>
+                      Join RSO
+                    </button>
+                  </td>
+                  <td>
+                    <button>
+                      Leave RSO
+                    </button>
+                  </td>
                 </tr>
               )
           })}

@@ -2,10 +2,13 @@ import React, { useState, Fragment } from 'react'
 import RSOFinder from '../../apis/RSOFinder'
 import "./AddRSO.css";
 import { useNavigate, Link } from 'react-router-dom';
+import EditUser from '../login/EditUser';
+import GetCookie from '../Cookie';
 
 const AddRSO = () => {
+  const id = GetCookie("user_id");
   const [name, setName] = useState("");
-  const [admin_id, setAdminID] = useState("");
+  const [admin_id, setAdminID] = useState(id);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -14,6 +17,7 @@ const AddRSO = () => {
         name,
         admin_id
     })
+    EditUser();
       console.log(response.data.rows[0]);
     } catch (err) {
       console.log(err);

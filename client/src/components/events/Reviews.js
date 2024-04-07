@@ -1,7 +1,21 @@
-import React from 'react'
 import RatingNum from "./RatingNum"
+import React, { useState, useEffect } from 'react'
+import GetCookies from '../Cookie'
 
 const Reviews = ({reviews}) => {
+    const [userid, setUserID] = useState("")
+
+    useEffect(() => {
+        const fetchData = async () => {
+          try {
+                const id = GetCookies("user_id");
+                setUserID(id);
+          } catch (err) {
+            console.log(err);
+          }
+        };
+        fetchData();
+      }, []);
 
     const handleDelete = async (e, reviewid) => {
         e.stopPropagation();
@@ -36,21 +50,25 @@ const Reviews = ({reviews}) => {
                         <p className="card-text">{review.review}</p>
                     </div>
                     <div>
-                        <button
-                        //onClick={(e) => handleUpdate(e, review.review_id)}
-                        className="btn btn-lg"
-                        >
-                        Update
-                        </button>
-                    </div>
-                    <div>
-                    <button
-                        //onClick={(e) => handleDelete(e, review.review_id)}
-                        className="btn btn-lg"
-                        >
-                        Delete
-                        </button>
-                    </div>
+                            {review.user_id == userid &&
+                                <button
+                                    onClick={(e) => handleUpdate(e, review.review_id)}
+                                    className="btn btn-lg"
+                                >
+                                    Update
+                                </button>
+                            }
+                        </div>
+                        <div>
+                            {review.user_id == userid &&
+                                <button
+                                    onClick={(e) => handleDelete(e, review.review_id)}
+                                    className="btn btn-lg"
+                                >
+                                    Delete
+                                </button>
+                            }
+                        </div>
                     </div>
                 )
             })}

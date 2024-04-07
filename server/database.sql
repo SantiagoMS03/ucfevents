@@ -23,7 +23,6 @@ CREATE TABLE rsos (
   rso_id INT PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
   name VARCHAR(255),
   admin_id INT,
-  is_private BOOLEAN
 );
 
 CREATE TABLE events (
@@ -38,6 +37,8 @@ CREATE TABLE events (
   is_rso BOOLEAN,
   is_public BOOLEAN
   visibility VARCHAR(255)
+  visibility VARCHAR(255),
+  admin_id INT
 );
 
 CREATE TABLE attendees (
@@ -46,6 +47,9 @@ CREATE TABLE attendees (
   is_attending BOOLEAN,
   CONSTRAINT fk_attendees FOREIGN KEY (user_id) REFERENCES users(user_id),
   CONSTRAINT fk_event FOREIGN KEY (event_id) REFERENCES events(event_id)
+  is_private BOOLEAN,
+  is_rso BOOLEAN,
+  is_public BOOLEAN
 );
 
 CREATE TABLE reviews (
@@ -53,7 +57,8 @@ CREATE TABLE reviews (
   event_id INT,
   name VARCHAR(255),
   review TEXT,
-  rating INT check(rating >=1 and rating <=5)
+  rating INT check(rating >=1 and rating <=5),
+  user_id INT
 );
 
 

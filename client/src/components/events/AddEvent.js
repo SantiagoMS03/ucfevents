@@ -4,6 +4,8 @@ import "./AddEvent.css";
 import { Context } from '../../context/Context';
 import RSOFinder from '../../apis/RSOFinder';
 import { useNavigate, Link } from "react-router-dom";
+import { Context } from '../../context/Context';
+import GetCookies from '../Cookie'
 
 const AddEvent = () => {
   const [name, setName] = useState("");
@@ -13,6 +15,7 @@ const AddEvent = () => {
   const [length_minutes, setLength] = useState("");
   const [rso_id, setRSOId] = useState("");
   const [visibility, setVisibility] = useState("");
+  const [adminid, setAdminID] = useState("")
   const { rsos, setRSOs } = useContext(Context);
 
   let navigate = useNavigate()
@@ -20,6 +23,9 @@ const AddEvent = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
+        const id = GetCookies("user_id");
+        setAdminID(id);
+
         const response = await RSOFinder.get("/");
         setRSOs(response.data.data.rsos);
         console.log(response);
@@ -33,7 +39,7 @@ const AddEvent = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await EventFinder.post("/", {
+      const response = await  EventFinder.post(`/${adminid}`, {
         name,
         category,
         description,
