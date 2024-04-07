@@ -110,3 +110,23 @@ exports.protected = async (req, res) => {
     console.error(err);
   }
 };
+
+exports.updateUser = async (req, res) => {
+  try {
+      const { access } = req.body;
+      const query = "UPDATE users SET access = $1 WHERE user_id = $2 RETURNING *";
+      const results = await db.query(query, [access, req.params.userid]);
+      if (results.rows.length === 0) {
+          return res.status(404).json({ status: "error", message: "User not found to update" });
+      }
+      res.status(200).json({
+          status: "success",
+          data: {
+              university: results.rows[0]
+          }
+      });
+  } catch (err) {
+      console.error(err);
+      res.status(500).json({ status: "error", message: "Internal server error" });
+    }
+  };

@@ -1,5 +1,6 @@
 import React, { useState, Fragment } from 'react'
 import RSOFinder from '../../apis/RSOFinder'
+import EditUser from '../login/EditUser';
 
 const AddRSO = () => {
   const [name, setName] = useState("");
@@ -12,6 +13,7 @@ const AddRSO = () => {
         name,
         admin_id
     })
+    EditUser();
       console.log(response.data.rows[0]);
     } catch (err) {
       console.log(err);
