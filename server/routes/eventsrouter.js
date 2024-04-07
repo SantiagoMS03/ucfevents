@@ -2,6 +2,8 @@ const express = require("express");
 const router = express.Router();
 const db = require("../db");
 
+const relateRSOEvent = require("../middleware/relational/rsoevent");
+
 router.get('/', async (req, res) => {
     try {
       const results = await db.query("SELECT * FROM events");
@@ -23,6 +25,8 @@ try {
     const { name, category, description, date, length_minutes, rso_id, visibility } = req.body;
     const eventInfoQuery = "INSERT INTO events (name, category, description, date, length_minutes, rso_id, visibility) VALUES($1, $2, $3, $4, $5, $6, $7) RETURNING *"
     const newEvent = await db.query(eventInfoQuery, [name, category, description, date, length_minutes, rso_id, visibility]);
+    const newid = newEvent.rows[0].event_id;
+    await relateRSOEvent(rso_id, newid);
     res.status(201).json({
     status: "success",
     data: {
