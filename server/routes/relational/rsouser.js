@@ -41,4 +41,16 @@ router.post('/:rsoid/:userid', async (req, res) => {
     }
 });
 
+router.delete('/:rsoid/:userid', async (req, res) => {
+    try {
+        const {userid, rsoid} = req.params;
+        const query = `DELETE FROM attending * WHERE rso_id = ${rsoid} AND user_id = ${userid}`;
+        const results = await db.query(query);
+        res.status(200).json(results.rows);
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ status: "error", message: "Internal server error" });
+    }
+});
+
 module.exports = router;
