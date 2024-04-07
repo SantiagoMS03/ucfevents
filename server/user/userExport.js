@@ -18,6 +18,24 @@ exports.get = async (req, res) => {
     }
 };
 
+exports.getUser = async (req, res) => {
+  try {
+      const results = await db.query("SELECT * FROM users WHERE user_id = $1", [req.params.userid]);
+      if (results.rows.length === 0) {
+          return res.status(404).json({ status: "error", message: "User not found" });
+      }
+      res.status(200).json({
+          status: "success",
+          data: {
+              users: results.rows[0]
+          }
+      });
+  } catch (err) {
+      console.error(err);
+      res.status(500).json({ status: "error", message: "Internal server error" });
+  }
+};
+
 // Get a single universityid
 exports.getUni = async (req, res) => {
   try {
@@ -58,7 +76,7 @@ exports.register = async (req, res) => {
 
 exports.login = async (req, res) => {
   let user = req.user
-  let payload = {id: user.user_id, email: user.email}
+  let payload = {id: user.user_id, email: user.email, access: user.access}
 
   try {
     const token = await sign(payload, SECRET)

@@ -33,7 +33,8 @@ CREATE TABLE events (
   date DATE,
   length_minutes INT,
   rso_id INT,
-  visibility VARCHAR(255)
+  visibility VARCHAR(255),
+  admin_id INT
 );
 
 CREATE TABLE attendees (

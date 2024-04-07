@@ -1,9 +1,13 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import EventFinder from '../../apis/EventFinder';
+import UserFinder from '../../apis/UserFinder';
 import { Context } from '../../context/Context';
 import { useNavigate } from "react-router-dom";
+import GetCookies from '../../components/Cookie'
 
 function EventsPage(props) {
+  const [userid, setUserID] = useState("");
+  const [access, setAccess] = useState("");
   const { events, setEvents } = useContext(Context);
   // run when this component renders
   //  [] not when any children rerender
@@ -12,6 +16,11 @@ function EventsPage(props) {
   useEffect(() => {
     const fetchData = async () => {
       try {
+        const id = GetCookies("user_id");
+        setUserID(id);
+        const perms = GetCookies("access");
+        setAccess(perms);
+
         const response = await EventFinder.get("/");
         setEvents(response.data.data.events);
       } catch (err) {
@@ -43,10 +52,12 @@ function EventsPage(props) {
     e.stopPropagation();
     navigate(`/events/${eventid}/edit`);
   };
-
   return (
     <div className="list-group container">
       EventsPage
+      {access &&
+        <button>Add Event</button>
+      } 
       <table className="table table-hover table-lg">
         <thead>
           <tr className="bg-secondary text-white">
@@ -68,20 +79,24 @@ function EventsPage(props) {
                   <td>{event.date}</td>
                   <td>{event.length_minutes}</td>
                   <td>
+                  {event.admin_id == userid &&
                     <button
                       onClick={(e) => handleUpdate(e, event.event_id)}
                       className="btn btn-lg"
                     >
                       Update
                     </button>
+            }
                   </td>
                   <td>
+                  {event.admin_id == userid &&
                     <button
                       onClick={(e) => handleDelete(e, event.event_id)}
                       className="btn btn-lg"
                     >
                       Delete
                     </button>
+                  }
                   </td>
                 </tr>
               )

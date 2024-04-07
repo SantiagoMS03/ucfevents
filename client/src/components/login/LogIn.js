@@ -16,6 +16,8 @@ const LogIn = () => {
       })
       const id = response.data.data.payload.id;
       document.cookie = `user_id=${id}; path=/`;
+      const access = response.data.data.payload.access;
+      document.cookie = `access=${access}; path=/`;
       navigate(`/welcome`)
     } catch (err) {
       console.log(err);
