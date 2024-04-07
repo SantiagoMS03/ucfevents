@@ -66,10 +66,11 @@ function EventsPage(props) {
             <th>Category</th>
             <th>Date</th>
             <th>Length</th>
+            <th>Visibility</th>
           </tr>
         </thead>
         <tbody>
-          {events &&
+          {events && 
             events.map((event) => {
               return (
                 <tr onClick={() => handleEventSelect(event.event_id)} key={event.event_id}>
@@ -78,6 +79,7 @@ function EventsPage(props) {
                   <td>{event.category}</td>
                   <td>{event.date}</td>
                   <td>{event.length_minutes}</td>
+                  <td>{event.visibility}</td>
                   <td>
                   {event.admin_id == userid &&
                     <button
