@@ -5,7 +5,7 @@ import { Context } from '../../context/Context';
 import { useNavigate } from "react-router-dom";
 import GetCookies from '../../components/Cookie'
 
-function EventsPage(props) {
+function PrivateEventsPage(props) {
   const [userid, setUserID] = useState("");
   const [access, setAccess] = useState("");
   const [uniid, setUniID] = useState("");
@@ -120,4 +120,4 @@ function EventsPage(props) {
   )
 }
 
-export default EventsPage
+export default PrivateEventsPage

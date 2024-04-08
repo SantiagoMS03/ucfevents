@@ -23,14 +23,31 @@ const EventDetailPage = () => {
     fetchData();
   }, []);
 
+  const handleJoinSelect = (rsoid) => { 
+    //navigate(`/rsos/${rsoid}`)
+  }
+
+  const handleLeaveSelect = (rsoid) => { 
+    //navigate(`/rsos/${rsoid}`)
+  }
+  
+
   return (
     <div className="container">
       {selectedEvent && (
         <>
         <h1 className="text-center display-1">{selectedEvent.event.name}</h1>
-          <div className="mt-3">
-            <Reviews reviews={selectedEvent.reviews}/>
-          </div>
+        <div>
+          <button onClick={() => handleJoinSelect()} >
+            Join RSO
+          </button>
+          <button onClick={() => handleLeaveSelect()}>
+            Leave RSO
+          </button>
+        </div>
+        <div className="mt-3">
+          <Reviews reviews={selectedEvent.reviews}/>
+        </div>
           <AddReview/>
         </>
       )}

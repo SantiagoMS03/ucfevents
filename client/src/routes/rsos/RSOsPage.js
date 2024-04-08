@@ -21,14 +21,26 @@ function RSOsPage(props) {
     fetchData();
   }, [])
 
-  const handleEventSelect = (rsoid) => { 
-    navigate(`/rsos/${rsoid}`)
+  // const handleEventSelect = (rsoid) => { 
+  //   navigate(`/rsos/${rsoid}`)
+  // }
+
+  const handleJoinSelect = (rsoid) => { 
+    //navigate(`/rsos/${rsoid}`)
+  }
+
+  const handleLeaveSelect = (rsoid) => { 
+    //navigate(`/rsos/${rsoid}`)
+  }
+
+  const handleNewSelect = (rsoid) => { 
+    navigate(`/newrso`)
   }
 
   return (
     <div className="list-group container">
       RSOsPage
-      <button>Create new RSO</button>
+      <button onClick={() => handleNewSelect()} >Create new RSO</button>
       <table className="table table-hover table-lg">
         <thead>
           <tr className="bg-secondary text-white">
@@ -39,15 +51,15 @@ function RSOsPage(props) {
           {rsos &&
             rsos.map((rso) => {
               return (
-                <tr onClick={() => handleEventSelect(rso.rso_id)} key={rso.rso_id}>
+                <tr>
                   <td>{rso.name}</td>
                   <td>
-                    <button>
+                    <button onClick={() => handleJoinSelect()} >
                       Join RSO
                     </button>
                   </td>
                   <td>
-                    <button>
+                    <button onClick={() => handleLeaveSelect()}>
                       Leave RSO
                     </button>
                   </td>
