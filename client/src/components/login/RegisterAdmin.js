@@ -19,7 +19,6 @@ function RegisterAdmin(props) {
       try {
         const response = await UniversityFinder.get("/");
         setUnis(response.data.data.universities);
-        console.log(response);
       } catch (err) {
         console.error(err);
       }
