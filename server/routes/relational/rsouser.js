@@ -41,6 +41,42 @@ router.post('/:rsoid/:userid', async (req, res) => {
     }
 });
 
+//Add users to rso
+router.post('/:rsoid', async (req, res) => {
+    try {
+        const { rsoid } = req.params;
+        const { user_ids } = req.body;
+    
+        if (!Array.isArray(user_ids) || user_ids.length === 0) {
+          return res.status(400).json({ error: "Invalid or empty user IDs array" });
+        }
+
+        await Promise.all(user_ids.map(async (userid) => {
+          const query = `INSERT INTO rsouser (rso_id, user_id) VALUES ($1, $2)`;
+          const values = [rsoid, userid];
+          await db.query(query, values);
+        }));
+    
+        res.status(200).json({ message: "Members added to RSO successfully" });
+      } catch (err) {
+        console.error(err);
+        res.status(500).json({ status: "error", message: "Internal server error" });
+      }
+});
+
+// //Add rsos to user
+// router.post('/rsos/:userid', async (req, res) => {
+//     try {
+//         const {userid, rsoid} = req.params;
+//         const query = `INSERT INTO rsouser (rso_id, user_id) VALUES (${rsoid}, ${userid})`;
+//         const results = await db.query(query);
+//         res.status(200).json(results.rows);
+//     } catch (err) {
+//         console.error(err);
+//         res.status(500).json({ status: "error", message: "Internal server error" });
+//     }
+// });
+
 router.delete('/:rsoid/:userid', async (req, res) => {
     try {
         const {userid, rsoid} = req.params;

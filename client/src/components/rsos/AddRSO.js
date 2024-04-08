@@ -1,10 +1,12 @@
 import React, { useState, Fragment, useContext, useEffect } from 'react'
 import RSOFinder from '../../apis/RSOFinder'
 import UserFinder from '../../apis/UserFinder';
+import RelationFinder from '../../apis/RelationFinder';
 import EditUser from '../login/EditUser';
 import GetCookie from '../Cookie';
 import { Context } from '../../context/Context';
-import Select from 'react-select'
+import Select from 'react-select';
+import UserToRSO from './UserToRSO';
 
 const AddRSO = () => {
   const id = GetCookie("user_id");
@@ -37,8 +39,9 @@ const AddRSO = () => {
         name,
         admin_id
     })
-    EditUser();
-      console.log(response.data.rows[0]);
+    const rsoID = response.data.data.rso.rso_id;
+    //EditUser();
+    UserToRSO(rsoID, user_id, setUserID);
     } catch (err) {
       console.log(err);
     }
