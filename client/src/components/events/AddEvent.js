@@ -4,7 +4,7 @@ import "./AddEvent.css";
 import { Context } from '../../context/Context';
 import RSOFinder from '../../apis/RSOFinder';
 import { useNavigate, Link } from "react-router-dom";
-import { Context } from '../../context/Context';
+
 import GetCookies from '../Cookie'
 
 const AddEvent = () => {

@@ -52,7 +52,7 @@ function RegisterSuperAdmin(props) {
       <Fragment>
         <form className="form-container" action=''>
         <div className="back-arrow">
-      <Link to="/register">Back</Link>
+      <Link to="/newuniversity">Back</Link>
       </div>
           <h2 className="title">Register Super Admin</h2>
           <select className="input" value={university_id} onChange={handleChange}> 

@@ -35,22 +35,23 @@ CREATE TABLE events (
   rso_id INT,
   is_private BOOLEAN,
   is_rso BOOLEAN,
-  is_public BOOLEAN
-  visibility VARCHAR(255)
+  is_public BOOLEAN,
   visibility VARCHAR(255),
   admin_id INT
 );
+
 
 CREATE TABLE attendees (
   user_id INT,
   event_id INT,
   is_attending BOOLEAN,
-  CONSTRAINT fk_attendees FOREIGN KEY (user_id) REFERENCES users(user_id),
-  CONSTRAINT fk_event FOREIGN KEY (event_id) REFERENCES events(event_id)
   is_private BOOLEAN,
   is_rso BOOLEAN,
-  is_public BOOLEAN
+  is_public BOOLEAN,
+  CONSTRAINT fk_attendees FOREIGN KEY (user_id) REFERENCES users(user_id),
+  CONSTRAINT fk_event FOREIGN KEY (event_id) REFERENCES events(event_id)
 );
+
 
 CREATE TABLE reviews (
   review_id INT PRIMARY KEY GENERATED ALWAYS AS IDENTITY,

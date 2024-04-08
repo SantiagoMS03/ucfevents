@@ -62,7 +62,7 @@ function EventsPage(props) {
   };
   return (
     <div className="list-group container">
-      EventsPage
+     <h2 className="title">Event Page</h2>
       {access &&
         <button>Add Event</button>
       } 
