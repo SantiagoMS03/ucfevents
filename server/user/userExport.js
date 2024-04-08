@@ -113,7 +113,7 @@ exports.protected = async (req, res) => {
 
 exports.updateUser = async (req, res) => {
   try {
-      const { access } = req.body;
+      const access  = 'true';
       const query = "UPDATE users SET access = $1 WHERE user_id = $2 RETURNING *";
       const results = await db.query(query, [access, req.params.userid]);
       if (results.rows.length === 0) {

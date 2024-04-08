@@ -40,7 +40,7 @@ const AddRSO = () => {
         admin_id
     })
     const rsoID = response.data.data.rso.rso_id;
-    //EditUser();
+    EditUser(admin_id);
     UserToRSO(rsoID, user_id, setUserID);
     } catch (err) {
       console.log(err);
