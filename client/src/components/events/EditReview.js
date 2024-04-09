@@ -48,7 +48,7 @@ const EditReview = () => {
     <div >
         <Header />
     <div className="container">
-      <h2 className="title1">Add Event Review</h2>
+      <h2 className="title2">Edit Event Review</h2>
       <form className="form-container" action="">
         <div className="form-row">
           <div className="form-group col-8">

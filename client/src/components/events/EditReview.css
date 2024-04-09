@@ -11,7 +11,14 @@
     font-size: 24px;
     font-weight: bold;
     margin-bottom: 20px;
-    margin-top: 450px;
+    margin-top: -1000px;
+  }
+
+  .title2 {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    margin-top: -500px;
   }
   
   .form-container {
