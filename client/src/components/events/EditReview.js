@@ -3,6 +3,7 @@ import EventFinder from '../../apis/EventFinder'
 import { useParams } from "react-router-dom";
 import GetCookie from '../Cookie';
 import { useNavigate } from "react-router-dom";
+import Header from '../Header.js';
 
 const EditReview = () => {
     var {eventid, reviewid} = useParams();
@@ -44,8 +45,10 @@ const EditReview = () => {
 };
 
  return (
+    <div >
+        <Header />
     <div className="container">
-      <h2 className="title">Add Event Review</h2>
+      <h2 className="title1">Add Event Review</h2>
       <form className="form-container" action="">
         <div className="form-row">
           <div className="form-group col-8">
@@ -93,6 +96,7 @@ const EditReview = () => {
           Submit
         </button>
       </form>
+    </div>
     </div>
   );
 }

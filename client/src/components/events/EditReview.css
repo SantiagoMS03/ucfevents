@@ -7,10 +7,11 @@
     height: 100vh;
   }
   
-  .title {
+  .title1 {
     font-size: 24px;
     font-weight: bold;
     margin-bottom: 20px;
+    margin-top: 450px;
   }
   
   .form-container {
@@ -22,17 +23,18 @@
   
   .input {
     width: 100%;
-    padding: 10px;
-    margin-bottom: 10px;
-    border-radius: 5px;
+    padding: 15px; /* Increase padding for larger text */
+    margin-bottom: 15px;
+    border-radius: 10px;
     border: 1px solid #ccc;
     font-size: 16px;
+    height: auto;
   }
   
   .button {
     padding: 10px 20px;
     border: none;
-    border-radius: 5px;
+    border-radius: 6px;
     background-color: #007bff;
     color: #fff;
     font-size: 16px;
