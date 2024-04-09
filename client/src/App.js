@@ -3,6 +3,7 @@ import HomePage from "./routes/HomePage";
 import { ContextProvider } from "./context/Context";
 import { UniversityContextProvider } from "./context/UniversityContext";
 import EventsPage from "./routes/events/EventsPage";
+import AttendingEventsPage from "./routes/events/AttendingEventsPage";
 import PublicEventsPage from "./routes/events/PublicEventsPage";
 import PrivateEventsPage from "./routes/events/PrivateEventsPage";
 import RSOEventsPage from "./routes/events/RSOEventsPage";
@@ -39,6 +40,7 @@ function App() {
               <Route exact path="/newrso" element={<CreateRSOPage/>}/>
               <Route exact path="/rsos" element={<RSOsPage/>}/>
               <Route exact path="/events" element={<EventsPage/>}/>
+              <Route exact path="/attendingevents" element={<AttendingEventsPage/>}/>
               <Route exact path="/publicevents" element={<PublicEventsPage/>}/>
               <Route exact path="/privateevents" element={<PrivateEventsPage/>}/>
               <Route exact path="/rsoevents" element={<RSOEventsPage/>}/>
