@@ -43,7 +43,7 @@ function App() {
               <Route exact path="/rsoevents" element={<RSOEventsPage/>}/>
               <Route exact path="/events/:eventid" element={<EventDetailPage/>}/>
               <Route exact path="/events/:eventid/edit" element={<EditEventPage/>}/>
-              <Route exact path="/newevent" element={<CreateEventPage/>}/>
+              <Route exact path="/newevent/:rsoid" element={<CreateEventPage/>}/>
 
               <Route exact path="/welcome" element={<WelcomePage/>}/>
               <Route exact path="/login" element={<LogInPage/>}/>

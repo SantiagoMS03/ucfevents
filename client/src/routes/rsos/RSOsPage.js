@@ -4,6 +4,7 @@ import RelationFinder from '../../apis/RelationFinder';
 import { useNavigate } from "react-router-dom";
 import { Context } from '../../context/Context';
 import GetCookie from '../../components/Cookie';
+import AddEvent from '../../components/events/AddEvent';
 
 function RSOsPage(props) {
   const { rsos, setRSOs } = useContext(Context);
@@ -54,6 +55,10 @@ function RSOsPage(props) {
     navigate(`/newrso`)
   }
 
+  const handleAddSelect = (rsoid) => { 
+    navigate(`/newevent/${rsoid}`)
+  }
+
   const rsoMember = (rsoid) => {
     let equal = false;
     members.forEach((mem) => {
@@ -92,6 +97,15 @@ function RSOsPage(props) {
                       Leave RSO
                     </button>
                     }
+                  </td>
+                  <td>
+                    <div>
+                    {rso.admin_id == id &&
+                    <button onClick={() => handleAddSelect(rso.admin_id)}>
+                      Add Event
+                    </button>
+                    }
+                    </div>
                   </td>
                 </tr>
               )
