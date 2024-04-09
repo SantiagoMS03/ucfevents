@@ -11,7 +11,7 @@ function RegisterUser(props) {
   const [access] = useState("false");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const { unis, setUnis } = useContext(UniversityContext);
+  const [unis, setUnis] = useState([]);
 
   let navigate = useNavigate()
 
@@ -58,7 +58,8 @@ function RegisterUser(props) {
         </div>
           <select className="input" value={university_id} onChange={handleChange}>
             <option value="">Select a University</option>
-            {unis.map((uni) => (
+            {unis &&
+              unis.map((uni) => (
               <option value={uni.university_id} key={uni.university_id}>{uni.name}</option>
             ))}
           </select>

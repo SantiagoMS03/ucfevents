@@ -10,7 +10,7 @@ function RegisterSuperAdmin(props) {
   const [access] = useState("true");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const { unis, setUnis } = useContext(UniversityContext);
+  const [unis, setUnis] = useState([]);
   let navigate = useNavigate()
 
   useEffect(() => {
@@ -57,7 +57,8 @@ function RegisterSuperAdmin(props) {
           <h2 className="title">Register Super Admin</h2>
           <select className="input" value={university_id} onChange={handleChange}> 
             <option value=""> Select a University </option>
-            {unis.map((uni) => (
+            {unis &&
+              unis.map((uni) => (
               <option value={uni.university_id} key={uni.university_id}>{uni.name}</option>))}
           </select>
           <label className="label" htmlFor='email'>Email</label>
