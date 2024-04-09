@@ -103,7 +103,7 @@ function RSOsPage(props) {
                       <td>
                         <div>
                           {rso.admin_id == id && (
-                            <button onClick={() => handleAddSelect(rso.admin_id)}>
+                            <button onClick={() => handleAddSelect(rso.rso_id)}>
                               Add Event
                             </button>
                           )}

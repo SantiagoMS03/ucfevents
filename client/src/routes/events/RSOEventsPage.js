@@ -70,6 +70,7 @@ function RSOEventsPage(props) {
   const rsoMember = (rsoid) => {
     let equal = false;
     members.forEach((mem) => {
+      console.log(mem.rso_id, rsoid);
       if (mem.rso_id === rsoid) {
         equal = true;
         return;
@@ -97,7 +98,7 @@ function RSOEventsPage(props) {
         <tbody>
           {events && 
             events.map((event) => {
-              if (event.visibility === "rso" && rsoMember(event.rso_id)) {
+              if (rsoMember(event.rso_id)) {
               return (
                 <tr onClick={() => handleEventSelect(event.event_id)} key={event.event_id}>
                   <td>{event.name}</td>
