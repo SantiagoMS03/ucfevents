@@ -6,6 +6,8 @@ import { Context } from '../../context/Context';
 import EventFinder from "../../apis/EventFinder";
 import RelationFinder from '../../apis/RelationFinder';
 import GetCookie from '../../components/Cookie';
+import Header from '../../components/Header.js';
+import './EventDetailPage.css';
 
 const EventDetailPage = () => {
   const {eventid} = useParams();
@@ -60,30 +62,35 @@ const EventDetailPage = () => {
   };
 
   return (
+    <div>
+    <Header />
     <div className="container">
       {selectedEvent && (
         <>
-        <h1 className="text-center display-1">{selectedEvent.event.name}</h1>
-        <div>
-            {!eventAttend(eventid) &&
-            <button onClick={() => handleJoinSelect(eventid)} >
-              Attend Event
-            </button>
-            }
-            {eventAttend(eventid) &&
-            <button onClick={() => handleLeaveSelect(eventid)}>
-              Leave Event
-            </button>
-            }
-        </div>
-        <div className="mt-3">
-          <Reviews reviews={selectedEvent.reviews}/>
-        </div>
-          <AddReview/>
+          <h1 className="text-center display-1">{selectedEvent.event.name}</h1>
+          <div className="btn-group mt-3" role="group">
+            {!eventAttend(eventid) && (
+              <button className="btn btn-primary" onClick={() => handleJoinSelect(eventid)}>
+                Attend Event
+              </button>
+            )}
+            {eventAttend(eventid) && (
+              <button className="btn btn-danger" onClick={() => handleLeaveSelect(eventid)}>
+                Leave Event
+              </button>
+            )}
+          </div>
+          <div className="mt-3">
+            <Reviews reviews={selectedEvent.reviews} />
+          </div>
+          <div className="mt-3">
+            <AddReview />
+          </div>
         </>
       )}
-  
     </div>
+  </div>
+
   )
 }
 

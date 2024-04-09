@@ -3,7 +3,8 @@ import EventFinder from '../../apis/EventFinder';
 import UserFinder from '../../apis/UserFinder';
 import { Context } from '../../context/Context';
 import { useNavigate } from "react-router-dom";
-import GetCookies from '../../components/Cookie'
+import GetCookies from '../../components/Cookie';
+import Header from "../../components/Header.js";
 
 function PublicEventsPage(props) {
   const [userid, setUserID] = useState("");
@@ -60,8 +61,9 @@ function PublicEventsPage(props) {
   };
 
   return (
+    <div>
+        <Header />
     <div className="list-group container">
-      EventsPage
       <table className="table table-hover table-lg">
         <thead>
           <tr className="bg-secondary text-white">
@@ -109,6 +111,7 @@ function PublicEventsPage(props) {
           })}
         </tbody>
       </table>
+    </div>
     </div>
   )
 }

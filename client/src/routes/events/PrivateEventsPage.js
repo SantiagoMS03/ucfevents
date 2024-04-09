@@ -5,6 +5,7 @@ import RelationFinder from '../../apis/RelationFinder';
 import { Context } from '../../context/Context';
 import { useNavigate } from "react-router-dom";
 import GetCookie from '../../components/Cookie'
+import Header from '../../components/Header';
 
 function PrivateEventsPage(props) {
   const [userid, setUserID] = useState("");
@@ -76,8 +77,9 @@ function PrivateEventsPage(props) {
   };
 
   return (
+    <div>
+        <Header />
     <div className="list-group container">
-      EventsPage
       <table className="table table-hover table-lg">
         <thead>
           <tr className="bg-secondary text-white">
@@ -126,6 +128,7 @@ function PrivateEventsPage(props) {
           })}
         </tbody>
       </table>
+    </div>
     </div>
   )
 }
