@@ -5,7 +5,7 @@ const UserToRSO = async (rsoIDs, userIds, setUserID) => {
     console.log("Test rsoid",rsoIDs)
     console.log("Test userid", userIds)
     try {
-      const response = await RelationFinder.post(`/${rsoIDs}`, {
+      const response = await RelationFinder.post(`/rsouser/${rsoIDs}`, {
         user_ids: userIds
       })
       console.log(response);

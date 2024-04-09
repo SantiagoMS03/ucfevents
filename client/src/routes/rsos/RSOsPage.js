@@ -19,7 +19,7 @@ function RSOsPage(props) {
         const response = await RSOFinder.get("/");
         setRSOs(response.data.data.rsos);
 
-        const mems = await RelationFinder.get(`/user/${id}`);
+        const mems = await RelationFinder.get(`/rsouser/user/${id}`);
         setMembers(mems.data);
       } catch (err) {
         console.error(err);
@@ -34,7 +34,7 @@ function RSOsPage(props) {
 
   const handleJoinSelect = async (rsoid) => { 
     try {
-      const response = await RelationFinder.post(`/${rsoid}/${id}`)
+      const response = await RelationFinder.post(`/rsouser/${rsoid}/${id}`)
       refreshPage();
     } catch (err) {
       console.log(err);
@@ -43,14 +43,14 @@ function RSOsPage(props) {
 
   const handleLeaveSelect = async (rsoid) => { 
     try {
-      const response = await RelationFinder.delete(`/${rsoid}/${id}`)
+      const response = await RelationFinder.delete(`/rsouser/${rsoid}/${id}`)
       refreshPage();
     } catch (err) {
       console.log(err);
     }
   }
 
-  const handleNewSelect = (rsoid) => { 
+  const handleNewSelect = () => { 
     navigate(`/newrso`)
   }
 
