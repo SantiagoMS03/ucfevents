@@ -3,10 +3,9 @@ import EventFinder from '../../apis/EventFinder'
 import "./AddEvent.css";
 import { Context } from '../../context/Context';
 import RSOFinder from '../../apis/RSOFinder';
-import { useNavigate, Link } from "react-router-dom";
-
+import { useNavigate, Link, useParams } from "react-router-dom";
 import GetCookies from '../Cookie'
-import { useNavigate, useParams } from "react-router-dom";
+
 
 const AddEvent = () => {
   const [name, setName] = useState("");
@@ -103,7 +102,6 @@ const AddEvent = () => {
             type='number'
             placeholder='Length'
           />
-        </div>
         <div>
         {/* <select value={rso_id} onChange={handleRSOChange}> 
             <option value=""> Select an RSO </option>
@@ -111,7 +109,6 @@ const AddEvent = () => {
               <option value={rso.rso_id} key={rso.rso_id}>{rso.name}</option>))}
           </select> */}
         </div>
-        <div>
           <select value={visibility} onChange={handleVisChange}> 
             <option value=""> Select Visibility </option>
             <option value="private">Private</option>
@@ -127,7 +124,8 @@ const AddEvent = () => {
         </form>
       </div>
     </Fragment>
-  )
+  );
+
 }
 
 export default AddEvent;
