@@ -11,7 +11,7 @@ function PrivateEventsPage(props) {
   const [userid, setUserID] = useState("");
   const [access, setAccess] = useState("");
   const [uniid, setUniID] = useState("");
-  const [atEvents, setAtEvents] = useState([])
+  const [uniRso, setUniRso] = useState([])
   const { events, setEvents } = useContext(Context);
   // run when this component renders
   //  [] not when any children rerender
@@ -33,8 +33,8 @@ function PrivateEventsPage(props) {
         });
         setEvents(eventFilter)
 
-        const event = await RelationFinder.get(`/attending/user/${id}`);
-        setAtEvents(event.data);
+        const uni = await RelationFinder.get(`/universityrso/university/${uniID}`);
+        setUniRso(uni.data);
       } catch (err) {
         console.error(err);
       }
@@ -65,10 +65,10 @@ function PrivateEventsPage(props) {
     navigate(`/events/${eventid}/edit`);
   };
 
-  const eventAttend = (eventid) => {
+  const rsoUni = (uniid) => {
     let equal = false;
-    atEvents.forEach((e) => {
-      if (e.event_id == eventid) {
+    uniRso.forEach((u) => {
+      if (u.rso_id == uniid) {
         equal = true;
         return;
       }
@@ -94,7 +94,7 @@ function PrivateEventsPage(props) {
         <tbody>
           {events && 
             events.map((event) => {
-              if (event.visibility === "private" && eventAttend(event.event_id)) {
+              if (event.visibility === "private" && rsoUni(event.rso_id)) {
               return (
                 <tr onClick={() => handleEventSelect(event.event_id)} key={event.event_id}>
                   <td>{event.name}</td>
