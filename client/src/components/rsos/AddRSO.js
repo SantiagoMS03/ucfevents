@@ -67,12 +67,7 @@ const AddRSO = () => {
           type='text'
           placeholder='Name'
         />
-        <input
-          className="input"
-          value={admin_id}
-          onChange={(e) => setAdminID(e.target.value)}
-          type='number'
-          placeholder='Admin ID'
+        <Select
           value={Array.isArray(user_id) ? user_id.map(id => ({ value: id, label: users.find(user => user.user_id === id)?.email })) : []}
           onChange={handleUserSelect}
           options={users.map(user => ({ value: user.user_id, label: user.email, key: user.user_id }))}
