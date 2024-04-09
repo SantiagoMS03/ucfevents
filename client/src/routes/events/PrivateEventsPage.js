@@ -26,7 +26,7 @@ function PrivateEventsPage(props) {
 
         const response = await EventFinder.get("/");
         const eventFilter = response.data.data.events.filter(event => {
-          return event.visibility === "public";
+          return event.visibility === "private";
         });
         setEvents(eventFilter)
       } catch (err) {

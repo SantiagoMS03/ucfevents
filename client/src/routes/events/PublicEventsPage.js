@@ -26,7 +26,7 @@ function PublicEventsPage(props) {
 
         const response = await EventFinder.get("/");
         const eventFilter = response.data.data.events.filter(event => {
-          return event.visibility === "public";
+          return event.visibility === "public" || event.visibility === "private" || event.visibility === "rso";
         });
         setEvents(eventFilter)
       } catch (err) {
@@ -77,7 +77,7 @@ function PublicEventsPage(props) {
             <th>Category</th>
             <th>Date</th>
             <th>Length</th>
-            <th>Visibility</th>
+            <th>Type</th>
           </tr>
         </thead>
         <tbody>
