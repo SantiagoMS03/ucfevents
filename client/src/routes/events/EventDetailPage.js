@@ -48,10 +48,10 @@ const EventDetailPage = () => {
   //   }
   }
 
-  const eventAttend = (selected) => {
+  const eventAttend = (eventid) => {
     let equal = false;
     events.forEach((e) => {
-      if (e.event_id === selected) {
+      if (e.event_id == eventid) {
         equal = true;
         return;
       }
@@ -65,13 +65,13 @@ const EventDetailPage = () => {
         <>
         <h1 className="text-center display-1">{selectedEvent.event.name}</h1>
         <div>
-            {eventAttend(selectedEvent) &&
-            <button onClick={() => handleJoinSelect(selectedEvent)} >
+            {!eventAttend(eventid) &&
+            <button onClick={() => handleJoinSelect(eventid)} >
               Attend Event
             </button>
             }
-            {!eventAttend(selectedEvent) &&
-            <button onClick={() => handleLeaveSelect(selectedEvent)}>
+            {eventAttend(eventid) &&
+            <button onClick={() => handleLeaveSelect(eventid)}>
               Leave Event
             </button>
             }
