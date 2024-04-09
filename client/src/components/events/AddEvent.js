@@ -46,7 +46,7 @@ const AddEvent = () => {
         length_minutes,
         visibility
       })
-      navigate('/events')
+      navigate('/rsos')
     } catch (err) {
       console.log(err);
     }

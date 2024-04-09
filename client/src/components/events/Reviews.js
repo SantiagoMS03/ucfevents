@@ -1,9 +1,16 @@
 import RatingNum from "./RatingNum"
 import React, { useState, useEffect } from 'react'
 import GetCookies from '../Cookie'
+import EventFinder from "../../apis/EventFinder";
+import { useNavigate } from "react-router-dom";
 
 const Reviews = ({reviews}) => {
     const [userid, setUserID] = useState("")
+    let navigate = useNavigate()
+
+    function refreshPage() {
+        window.location.reload(false);
+      }
 
     useEffect(() => {
         const fetchData = async () => {
@@ -17,23 +24,19 @@ const Reviews = ({reviews}) => {
         fetchData();
       }, []);
 
-    const handleDelete = async (e, reviewid) => {
+    const handleDelete = async (e, userid) => {
         e.stopPropagation();
-        // try {
-        //   const response = await EventFinder.delete(`/${eventid}`);
-        //   setEvents(
-        //     events.filter((event) => {
-        //       return event.event_id !== eventid;
-        //     })
-        //   );
-        // } catch (err) {
-        //   console.log(err);
-        // }
+        try {
+          const response = await EventFinder.delete(`/${userid}/reviews`);
+          refreshPage() 
+        } catch (err) {
+          console.log(err);
+        }
       };
     
-      const handleUpdate = (e, reviewid) => {
+      const handleUpdate = (e, eventid, reviewid) => {
         e.stopPropagation();
-        // navigate(`/events/${eventid}/edit`);
+        navigate(`/events/${eventid}/${reviewid}`);
       };
 
     return (
@@ -52,7 +55,7 @@ const Reviews = ({reviews}) => {
                     <div>
                             {review.user_id == userid &&
                                 <button
-                                    onClick={(e) => handleUpdate(e, review.review_id)}
+                                    onClick={(e) => handleUpdate(e, review.event_id ,review.review_id)}
                                     className="btn btn-lg"
                                 >
                                     Update
@@ -62,7 +65,7 @@ const Reviews = ({reviews}) => {
                         <div>
                             {review.user_id == userid &&
                                 <button
-                                    onClick={(e) => handleDelete(e, review.review_id)}
+                                    onClick={(e) => handleDelete(e, review.user_id)}
                                     className="btn btn-lg"
                                 >
                                     Delete

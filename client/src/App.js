@@ -21,6 +21,7 @@ import AdminRegisterPage from "./routes/user/AdminRegisterPage";
 import SuperAdminRegisterPage from "./routes/user/SuperAdminRegisterPage";
 import WelcomePage from "./routes/WelcomePage";
 import RSOsPage from './routes/rsos/RSOsPage';
+import EditReview from "./components/events/EditReview"
 
 function App() {
   return (
@@ -44,6 +45,7 @@ function App() {
               <Route exact path="/events/:eventid" element={<EventDetailPage/>}/>
               <Route exact path="/events/:eventid/edit" element={<EditEventPage/>}/>
               <Route exact path="/newevent/:rsoid" element={<CreateEventPage/>}/>
+              <Route exact path="/events/:eventid/:reviewid" element={<EditReview/>}/>
 
               <Route exact path="/welcome" element={<WelcomePage/>}/>
               <Route exact path="/login" element={<LogInPage/>}/>
