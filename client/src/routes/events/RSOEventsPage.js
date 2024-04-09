@@ -3,14 +3,15 @@ import EventFinder from '../../apis/EventFinder';
 import UserFinder from '../../apis/UserFinder';
 import { Context } from '../../context/Context';
 import { useNavigate } from "react-router-dom";
-import Header from "../../components/Header.js";
-import "./EventsPage.css";
-import GetCookies from '../../components/Cookie'
+import GetCookie from '../../components/Cookie';
+import RelationFinder from '../../apis/RelationFinder';
 
-function EventsPage(props) {
+function RSOEventsPage(props) {
   const [userid, setUserID] = useState("");
   const [access, setAccess] = useState("");
   const [uniid, setUniID] = useState("");
+  const [members, setMembers] = useState([])
+  const id = GetCookie("user_id");
   const { events, setEvents } = useContext(Context);
   // run when this component renders
   //  [] not when any children rerender
@@ -19,18 +20,22 @@ function EventsPage(props) {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const id = GetCookies("user_id");
+        const id = GetCookie("user_id");
         setUserID(id);
-        const perms = GetCookies("access");
+        const perms = GetCookie("access");
         setAccess(perms);
-        const uniID = GetCookies("university_id");
+        const uniID = GetCookie("university_id");
         setUniID(uniID);
 
         const response = await EventFinder.get("/");
         const eventFilter = response.data.data.events.filter(event => {
-          return event.visibility === "public";
+          return event.visibility === "rso";
         });
         setEvents(eventFilter)
+
+        const mems = await RelationFinder.get(`/rsouser/user/${id}`);
+        setMembers(mems.data);
+
       } catch (err) {
         console.error(err);
       }
@@ -61,6 +66,18 @@ function EventsPage(props) {
     navigate(`/events/${eventid}/edit`);
   };
 
+  const rsoMember = (rsoid) => {
+    let equal = false;
+    members.forEach((mem) => {
+      if (mem.rso_id === rsoid) {
+        equal = true;
+        return;
+      }
+    });
+    return equal;
+  };
+
+
   return (
     <div className="list-group container">
       EventsPage
@@ -78,6 +95,7 @@ function EventsPage(props) {
         <tbody>
           {events && 
             events.map((event) => {
+              if (event.visibility === "rso" && rsoMember(event.rso_id)) {
               return (
                 <tr onClick={() => handleEventSelect(event.event_id)} key={event.event_id}>
                   <td>{event.name}</td>
@@ -107,7 +125,7 @@ function EventsPage(props) {
                   }
                   </td>
                 </tr>
-              )
+              )}
           })}
         </tbody>
       </table>
@@ -115,4 +133,4 @@ function EventsPage(props) {
   )
 }
 
-export default EventsPage
+export default RSOEventsPage

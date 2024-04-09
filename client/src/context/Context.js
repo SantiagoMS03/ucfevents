@@ -6,12 +6,14 @@ export const ContextProvider = (props) => {
     const [events, setEvents] = useState([]);
     const [selectedEvent, setSelectedEvent] = useState(null);
     const [rsos, setRSOs] = useState([]);
+    const [users, setUsers] = useState([]);
     
     return (
         <Context.Provider value={{
                 events, setEvents, 
                 selectedEvent, setSelectedEvent,
-                rsos, setRSOs}}>
+                rsos, setRSOs,
+                users, setUsers}}>
             {props.children}
         </Context.Provider>
     )

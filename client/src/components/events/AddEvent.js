@@ -6,6 +6,7 @@ import RSOFinder from '../../apis/RSOFinder';
 import { useNavigate, Link } from "react-router-dom";
 
 import GetCookies from '../Cookie'
+import { useNavigate, useParams } from "react-router-dom";
 
 const AddEvent = () => {
   const [name, setName] = useState("");
@@ -16,6 +17,7 @@ const AddEvent = () => {
   const [rso_id, setRSOId] = useState("");
   const [visibility, setVisibility] = useState("");
   const [adminid, setAdminID] = useState("")
+  const {rsoid} = useParams();
   const { rsos, setRSOs } = useContext(Context);
 
   let navigate = useNavigate()
@@ -39,16 +41,15 @@ const AddEvent = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await  EventFinder.post(`/${adminid}`, {
+      const response = await  EventFinder.post(`/${adminid}/${rsoid}`, {
         name,
         category,
         description,
         date,
         length_minutes,
-        rso_id,
         visibility
       })
-      navigate('/events')
+      navigate('/rsos')
     } catch (err) {
       console.log(err);
     }
@@ -102,11 +103,15 @@ const AddEvent = () => {
             type='number'
             placeholder='Length'
           />
-          <select value={rso_id} onChange={handleRSOChange}> 
+        </div>
+        <div>
+        {/* <select value={rso_id} onChange={handleRSOChange}> 
             <option value=""> Select an RSO </option>
             {rsos.map((rso) => (
               <option value={rso.rso_id} key={rso.rso_id}>{rso.name}</option>))}
-          </select>
+          </select> */}
+        </div>
+        <div>
           <select value={visibility} onChange={handleVisChange}> 
             <option value=""> Select Visibility </option>
             <option value="private">Private</option>
