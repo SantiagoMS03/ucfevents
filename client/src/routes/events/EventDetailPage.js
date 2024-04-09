@@ -63,35 +63,36 @@ const EventDetailPage = () => {
 
   return (
     <div>
-    <Header />
-    <div className="container">
-      {selectedEvent && (
-        <>
-          <h1 className="text-center display-1">{selectedEvent.event.name}</h1>
-          <div className="btn-group mt-3" role="group">
-            {!eventAttend(eventid) && (
-              <button className="btn btn-primary" onClick={() => handleJoinSelect(eventid)}>
-                Attend Event
-              </button>
-            )}
-            {eventAttend(eventid) && (
-              <button className="btn btn-danger" onClick={() => handleLeaveSelect(eventid)}>
-                Leave Event
-              </button>
-            )}
-          </div>
-          <div className="mt-3">
-            <Reviews reviews={selectedEvent.reviews} />
-          </div>
-          <div className="mt-3">
-            <AddReview />
-          </div>
-        </>
-      )}
+      <Header />
+      <div className="container1">
+        {selectedEvent && (
+          <>
+            <h1 className="text-center display-1">{selectedEvent.event.name}</h1>
+            <div className="mt-3">
+              <div className="btn-group" role="group">
+                {!eventAttend(eventid) && (
+                  <button className="btn btn-primary" onClick={handleJoinSelect}>
+                    Attend Event
+                  </button>
+                )}
+                {eventAttend(eventid) && (
+                  <button className="btn btn-danger" onClick={handleLeaveSelect}>
+                    Leave Event
+                  </button>
+                )}
+              </div>
+            </div>
+            <div className="mt-3">
+              <AddReview />
+            </div>
+            <div className="mt-7">
+              <Reviews reviews={selectedEvent.reviews} />
+            </div>
+          </>
+        )}
+      </div>
     </div>
-  </div>
-
-  )
+  );
 }
 
 export default EventDetailPage

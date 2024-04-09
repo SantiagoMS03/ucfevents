@@ -47,9 +47,9 @@ const EditReview = () => {
  return (
     <div >
         <Header />
-    <div className="container">
-      <h2 className="title2">Edit Event Review</h2>
-      <form className="form-container" action="">
+    <div className="container2">
+      <h2 className="title1">Edit Event Review</h2>
+      <form className="form-container2" action="">
         <div className="form-row">
           <div className="form-group col-8">
             <label htmlFor="name">Name</label>

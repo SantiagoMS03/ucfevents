@@ -44,8 +44,7 @@ const AddReview = () => {
     };
 
     return (
-        <div>
-            <Header />
+        
         <div className="mb-2 container">
         <h2 className="title1">Add Review</h2>
 <form action="" className="form-container">
@@ -92,7 +91,7 @@ const AddReview = () => {
     </button>
   </form>
 </div>
-</div>
+
     )
 }
 
