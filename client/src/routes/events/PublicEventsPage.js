@@ -59,16 +59,9 @@ function PublicEventsPage(props) {
     navigate(`/events/${eventid}/edit`);
   };
 
-  const handleNewSelect = (rsoid) => { 
-    navigate(`/newevent`)
-  }
-
   return (
     <div className="list-group container">
       EventsPage
-      {access &&
-        <button  onClick={() => handleNewSelect()}>Add Event</button>
-      } 
       <table className="table table-hover table-lg">
         <thead>
           <tr className="bg-secondary text-white">

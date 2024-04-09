@@ -66,10 +66,6 @@ function RSOEventsPage(props) {
     navigate(`/events/${eventid}/edit`);
   };
 
-  const handleNewSelect = (rsoid) => { 
-    navigate(`/newevent`)
-  }
-
   const rsoMember = (rsoid) => {
     let equal = false;
     members.forEach((mem) => {
@@ -85,9 +81,6 @@ function RSOEventsPage(props) {
   return (
     <div className="list-group container">
       EventsPage
-      {access &&
-        <button  onClick={() => handleNewSelect()}>Add Event</button>
-      } 
       <table className="table table-hover table-lg">
         <thead>
           <tr className="bg-secondary text-white">
