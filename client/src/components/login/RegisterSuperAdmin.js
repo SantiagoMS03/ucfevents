@@ -40,9 +40,6 @@ function RegisterSuperAdmin(props) {
         email,
         password
     })
-    const userid = response.data.data.user.user_id;
-    console.log(userid)
-    document.cookie = `user_id=${userid}; path=/`;
     navigate('/login');
     } catch (err) {
       console.log(err);

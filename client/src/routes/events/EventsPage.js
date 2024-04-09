@@ -62,8 +62,9 @@ function EventsPage(props) {
   };
 
   return (
+    <div>
+        <Header />
     <div className="list-group container">
-      EventsPage
       <table className="table table-hover table-lg">
         <thead>
           <tr className="bg-secondary text-white">
@@ -111,6 +112,7 @@ function EventsPage(props) {
           })}
         </tbody>
       </table>
+    </div>
     </div>
   )
 }

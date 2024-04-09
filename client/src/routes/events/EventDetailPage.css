@@ -1,0 +1,16 @@
+/* EventDetails.css */
+
+.container {
+    margin-top: 20px;
+    font-color: black;
+  }
+  
+  .btn-group {
+    display: flex;
+    justify-content: center;
+  }
+  
+  .btn {
+    margin-right: 10px;
+  }
+  

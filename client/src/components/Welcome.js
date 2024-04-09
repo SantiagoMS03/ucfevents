@@ -11,13 +11,16 @@ const Welcome = () => {
   const {unis, setUnis} = useContext(UniversityContext)
   const id = GetCookie("user_id");
 
+  function refreshPage() {
+    window.location.reload(false);
+  }
+
   useEffect(() => {
     const fetchData = async () => {
       try {
         const university_id = GetCookie("university_id");
         const uni = await UniversityFinder.get(`/${university_id}`)
         setUnis(uni.data.data.university);
-
       } catch (err) {
         console.log(err);
       }

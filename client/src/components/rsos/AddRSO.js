@@ -57,7 +57,7 @@ const AddRSO = () => {
     <div className="container">
       <form className="form-container" action=''>
       <div className="back-arrow">
-          <Link to="/welcome">Back</Link>
+          <Link to="/rsos">Back</Link>
         </div>
       <h2 className="title">Add RSO</h2>
         <input

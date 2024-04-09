@@ -1,7 +1,9 @@
 import React, { useState, useEffect, Fragment } from 'react'
 import EventFinder from '../../apis/EventFinder'
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link,userNavigate } from "react-router-dom";
 import '../../routes/events/EditEventPage.css';
+import './EditReview.css';
+import GetCookie from '../Cookie';
 
 const EditEvent = () =>  {
   const { id } = useParams();
