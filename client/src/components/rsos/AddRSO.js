@@ -13,6 +13,7 @@ import UserToRSO from './UserToRSO';
 
 const AddRSO = () => {
   const id = GetCookie("user_id");
+  const uniid = GetCookie("university_id");
   const [name, setName] = useState("");
   const [admin_id, setAdminID] = useState(id);
   const [user_id, setUserID] = useState(""); 
@@ -46,6 +47,9 @@ const AddRSO = () => {
     const rsoID = response.data.data.rso.rso_id;
     EditUser(admin_id);
     UserToRSO(rsoID, user_id, setUserID);
+
+    const res = await RelationFinder.post(`/universityrso/${uniid}/${rsoID}`);
+
     navigate('/rsos')
     } catch (err) {
       console.log(err);

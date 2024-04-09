@@ -47,10 +47,6 @@ router.post('/:rsoid', async (req, res) => {
         const { rsoid } = req.params;
         const { user_ids } = req.body;
     
-        // if (!Array.isArray(user_ids) || user_ids.length === 0) {
-        //   return res.status(400).json({ error: "Invalid or empty user IDs array" });
-        // }
-
         await Promise.all(user_ids.map(async (userid) => {
           const query = `INSERT INTO rsouser (rso_id, user_id) VALUES ($1, $2)`;
           const values = [rsoid, userid];
