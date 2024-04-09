@@ -71,8 +71,6 @@ function RegisterAdmin(props) {
               />
           <button onClick={handleClick}>Sign Up!</button>
         </form>
-        <h3>To do: select students</h3>
-        <AddRSO/>
       </Fragment>
     </div>
   );

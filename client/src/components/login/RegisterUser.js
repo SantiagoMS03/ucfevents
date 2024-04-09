@@ -70,7 +70,6 @@ function RegisterUser(props) {
                 type='password'
                 onChange={(e) => setPassword(e.target.value)}
               />
-              <h3>To do: Select rsos</h3>
           <button onClick={handleClick}>Sign Up!</button>
         </form>
       </Fragment>

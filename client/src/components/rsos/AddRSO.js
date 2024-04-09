@@ -7,6 +7,7 @@ import GetCookie from '../Cookie';
 import { Context } from '../../context/Context';
 import Select from 'react-select';
 import UserToRSO from './UserToRSO';
+import { useNavigate } from "react-router-dom";
 
 const AddRSO = () => {
   const id = GetCookie("user_id");
@@ -14,6 +15,7 @@ const AddRSO = () => {
   const [admin_id, setAdminID] = useState(id);
   const [user_id, setUserID] = useState(""); 
   const {users, setUsers} = useContext(Context);
+  let navigate = useNavigate()
 
   useEffect(() => {
     const fetchData = async () => {
@@ -42,6 +44,7 @@ const AddRSO = () => {
     const rsoID = response.data.data.rso.rso_id;
     EditUser(admin_id);
     UserToRSO(rsoID, user_id, setUserID);
+    navigate('/rsos')
     } catch (err) {
       console.log(err);
     }

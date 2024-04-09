@@ -1,10 +1,14 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import RSOFinder from '../../apis/RSOFinder';
+import RelationFinder from '../../apis/RelationFinder';
 import { useNavigate } from "react-router-dom";
 import { Context } from '../../context/Context';
+import GetCookie from '../../components/Cookie';
 
 function RSOsPage(props) {
   const { rsos, setRSOs } = useContext(Context);
+  const [members, setMembers] = useState([])
+  const id = GetCookie("user_id");
   // run when this component renders
   //  [] not when any children rerender
   let navigate = useNavigate()
@@ -14,6 +18,9 @@ function RSOsPage(props) {
       try {
         const response = await RSOFinder.get("/");
         setRSOs(response.data.data.rsos);
+
+        const mems = await RelationFinder.get(`/user/${id}`);
+        setMembers(mems.data);
       } catch (err) {
         console.error(err);
       }
@@ -21,21 +28,42 @@ function RSOsPage(props) {
     fetchData();
   }, [])
 
-  // const handleEventSelect = (rsoid) => { 
-  //   navigate(`/rsos/${rsoid}`)
-  // }
-
-  const handleJoinSelect = (rsoid) => { 
-    //navigate(`/rsos/${rsoid}`)
+  function refreshPage() {
+    window.location.reload(false);
   }
 
-  const handleLeaveSelect = (rsoid) => { 
-    //navigate(`/rsos/${rsoid}`)
+  const handleJoinSelect = async (rsoid) => { 
+    try {
+      const response = await RelationFinder.post(`/${rsoid}/${id}`)
+      refreshPage();
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  const handleLeaveSelect = async (rsoid) => { 
+    try {
+      const response = await RelationFinder.delete(`/${rsoid}/${id}`)
+      refreshPage();
+    } catch (err) {
+      console.log(err);
+    }
   }
 
   const handleNewSelect = (rsoid) => { 
     navigate(`/newrso`)
   }
+
+  const rsoMember = (rsoid) => {
+    let equal = false;
+    members.forEach((mem) => {
+      if (mem.rso_id === rsoid) {
+        equal = true;
+        return;
+      }
+    });
+    return equal;
+  };
 
   return (
     <div className="list-group container">
@@ -51,17 +79,19 @@ function RSOsPage(props) {
           {rsos &&
             rsos.map((rso) => {
               return (
-                <tr>
+                <tr key={rso.rso_id}>
                   <td>{rso.name}</td>
                   <td>
-                    <button onClick={() => handleJoinSelect()} >
+                    {!rsoMember(rso.rso_id) &&
+                    <button onClick={() => handleJoinSelect(rso.rso_id)} >
                       Join RSO
                     </button>
-                  </td>
-                  <td>
-                    <button onClick={() => handleLeaveSelect()}>
+                    }
+                    {rsoMember(rso.rso_id) &&
+                    <button onClick={() => handleLeaveSelect(rso.rso_id)}>
                       Leave RSO
                     </button>
+                    }
                   </td>
                 </tr>
               )
