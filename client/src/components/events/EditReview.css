@@ -48,3 +48,16 @@
 .button:hover {
   background-color: #0056b3;
 }
+
+.add-review{
+  margin-top: auto;
+}
+
+.form-containerReview{
+  margin-top: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: auto;
+  margin-top:auto;
+}

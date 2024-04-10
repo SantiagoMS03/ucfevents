@@ -79,16 +79,17 @@ const EventDetailPage = () => {
                   <button className="btn btn-danger" onClick={handleLeaveSelect}>
                     Leave Event
                   </button>
-                )}
+                )}         
               </div>
             </div>
-            <div className="mt-3">
-              <AddReview />
-            </div>
-            <div className="mt-7">
+            <div className="mt-7" style={{ marginTop: '50px' }}>
+            <h2 style={{fontWeight: 'bold'}}>Current Reviews</h2>
               <Reviews reviews={selectedEvent.reviews} />
             </div>
-          </>
+            <div className="mt-3 add-review-container">
+              <AddReview />
+            </div>
+             </>
         )}
       </div>
     </div>

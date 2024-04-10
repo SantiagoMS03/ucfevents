@@ -1,31 +1,25 @@
+.container7 {
+  text-align: center;
+  position: relative;
+  height: 100vh; 
+  margin-top: auto;
+}
 
-.container {
-    text-align: center;
-    position: relative;
-    height: 100vh; 
-  }
-  
-  .title {
-    font-size: 3rem;
-    position: absolute;
-    top: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    
-    
-  }
-  
-  .info {
-    font-size: 1.5rem;
-    margin-bottom: 1rem;
-    height: 15vh;
-  
-  }
-  
-  .bold {
-    font-weight: bold;
-  }
+.title2 {
+  font-size: 3rem;
+  margin-top: 20px; /* Adjust margin-top to provide space between header and title */
+}
 
-  .large {
-    font-size: 2rem;
-  }
+.info2 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  height: 15vh;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.large {
+  font-size: 2rem;
+}

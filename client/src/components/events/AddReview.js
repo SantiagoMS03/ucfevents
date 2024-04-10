@@ -46,7 +46,7 @@ const AddReview = () => {
     return (
         
         <div className="mb-2 container">
-        <h2 className="title1">Add Review</h2>
+        <h2 className="Add-Review">Add Review</h2>
 <form action="" className="form-container">
     <div className="form-row">
       <div className="form-group col-8">
