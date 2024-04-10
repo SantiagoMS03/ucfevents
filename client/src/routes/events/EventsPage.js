@@ -74,6 +74,7 @@ function EventsPage(props) {
             <th>Date</th>
             <th>Length</th>
             <th>Visibility</th>
+            {/* <th>Location</th> */}
           </tr>
         </thead>
         <tbody>
@@ -87,6 +88,7 @@ function EventsPage(props) {
                   <td>{event.date}</td>
                   <td>{event.length_minutes}</td>
                   <td>{event.visibility}</td>
+                  {/* <td>{event.location}</td> */}
                   <td>
                   {event.admin_id == userid &&
                     <button

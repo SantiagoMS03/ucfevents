@@ -13,6 +13,9 @@ const AddEvent = () => {
   const [description, setDescription] = useState("");
   const [date, setDate] = useState("");
   const [length_minutes, setLength] = useState("");
+  const [location, setLocation] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
   const [rso_id, setRSOId] = useState("");
   const [visibility, setVisibility] = useState("");
   const [adminid, setAdminID] = useState("")
@@ -46,7 +49,10 @@ const AddEvent = () => {
         description,
         date,
         length_minutes,
-        visibility
+        visibility,
+        // location,
+        // email,
+        // phone
       })
       navigate('/rsos')
     } catch (err) {
@@ -100,8 +106,26 @@ const AddEvent = () => {
             value={length_minutes}
             onChange={(e) => setLength(e.target.value)}
             type='number'
-            placeholder='Length'
+            placeholder='Time Length'
           />
+          {/* <input
+            value={location}
+            onChange={(e) => setLength(e.target.value)}
+            type='text'
+            placeholder='Location'
+          /> */}
+          {/* <input
+            value={email}
+            onChange={(e) => setLength(e.target.value)}
+            type='text'
+            placeholder='Contact Email'
+          /> */}
+          {/* <input
+            value={phone}
+            onChange={(e) => setLength(e.target.value)}
+            type='text'
+            placeholder='Contact Phone Number'
+          /> */}
         <div>
         {/* <select value={rso_id} onChange={handleRSOChange}> 
             <option value=""> Select an RSO </option>

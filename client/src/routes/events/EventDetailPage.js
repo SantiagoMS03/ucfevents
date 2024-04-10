@@ -68,6 +68,8 @@ const EventDetailPage = () => {
       {selectedEvent && (
         <>
           <h1 className="text-center display-1">{selectedEvent.event.name}</h1>
+          {/* <body>Contact:{selectedEvent.event.email}, {selectedEvent.event.phone}</body> */}
+          <body>Contact: example email, example phone num</body>
           <div className="btn-group mt-3" role="group">
             {!eventAttend(eventid) && (
               <button className="btn btn-primary" onClick={() => handleJoinSelect(eventid)}>
