@@ -73,6 +73,7 @@ function PublicEventsPage(props) {
             <th>Date</th>
             <th>Length</th>
             <th>Type</th>
+            <th>Location</th>
           </tr>
         </thead>
         <tbody>
@@ -86,6 +87,7 @@ function PublicEventsPage(props) {
                   <td>{event.date}</td>
                   <td>{event.length_minutes}</td>
                   <td>{event.visibility}</td>
+                  <td>{event.location}</td>
                   <td>
                   {event.admin_id == userid &&
                     <button

@@ -92,7 +92,8 @@ function RSOEventsPage(props) {
             <th>Category</th>
             <th>Date</th>
             <th>Length</th>
-            <th>Visibility</th>
+            <th>Type</th>
+            <th>Location</th>
           </tr>
         </thead>
         <tbody>
@@ -107,6 +108,7 @@ function RSOEventsPage(props) {
                   <td>{event.date}</td>
                   <td>{event.length_minutes}</td>
                   <td>{event.visibility}</td>
+                  <td>{event.location}</td>
                   <td>
                   {event.admin_id == userid &&
                     <button

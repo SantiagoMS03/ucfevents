@@ -37,7 +37,8 @@ CREATE TABLE events (
   contact_email VARCHAR(255),
   contact_phone VARCHAR(255),
   rso_id INT,
-  admin_id INT
+  admin_id INT,
+  CONSTRAINT location_unique UNIQUE (location, date)
 );
 
 CREATE TABLE attendees (

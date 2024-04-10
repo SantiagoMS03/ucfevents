@@ -24,7 +24,6 @@ router.post('/:adminid/:rsoid', async (req, res) => {
         const eventInfoQuery = "INSERT INTO events (name, category, description, date, length_minutes, visibility, location, contact_email, contact_phone, rso_id, admin_id) VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11) RETURNING *"
         const newEvent = await db.query(eventInfoQuery, [name, category, description, date, length_minutes, visibility, location, contact_email, contact_phone, req.params.rsoid, req.params.adminid]);
         const newid = newEvent.rows[0].event_id;
-        //await relateRSOEvent(rso_id, newid);
         res.status(201).json({
         status: "success",
         data: {
@@ -32,7 +31,15 @@ router.post('/:adminid/:rsoid', async (req, res) => {
         }
         });
     } catch (err) {
-        console.error(err.message);
+        if (err.code === '23505') { 
+            res.status(400).json({
+                status: "error",
+                message: "An event at this location and date already exists."
+            });
+        }
+        else {
+            console.error(err.message);
+        }
     }
     });
 
