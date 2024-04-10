@@ -15,6 +15,10 @@ const EventDetailPage = () => {
   const [events, setEvents] = useState([])
   const id = GetCookie("user_id");
 
+  function refreshPage() {
+    window.location.reload(false);
+  }
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -32,22 +36,22 @@ const EventDetailPage = () => {
     fetchData();
   }, []);
 
-  const handleJoinSelect = async (selected) => { 
-  //   try {
-  //     const response = await RelationFinder.post(`/${rsoid}/${id}`)
-  //     refreshPage();
-  //   } catch (err) {
-  //     console.log(err);
-  //   }
+  const handleJoinSelect = async () => { 
+    try {
+      const response = await RelationFinder.post(`/attending/${id}/${eventid}`)
+      refreshPage();
+    } catch (err) {
+      console.log(err);
+    }
   }
 
-  const handleLeaveSelect = async (selected) => { 
-  //   try {
-  //     const response = await RelationFinder.delete(`/${rsoid}/${id}`)
-  //     refreshPage();
-  //   } catch (err) {
-  //     console.log(err);
-  //   }
+  const handleLeaveSelect = async () => { 
+    try {
+      const response = await RelationFinder.delete(`attending/${id}/${eventid}`)
+      refreshPage();
+    } catch (err) {
+      console.log(err);
+    }
   }
 
   const eventAttend = (eventid) => {
@@ -69,16 +73,16 @@ const EventDetailPage = () => {
         <>
           <h1 className="text-center display-1">{selectedEvent.event.name}</h1>
           {/* <body>Contact:{selectedEvent.event.email}, {selectedEvent.event.phone}</body> */}
-          <body>Contact: example email, example phone num</body>
+          {/* <body>Contact: example email, example phone num</body> */}
           <div className="mt-3">
               <div className="btn-group" role="group">
                 {!eventAttend(eventid) && (
-                  <button className="btn btn-primary" onClick={handleJoinSelect}>
+                  <button className="btn btn-primary" onClick={() => handleJoinSelect()}>
                     Attend Event
                   </button>
                 )}
                 {eventAttend(eventid) && (
-                  <button className="btn btn-danger" onClick={handleLeaveSelect}>
+                  <button className="btn btn-danger" onClick={() => handleLeaveSelect()}>
                     Leave Event
                   </button>
                 )}         
