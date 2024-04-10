@@ -22,9 +22,9 @@ router.get('/', async (req, res) => {
 // create event
 router.post('/', async (req, res) => {
 try {
-    const { name, category, description, date, length_minutes, rso_id, visibility } = req.body;
-    const eventInfoQuery = "INSERT INTO events (name, category, description, date, length_minutes, rso_id, visibility) VALUES($1, $2, $3, $4, $5, $6, $7) RETURNING *"
-    const newEvent = await db.query(eventInfoQuery, [name, category, description, date, length_minutes, rso_id, visibility]);
+    const { name, category, description, date, length_minutes, rso_id, visibility, contact_email, contact_phone } = req.body;
+    const eventInfoQuery = "INSERT INTO events (name, category, description, date, length_minutes, rso_id, visibility, contact_email, contact_phone) VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING *"
+    const newEvent = await db.query(eventInfoQuery, [name, category, description, date, length_minutes, rso_id, visibility, contact_email, contact_phone]);
     const newid = newEvent.rows[0].event_id;
     await relateRSOEvent(rso_id, newid);
     res.status(201).json({
@@ -61,9 +61,9 @@ try {
 router.put('/:eventid', async (req, res) => {
 try {
     console.log("here!")
-    const { name, category, description, date, length_minutes, rso_id, visibility } = req.body;
-    const query = "UPDATE events SET name = $1, category = $2, description = $3, date = $4, length_minutes = $5, , rso_id = $6, visibility = $7 WHERE event_id = $8 RETURNING *"
-    const results = await db.query(query, [name, category, description, date, length_minutes, rso_id, visibility, req.params.eventid]);
+    const { name, category, description, date, length_minutes, rso_id, visibility, contact_email, contact_phone } = req.body;
+    const query = "UPDATE events SET name = $1, category = $2, description = $3, date = $4, length_minutes = $5, , rso_id = $6, visibility = $7, contact_email = $9, contact_phone = $10 WHERE event_id = $8 RETURNING *"
+    const results = await db.query(query, [name, category, description, date, length_minutes, rso_id, visibility, req.params.eventid, contact_email, contact_phone]);
     res.status(200).json({
     status: "success",
     data: {
