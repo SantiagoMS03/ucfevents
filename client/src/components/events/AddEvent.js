@@ -14,8 +14,8 @@ const AddEvent = () => {
   const [date, setDate] = useState("");
   const [length_minutes, setLength] = useState("");
   const [location, setLocation] = useState("");
-  const [email, setEmail] = useState("");
-  const [phone, setPhone] = useState("");
+  const [contact_email, setEmail] = useState("");
+  const [contact_phone, setPhone] = useState("");
   const [rso_id, setRSOId] = useState("");
   const [visibility, setVisibility] = useState("");
   const [adminid, setAdminID] = useState("")
@@ -50,9 +50,9 @@ const AddEvent = () => {
         date,
         length_minutes,
         visibility,
-        // location,
-        // email,
-        // phone
+        location,
+        contact_email,
+        contact_phone
       })
       navigate('/rsos')
     } catch (err) {
@@ -108,24 +108,24 @@ const AddEvent = () => {
             type='number'
             placeholder='Time Length'
           />
-          {/* <input
+          <input
             value={location}
-            onChange={(e) => setLength(e.target.value)}
+            onChange={(e) => setLocation(e.target.value)}
             type='text'
             placeholder='Location'
-          /> */}
-          {/* <input
-            value={email}
-            onChange={(e) => setLength(e.target.value)}
+          />
+          <input
+            value={contact_email}
+            onChange={(e) => setEmail(e.target.value)}
             type='text'
             placeholder='Contact Email'
-          /> */}
-          {/* <input
-            value={phone}
-            onChange={(e) => setLength(e.target.value)}
+          />
+          <input
+            value={contact_phone}
+            onChange={(e) => setPhone(e.target.value)}
             type='text'
             placeholder='Contact Phone Number'
-          /> */}
+          />
         <div>
         {/* <select value={rso_id} onChange={handleRSOChange}> 
             <option value=""> Select an RSO </option>

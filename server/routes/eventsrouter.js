@@ -19,20 +19,22 @@ router.get('/', async (req, res) => {
 
 // create event
 router.post('/:adminid/:rsoid', async (req, res) => {
-try {
-    const { name, category, description, date, length_minutes, visibility } = req.body;
-    const eventInfoQuery = "INSERT INTO events (name, category, description, date, length_minutes, rso_id, visibility, admin_id) VALUES($1, $2, $3, $4, $5, $6, $7, $8) RETURNING *"
-    const newEvent = await db.query(eventInfoQuery, [name, category, description, date, length_minutes, req.params.rsoid, visibility, req.params.adminid]);
-    res.status(201).json({
-    status: "success",
-    data: {
-        event: newEvent.rows[0]
+    try {
+        const { name, category, description, date, length_minutes, visibility, location, contact_email, contact_phone } = req.body;
+        const eventInfoQuery = "INSERT INTO events (name, category, description, date, length_minutes, visibility, location, contact_email, contact_phone, rso_id, admin_id) VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11) RETURNING *"
+        const newEvent = await db.query(eventInfoQuery, [name, category, description, date, length_minutes, visibility, location, contact_email, contact_phone, req.params.rsoid, req.params.adminid]);
+        const newid = newEvent.rows[0].event_id;
+        //await relateRSOEvent(rso_id, newid);
+        res.status(201).json({
+        status: "success",
+        data: {
+            event: newEvent.rows[0]
+        }
+        });
+    } catch (err) {
+        console.error(err.message);
     }
     });
-} catch (err) {
-    console.error(err.message);
-}
-});
 
 // get event
 router.get('/:eventid', async (req, res) => {

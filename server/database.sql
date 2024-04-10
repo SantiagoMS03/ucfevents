@@ -32,14 +32,13 @@ CREATE TABLE events (
   description VARCHAR(255),
   date DATE,
   length_minutes INT,
-  rso_id INT,
-  is_private BOOLEAN,
-  is_rso BOOLEAN,
-  is_public BOOLEAN,
   visibility VARCHAR(255),
+  location VARCHAR (255),
+  contact_email VARCHAR(255),
+  contact_phone VARCHAR(255),
+  rso_id INT,
   admin_id INT
 );
-
 
 CREATE TABLE attendees (
   user_id INT,

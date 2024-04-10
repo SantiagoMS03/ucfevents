@@ -72,8 +72,8 @@ const EventDetailPage = () => {
       {selectedEvent && (
         <>
           <h1 className="text-center display-1">{selectedEvent.event.name}</h1>
-          {/* <body>Contact:{selectedEvent.event.email}, {selectedEvent.event.phone}</body> */}
-          {/* <body>Contact: example email, example phone num</body> */}
+          <h3>Contact:{selectedEvent.event.email}, {selectedEvent.event.phone}</h3>
+          {/* <h3>Contact: example email, example phone num</h3> */}
           <div className="mt-3">
               <div className="btn-group" role="group">
                 {!eventAttend(eventid) && (
