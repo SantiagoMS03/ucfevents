@@ -38,9 +38,9 @@ router.put('/:eventid/:userid/:reviewid/reviews', async (req, res) => {
     })
     
 //delete comment
-    router.delete('/:userid/reviews', async (req, res) => {
+    router.delete('/:userid/:reviewid', async (req, res) => {
     try {
-        const results = await db.query("DELETE FROM reviews WHERE user_id = $1", [req.params.userid]);
+        const results = await db.query("DELETE FROM reviews WHERE user_id = $1 AND review_id = $2", [req.params.userid, req.params.reviewid]);
         res.status(204).json({
         status: "success"
         });

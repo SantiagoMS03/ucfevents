@@ -25,10 +25,10 @@ const Reviews = ({reviews}) => {
         fetchData();
       }, []);
 
-    const handleDelete = async (e, userid) => {
+    const handleDelete = async (e, userid, reviewid) => {
         e.stopPropagation();
         try {
-          const response = await EventFinder.delete(`/${userid}/reviews`);
+          const response = await EventFinder.delete(`/${userid}/${reviewid}`);
           refreshPage() 
         } catch (err) {
           console.log(err);
@@ -61,7 +61,7 @@ const Reviews = ({reviews}) => {
                                             Update
                                         </button>
                                         <button
-                                            onClick={(e) => handleDelete(e, review.review_id)}
+                                            onClick={(e) => handleDelete(e, review.user_id, review.review_id)}
                                             className="btn btn-danger"
                                         >
                                             Delete

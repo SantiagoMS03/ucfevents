@@ -8,7 +8,7 @@ import './Welcome.css';
 
 const Welcome = () => {
   //const[unis, setUnis] = useState([])
-  const {unis, setUnis} = useContext(UniversityContext)
+  const [unis, setUnis] = useState("")
   const id = GetCookie("user_id");
 
   function refreshPage() {

@@ -117,53 +117,6 @@ function RSOsPage(props) {
         </div>
       </div>
     );
-    
-      <div>
-        <Header />
-        <div className="list-group container">
-          <button onClick={() => handleNewSelect()}>Create new RSO</button>
-          <table className="table table-hover table-lg">
-            <thead>
-              <tr className="bg-secondary text-white">
-                <th>Name</th>
-              </tr>
-            </thead>
-            <tbody>
-              {rsos &&
-                rsos.map((rso) => {
-                  return (
-                    <tr key={rso.rso_id}>
-                      <td>{rso.name}</td>
-                      <td>
-                        {!rsoMember(rso.rso_id) && (
-                          <button onClick={() => handleJoinSelect(rso.rso_id)}>
-                            Join RSO
-                          </button>
-                        )}
-                        {rsoMember(rso.rso_id) && (
-                          <button onClick={() => handleLeaveSelect(rso.rso_id)}>
-                            Leave RSO
-                          </button>
-                        )}
-                      </td>
-                      <td>
-                        <div>
-                          {rso.admin_id === id && (
-                            <button onClick={() => handleAddSelect(rso.admin_id)}>
-                              Add Event
-                            </button>
-                          )}
-                        </div>
-                      </td>
-                    </tr>
-                  );
-                })}
-            </tbody>
-          </table>
-        </div>
-      </div>
-    );
-    
 }
 
 export default RSOsPage

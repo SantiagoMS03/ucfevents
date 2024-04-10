@@ -7,7 +7,7 @@ import Welcome from '../components/Welcome.js'
 
 function WelcomePage() {
   const id = GetCookie("user_id");
-
+ 
   useEffect(() => {
     const fetchData = async () => {
       try {
