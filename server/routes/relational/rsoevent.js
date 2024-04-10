@@ -28,4 +28,28 @@ router.get('/event/:eventid', async (req, res) => {
     }
 });
 
+router.post('/:rsoid/:eventid', async (req, res) => {
+    try {
+        const {eventid, rsoid} = req.params;
+        const query = `INSERT INTO attending (rso_id, event_id) VALUES ${rsoid}, ${eventid}`;
+        const results = await db.query(query);
+        res.status(200).json(results.rows);
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ status: "error", message: "Internal server error" });
+    }
+});
+
+router.delete('/:rsoid/:eventid', async (req, res) => {
+    try {
+        const {eventid, rsoid} = req.params;
+        const query = `DELETE FROM attending * WHERE rso_id = ${rsoid} AND event_id = ${eventid}`;
+        const results = await db.query(query);
+        res.status(200).json(results.rows);
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ status: "error", message: "Internal server error" });
+    }
+});
+
 module.exports = router;

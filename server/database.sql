@@ -22,7 +22,9 @@ CREATE TABLE rsos (
   rso_id INT PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
   name VARCHAR(255),
   admin_id INT,
-  is_private BOOLEAN
+  is_private BOOLEAN,
+  status VARCHAR(255) DEFAULT 'Inactive' CHECK (status IN ('Active', 'Inactive'))
+
 );
 
 CREATE TABLE events (
@@ -32,7 +34,16 @@ CREATE TABLE events (
   description VARCHAR(255),
   date DATE,
   length_minutes INT,
-  visibility VARCHAR(255)
+  visibility VARCHAR(255),
+  CONSTRAINT unique_event_location_time UNIQUE (date, location),
+  CONSTRAINT fk_admin_rso FOREIGN KEY (admin_id) REFERENCES users(user_id),
+  CONSTRAINT fk_rso FOREIGN KEY (rso_id) REFERENCES rsos(rso_id),
+  CONSTRAINT check_admin_rso_admin CHECK (
+    EXISTS (
+      SELECT 1 FROM rsos WHERE rso_id = events.rso_id AND admin_id = events.admin_id
+    )
+  )
+
 );
 
 CREATE TABLE reviews (
@@ -69,7 +80,16 @@ CREATE TABLE attending (
 
 CREATE TABLE rsouser (
   user_id INT,
-  rso_id INT
+  rso_id INT,
+  CONSTRAINT fk_user FOREIGN KEY (user_id) REFERENCES users(user_id),
+  CONSTRAINT fk_rso FOREIGN KEY (rso_id) REFERENCES rsos(rso_id),
+  CONSTRAINT check_rso_membership_insert CHECK (
+    (SELECT COUNT(*) FROM rsouser WHERE rso_id = NEW.rso_id) < 4
+  ),
+  CONSTRAINT check_rso_membership_delete CHECK (
+    (SELECT COUNT(*) FROM rsouser WHERE rso_id = OLD.rso_id) <= 4
+  )
+
 );
 
 CREATE TABLE eventreview (
