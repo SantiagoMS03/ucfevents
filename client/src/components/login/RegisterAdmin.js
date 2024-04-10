@@ -49,31 +49,37 @@ function RegisterAdmin(props) {
   }
 
   return (
-    <div>
+    <div className="container5">
+    <div className="form-container5">
       <Fragment>
-        <form action=''>
-          <select value={university_id} onChange={handleChange}> 
+        <form className="form" action=''>
+        <h2 className="title">Register an RSO</h2> 
+          <select className="input" value={university_id} onChange={handleChange}>
             <option value=""> Select a University </option>
             {unis.map((uni) => (
-              <option value={uni.university_id} key={uni.university_id}>{uni.name}</option>))}
+              <option value={uni.university_id} key={uni.university_id}>{uni.name}</option>
+            ))}
           </select>
-          <label htmlFor='email'>Email</label>
-              <input
-                id='email'
-                value={email}
-                type='text'
-                onChange={(e) => setEmail(e.target.value)}
-              />
-          <label htmlFor='password'>Password</label>
-              <input
-                id='password'
-                value={password}
-                type='password'
-                onChange={(e) => setPassword(e.target.value)}
-              />
-          <button onClick={handleClick}>Sign Up!</button>
+          <label htmlFor='email' className="label">Email</label>
+          <input
+            id='email'
+            value={email}
+            type='text'
+            className="input"
+            onChange={(e) => setEmail(e.target.value)}
+          />
+          <label htmlFor='password' className="label">Password</label>
+          <input
+            id='password'
+            value={password}
+            type='password'
+            className="input"
+            onChange={(e) => setPassword(e.target.value)}
+          />
+          <button onClick={handleClick} className="button">Sign Up!</button>
         </form>
       </Fragment>
+    </div>
     </div>
   );
 }
