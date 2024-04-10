@@ -16,6 +16,7 @@ const AddEvent = () => {
   const [location, setLocation] = useState("");
   const [contact_email, setEmail] = useState("");
   const [contact_phone, setPhone] = useState("");
+  const [constraint, setConstraint] = useState("");
   const [rso_id, setRSOId] = useState("");
   const [visibility, setVisibility] = useState("");
   const [adminid, setAdminID] = useState("")
@@ -57,6 +58,7 @@ const AddEvent = () => {
       navigate('/rsos')
     } catch (err) {
       console.log(err);
+      setConstraint(err.response.data.message);
     }
   }
 
@@ -78,6 +80,7 @@ const AddEvent = () => {
           <Link to="/welcome">Back</Link>
         </div>
         <h2 className="title">Add Event</h2>
+        {constraint && <div className="error-message text-danger">*{constraint}</div>}
           <input
             value={name}
             onChange={(e) => setName(e.target.value)}
