@@ -64,30 +64,33 @@ const EventDetailPage = () => {
   return (
     <div>
     <Header />
-    <div className="container">
+    <div className="container1">
       {selectedEvent && (
         <>
           <h1 className="text-center display-1">{selectedEvent.event.name}</h1>
           {/* <body>Contact:{selectedEvent.event.email}, {selectedEvent.event.phone}</body> */}
           <body>Contact: example email, example phone num</body>
-          <div className="btn-group mt-3" role="group">
-            {!eventAttend(eventid) && (
-              <button className="btn btn-primary" onClick={() => handleJoinSelect(eventid)}>
-                Attend Event
-              </button>
-            )}
-            {eventAttend(eventid) && (
-              <button className="btn btn-danger" onClick={() => handleLeaveSelect(eventid)}>
-                Leave Event
-              </button>
-            )}
-          </div>
           <div className="mt-3">
-            <Reviews reviews={selectedEvent.reviews} />
-          </div>
-          <div className="mt-3">
-            <AddReview />
-          </div>
+              <div className="btn-group" role="group">
+                {!eventAttend(eventid) && (
+                  <button className="btn btn-primary" onClick={handleJoinSelect}>
+                    Attend Event
+                  </button>
+                )}
+                {eventAttend(eventid) && (
+                  <button className="btn btn-danger" onClick={handleLeaveSelect}>
+                    Leave Event
+                  </button>
+                )}         
+              </div>
+            </div>
+            <div className="mt-7" style={{ marginTop: '50px' }}>
+            <h2 style={{fontWeight: 'bold'}}>Current Reviews</h2>
+              <Reviews reviews={selectedEvent.reviews} />
+            </div>
+            <div className="mt-3 add-review-container">
+              <AddReview />
+            </div>
         </>
       )}
     </div>
