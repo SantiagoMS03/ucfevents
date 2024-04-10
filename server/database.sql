@@ -24,7 +24,6 @@ CREATE TABLE rsos (
   admin_id INT,
   is_private BOOLEAN,
   status VARCHAR(255) DEFAULT 'Inactive' CHECK (status IN ('Active', 'Inactive'))
-
 );
 
 CREATE TABLE events (
@@ -35,15 +34,8 @@ CREATE TABLE events (
   date DATE,
   length_minutes INT,
   visibility VARCHAR(255),
-  CONSTRAINT unique_event_location_time UNIQUE (date, location),
-  CONSTRAINT fk_admin_rso FOREIGN KEY (admin_id) REFERENCES users(user_id),
-  CONSTRAINT fk_rso FOREIGN KEY (rso_id) REFERENCES rsos(rso_id),
-  CONSTRAINT check_admin_rso_admin CHECK (
-    EXISTS (
-      SELECT 1 FROM rsos WHERE rso_id = events.rso_id AND admin_id = events.admin_id
-    )
-  )
-
+  location VARCHAR(255),
+  CONSTRAINT unique_event_location_time UNIQUE (date, location)
 );
 
 CREATE TABLE reviews (
@@ -69,8 +61,12 @@ CREATE TABLE universityrso (
 );
 
 CREATE TABLE rsoevent (
+  event_id INT,
+  admin_id INT,
   rso_id INT,
-  event_id INT
+  CONSTRAINT fk_event_admin_event FOREIGN KEY (event_id) REFERENCES events(event_id),
+  CONSTRAINT fk_event_admin_admin FOREIGN KEY (admin_id) REFERENCES users(user_id),
+  CONSTRAINT fk_event_rso FOREIGN KEY (rso_id) REFERENCES rsos(rso_id)
 );
 
 CREATE TABLE attending (
@@ -82,15 +78,22 @@ CREATE TABLE rsouser (
   user_id INT,
   rso_id INT,
   CONSTRAINT fk_user FOREIGN KEY (user_id) REFERENCES users(user_id),
-  CONSTRAINT fk_rso FOREIGN KEY (rso_id) REFERENCES rsos(rso_id),
-  CONSTRAINT check_rso_membership_insert CHECK (
-    (SELECT COUNT(*) FROM rsouser WHERE rso_id = NEW.rso_id) < 4
-  ),
-  CONSTRAINT check_rso_membership_delete CHECK (
-    (SELECT COUNT(*) FROM rsouser WHERE rso_id = OLD.rso_id) <= 4
-  )
-
+  CONSTRAINT fk_rso FOREIGN KEY (rso_id) REFERENCES rsos(rso_id)
 );
+
+CREATE OR REPLACE FUNCTION check_rso_membership()
+RETURNS TRIGGER AS $$
+BEGIN
+    IF (SELECT COUNT(*) FROM rsouser WHERE rso_id = NEW.rso_id) <= 4 THEN
+        RAISE EXCEPTION 'RSO membership limit exceeded';
+    END IF;
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER rsouser_membership_trigger
+BEFORE DELETE ON rsouser
+FOR EACH ROW EXECUTE FUNCTION check_rso_membership();
 
 CREATE TABLE eventreview (
   event_id INT,
