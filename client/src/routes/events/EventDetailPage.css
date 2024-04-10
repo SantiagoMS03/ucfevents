@@ -1,16 +1,23 @@
 /* EventDetails.css */
 
-.container {
-    margin-top: 20px;
-    font-color: black;
-  }
-  
-  .btn-group {
-    display: flex;
-    justify-content: center;
-  }
-  
-  .btn {
-    margin-right: 10px;
-  }
-  
+.container1 {
+  margin-top: 20px;
+  font-color: black;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center children horizontally */
+  text-align: center; /* Center text content horizontally */
+}
+
+.btn-group {
+  display: flex;
+  justify-content: center;
+}
+
+.btn {
+  margin-right: 10px;
+}
+
+.add-review-container{
+  margin-bottom: 20px; 
+}

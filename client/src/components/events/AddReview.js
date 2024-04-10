@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import GetCookies from '../Cookie'
 import Header from '../Header.js';
 
+
 const AddReview = () => {
 
     const {eventid} = useParams();
@@ -44,11 +45,10 @@ const AddReview = () => {
     };
 
     return (
-        <div>
-            <Header />
-        <div className="mb-2 container">
-        <h2 className="title1">Add Review</h2>
-<form action="" className="form-container">
+        
+      <div className="mb-2 containerReview">
+    <h2 className="Add-Review">Add Review</h2>
+    <form action="" className="form-container">
     <div className="form-row">
       <div className="form-group col-8">
         <label htmlFor="name">Name</label>
@@ -92,7 +92,7 @@ const AddReview = () => {
     </button>
   </form>
 </div>
-</div>
+
     )
 }
 

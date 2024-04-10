@@ -30,7 +30,6 @@ function Header() {
         <img loading="lazy" srcSet={logo} className="img" />
         <div className="div-2">
           <button className="div-3-button" onClick ={handleHomePage}>Home page</button>
-          <button className="div-4-button">Map</button>
           <div className="div-5">
             <button className="div-6-button"onClick ={handleRSOPage}> RSO's</button>
             <div className="div-7">
@@ -38,7 +37,6 @@ function Header() {
                 <div className="dropdown">
                   <button className="div-9-button">Events</button>
                   <div className="dropdown-content">
-                  <Link to="/events">All Events</Link>
                     <a href="/attendingevents">Attending</a>
                     <Link to="/rsoevents">RSO events</Link>
                     <Link to="/publicevents">Public Events</Link>

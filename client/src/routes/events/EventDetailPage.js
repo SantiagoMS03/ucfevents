@@ -89,8 +89,7 @@ const EventDetailPage = () => {
         </>
       )}
     </div>
-  </div>
-
+    </div>
   )
 }
 

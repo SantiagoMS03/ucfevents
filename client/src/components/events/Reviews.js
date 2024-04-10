@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react'
 import GetCookies from '../Cookie'
 import EventFinder from "../../apis/EventFinder";
 import { useNavigate } from "react-router-dom";
+import './Reviews.css';
 
 const Reviews = ({reviews}) => {
     const [userid, setUserID] = useState("")
@@ -40,40 +41,37 @@ const Reviews = ({reviews}) => {
       };
 
     return (
-        <div className="row row-cols-3 mb-2 container">
+        <div className="row row-cols-3 mb-2 container3">
             {reviews.map((review) => {
-                return(
-                    <div key={review.review_id}
-                        className="card bg-light mb-3" style={{maxWidth: "30%"}}>
-                    <div className="card-header d-flex justify-content-between">
-                        <span>{review.name}</span>
-                        <span><RatingNum rating={review.rating}/></span>
-                    </div>
-                    <div className="card-body">
-                        <p className="card-text">{review.review}</p>
-                    </div>
-                    <div>
-                            {review.user_id == userid &&
-                                <button
-                                    onClick={(e) => handleUpdate(e, review.event_id ,review.review_id)}
-                                    className="btn btn-lg"
-                                >
-                                    Update
-                                </button>
-                            }
+                return (
+                    <div key={review.review_id} className="card bg-light mb-3">
+                        <div className="card-header d-flex justify-content-between">
+                            <span>{review.name}</span>
+                            <span><RatingNum rating={review.rating}/></span>
                         </div>
-                        <div>
-                            {review.user_id == userid &&
-                                <button
-                                    onClick={(e) => handleDelete(e, review.user_id)}
-                                    className="btn btn-lg"
-                                >
-                                    Delete
-                                </button>
-                            }
+                        <div className="card-body">
+                            <p className="card-text">{review.review}</p>
+                            <div className="d-flex justify-content-between">
+                                {userid && review.user_id === parseInt(userid) && (
+                                    <>
+                                        <button
+                                            onClick={(e) => handleUpdate(e, review.event_id, review.review_id)}
+                                            className="btn btn-primary"
+                                        >
+                                            Update
+                                        </button>
+                                        <button
+                                            onClick={(e) => handleDelete(e, review.review_id)}
+                                            className="btn btn-danger"
+                                        >
+                                            Delete
+                                        </button>
+                                    </>
+                                )}
+                            </div>
                         </div>
                     </div>
-                )
+                );
             })}
         </div>
     );
