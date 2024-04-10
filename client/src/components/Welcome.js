@@ -29,12 +29,12 @@ const Welcome = () => {
   }, []);
 
     return (
-        <div className="container">
+        <div className="container7">
           <div>
-            <h1 className="title">Welcome to {unis.name}'s Registered Student Organization Page</h1>
-            <p className="info"><span className="bold large">Location:</span><br />{unis.location}</p>
-            <p className="info"><span className="bold large">Description:</span> <br />{unis.description}</p>
-            <p className="info"><span className="bold large">Student Body Size:</span> <br />{unis.students}</p> 
+            <h1 className="title2">Welcome to {unis.name}'s Registered Student Organization Page</h1>
+            <p className="info2"><span className="bold large">Location:</span><br />{unis.location}</p>
+            <p className="info2"><span className="bold large">Description:</span> <br />{unis.description}</p>
+            <p className="info2"><span className="bold large">Student Body Size:</span> <br />{unis.students}</p> 
           </div>
         </div>
       );
