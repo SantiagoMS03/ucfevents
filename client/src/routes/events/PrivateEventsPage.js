@@ -28,10 +28,10 @@ function PrivateEventsPage(props) {
         setUniID(uniID);
 
         const response = await EventFinder.get("/");
-        const eventFilter = response.data.data.events.filter(event => {
+        const eventPrivate = response.data.data.events.filter(event => {
           return event.visibility === "private";
         });
-        setEvents(eventFilter)
+        setEvents(eventPrivate)
 
         const uni = await RelationFinder.get(`/universityrso/university/${uniID}`);
         setUniRso(uni.data);

@@ -29,10 +29,10 @@ function RSOEventsPage(props) {
         setUniID(uniID);
 
         const response = await EventFinder.get("/");
-        const eventFilter = response.data.data.events.filter(event => {
+        const eventRSO = response.data.data.events.filter(event => {
           return event.visibility === "rso";
         });
-        setEvents(eventFilter)
+        setEvents(eventRSO)
 
         const mems = await RelationFinder.get(`/rsouser/user/${id}`);
         setMembers(mems.data);

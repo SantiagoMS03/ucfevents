@@ -26,10 +26,10 @@ function PublicEventsPage(props) {
         setUniID(uniID);
 
         const response = await EventFinder.get("/");
-        const eventFilter = response.data.data.events.filter(event => {
+        const eventPublic = response.data.data.events.filter(event => {
           return event.visibility === "public";
         });
-        setEvents(eventFilter)
+        setEvents(eventPublic)
       } catch (err) {
         console.error(err);
       }
