@@ -1,16 +1,17 @@
 import React, { useContext, useEffect, useState } from 'react';
 import EventFinder from '../../apis/EventFinder';
 import UserFinder from '../../apis/UserFinder';
+import RelationFinder from '../../apis/RelationFinder';
 import { Context } from '../../context/Context';
 import { useNavigate } from "react-router-dom";
-import Header from "../../components/Header.js";
-import "./EventsPage.css";
-import GetCookies from '../../components/Cookie'
+import GetCookie from '../../components/Cookie'
+import Header from '../../components/Header';
 
-function EventsPage(props) {
+function PrivateEventsPage(props) {
   const [userid, setUserID] = useState("");
   const [access, setAccess] = useState("");
   const [uniid, setUniID] = useState("");
+  const [atEvents, setAtEvents] = useState([])
   const { events, setEvents } = useContext(Context);
   // run when this component renders
   //  [] not when any children rerender
@@ -19,18 +20,19 @@ function EventsPage(props) {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const id = GetCookies("user_id");
+        const id = GetCookie("user_id");
         setUserID(id);
-        const perms = GetCookies("access");
+        const perms = GetCookie("access");
         setAccess(perms);
-        const uniID = GetCookies("university_id");
+        const uniID = GetCookie("university_id");
         setUniID(uniID);
 
         const response = await EventFinder.get("/");
-        const eventFilter = response.data.data.events.filter(event => {
-          return event.visibility === "public";
-        });
-        setEvents(eventFilter)
+        const e = response.data.data.events;
+        setEvents(e)
+
+        const event = await RelationFinder.get(`/attending/user/${id}`);
+        setAtEvents(event.data);
       } catch (err) {
         console.error(err);
       }
@@ -61,6 +63,17 @@ function EventsPage(props) {
     navigate(`/events/${eventid}/edit`);
   };
 
+  const eventAttend = (eventid) => {
+    let equal = false;
+    atEvents.forEach((e) => {
+      if (e.event_id == eventid) {
+        equal = true;
+        return;
+      }
+    });
+    return equal;
+  };
+
   return (
     <div>
         <Header />
@@ -73,13 +86,14 @@ function EventsPage(props) {
             <th>Category</th>
             <th>Date</th>
             <th>Length</th>
-            <th>Visibility</th>
+            <th>Type</th>
             <th>Location</th>
           </tr>
         </thead>
         <tbody>
           {events && 
             events.map((event) => {
+              if (eventAttend(event.event_id)) {
               return (
                 <tr onClick={() => handleEventSelect(event.event_id)} key={event.event_id}>
                   <td>{event.name}</td>
@@ -110,7 +124,7 @@ function EventsPage(props) {
                   }
                   </td>
                 </tr>
-              )
+              )}
           })}
         </tbody>
       </table>
@@ -119,4 +133,4 @@ function EventsPage(props) {
   )
 }
 
-export default EventsPage
+export default PrivateEventsPage

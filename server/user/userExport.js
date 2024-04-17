@@ -18,20 +18,42 @@ exports.get = async (req, res) => {
     }
 };
 
-// exports.getUni = async (req, res) => {
-//   try {
-//     const results = await db.query("SELECT * FROM users");
-//     res.status(200).json({
-//       status: "success",
-//       results: results.rows.length,
-//       data: {
-//         users: results.rows
-//       }
-//     });
-//   } catch (err) {
-//     console.error(err);
-//   }
-// };
+exports.getUser = async (req, res) => {
+  try {
+      const results = await db.query("SELECT * FROM users WHERE user_id = $1", [req.params.userid]);
+      if (results.rows.length === 0) {
+          return res.status(404).json({ status: "error", message: "User not found" });
+      }
+      res.status(200).json({
+          status: "success",
+          data: {
+              users: results.rows[0]
+          }
+      });
+  } catch (err) {
+      console.error(err);
+      res.status(500).json({ status: "error", message: "Internal server error" });
+  }
+};
+
+// Get a single universityid
+exports.getUni = async (req, res) => {
+  try {
+      const results = await db.query("SELECT university_id FROM users WHERE user_id = $1", [req.params.userid]);
+      if (results.rows.length === 0) {
+          return res.status(404).json({ status: "error", message: "University not found" });
+      }
+      res.status(200).json({
+          status: "success",
+          data: {
+              users: results.rows[0]
+          }
+      });
+  } catch (err) {
+      console.error(err);
+      res.status(500).json({ status: "error", message: "Internal server error" });
+  }
+};
 
 exports.register = async (req, res) => {
   const {university_id, access, email, password} = req.body
@@ -54,7 +76,7 @@ exports.register = async (req, res) => {
 
 exports.login = async (req, res) => {
   let user = req.user
-  let payload = {id: user.user_id, email: user.email}
+  let payload = {id: user.user_id, email: user.email, access: user.access}
 
   try {
     const token = await sign(payload, SECRET)
@@ -88,3 +110,23 @@ exports.protected = async (req, res) => {
     console.error(err);
   }
 };
+
+exports.updateUser = async (req, res) => {
+  try {
+      const access  = 'true';
+      const query = "UPDATE users SET access = $1 WHERE user_id = $2 RETURNING *";
+      const results = await db.query(query, [access, req.params.userid]);
+      if (results.rows.length === 0) {
+          return res.status(404).json({ status: "error", message: "User not found to update" });
+      }
+      res.status(200).json({
+          status: "success",
+          data: {
+              university: results.rows[0]
+          }
+      });
+  } catch (err) {
+      console.error(err);
+      res.status(500).json({ status: "error", message: "Internal server error" });
+    }
+  };

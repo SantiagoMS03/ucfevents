@@ -20,36 +20,45 @@ router.get('/', async (req, res) => {
 });
 
 // create event
-router.post('/', async (req, res) => {
-try {
-    const { name, category, description, date, length_minutes, rso_id, visibility, contact_email, contact_phone } = req.body;
-    const eventInfoQuery = "INSERT INTO events (name, category, description, date, length_minutes, rso_id, visibility, contact_email, contact_phone) VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING *"
-    const newEvent = await db.query(eventInfoQuery, [name, category, description, date, length_minutes, rso_id, visibility, contact_email, contact_phone]);
-    const newid = newEvent.rows[0].event_id;
-    await relateRSOEvent(rso_id, newid);
-    res.status(201).json({
-    status: "success",
-    data: {
-        event: newEvent.rows[0]
+router.post('/:adminid/:rsoid', async (req, res) => {
+    try {
+        const { name, category, description, date, length_minutes, visibility, location, contact_email, contact_phone } = req.body;
+        const eventInfoQuery = 
+        "INSERT INTO events (name, category, description, date, length_minutes, visibility, location, contact_email, contact_phone, rso_id, admin_id) VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11) RETURNING *"
+        const newEvent =
+        await db.query(eventInfoQuery, [name, category, description, date, length_minutes, visibility, location, contact_email, contact_phone, req.params.rsoid, req.params.adminid]);
+        const newid = newEvent.rows[0].event_id;
+        res.status(201).json({
+        status: "success",
+        data: {
+            event: newEvent.rows[0]
+        }
+        });
+    } catch (err) {
+        if (err.code === '23505') { 
+            res.status(400).json({
+                status: "error",
+                message: "An event at this location and date already exists."
+            });
+        }
+        else {
+            console.error(err.message);
+        }
     }
     });
-} catch (err) {
-    console.error(err.message);
-}
-});
 
 // get event
 router.get('/:eventid', async (req, res) => {
 try {
     const event = await db.query("SELECT * FROM events WHERE event_id = $1", [req.params.eventid]);
 
-    const reviews = await db.query("SELECT * FROM reviews WHERE event_id = $1", [req.params.eventid]);  //updated for reviews
+    const reviews = await db.query("SELECT * FROM reviews WHERE event_id = $1", [req.params.eventid]); 
     
     res.status(200).json({
     status: "success", 
     data: {
         event: event.rows[0],
-        reviews: reviews.rows,  //updated for reivews
+        reviews: reviews.rows,
     }
     });
 } catch (err) {

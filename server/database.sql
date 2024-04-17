@@ -36,16 +36,33 @@ CREATE TABLE events (
   date DATE,
   length_minutes INT,
   visibility VARCHAR(255),
-  location VARCHAR(255),
-  CONSTRAINT unique_event_location_time UNIQUE (date, location)
+  location VARCHAR (255),
+  contact_email VARCHAR(255),
+  contact_phone VARCHAR(255),
+  rso_id INT,
+  admin_id INT,
+  CONSTRAINT location_unique UNIQUE (location, date)
 );
+
+CREATE TABLE attendees (
+  user_id INT,
+  event_id INT,
+  is_attending BOOLEAN,
+  is_private BOOLEAN,
+  is_rso BOOLEAN,
+  is_public BOOLEAN,
+  CONSTRAINT fk_attendees FOREIGN KEY (user_id) REFERENCES users(user_id),
+  CONSTRAINT fk_event FOREIGN KEY (event_id) REFERENCES events(event_id)
+);
+
 
 CREATE TABLE reviews (
   review_id INT PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
   event_id INT,
   name VARCHAR(255),
   review TEXT,
-  rating INT check(rating >=1 and rating <=5)
+  rating INT check(rating >=1 and rating <=5),
+  user_id INT
 );
 
 

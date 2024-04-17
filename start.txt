@@ -15,6 +15,7 @@ npm i react-multi-select-component
 npm install --save react-dropdown-select
 npm install react-redux
 npm install express jsonwebtoken cookie-parser
+npm i --save react-select
 
 npm install passport
 npm install passport-jwt

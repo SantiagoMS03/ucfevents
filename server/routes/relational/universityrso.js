@@ -32,4 +32,16 @@ router.get('/rso/:rsoid', async (req, res) => {
     }
 });
 
+router.post('/:uniid/:rsoid', async (req, res) => {
+    try {
+        const {uniid, rsoid} = req.params;
+        const query = `INSERT INTO universityrso (university_id, rso_id) VALUES (${uniid}, ${rsoid})`;
+        const results = await db.query(query);
+        res.status(200).json(results.rows);
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ status: "error", message: "Internal server error" });
+    }
+});
+
 module.exports = router;

@@ -1,8 +1,9 @@
 import React, { Fragment, useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import UserFinder from '../../apis/UserFinder';
-import "./LogIn.css"; // Import your CSS file
-import GetCookie from './Cookie';
+import "./LogIn.css"; 
+
+import GetCookie from '../Cookie';
 
 
 const LogIn = () => {
@@ -20,6 +21,8 @@ const LogIn = () => {
       })
       const id = response.data.data.payload.id;
       document.cookie = `user_id=${id}; path=/`;
+      const access = response.data.data.payload.access;
+      document.cookie = `access=${access}; path=/`;
       navigate(`/welcome`)
     } catch (err) {
       console.log(err);

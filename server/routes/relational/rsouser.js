@@ -32,7 +32,7 @@ router.get('/user/:userid', async (req, res) => {
 router.post('/:rsoid/:userid', async (req, res) => {
     try {
         const {userid, rsoid} = req.params;
-        const query = `INSERT INTO attending (rso_id, user_id) VALUES ${rsoid}, ${userid}`;
+        const query = `INSERT INTO rsouser (rso_id, user_id) VALUES (${rsoid}, ${userid})`;
         const results = await db.query(query);
         res.status(200).json(results.rows);
     } catch (err) {
@@ -41,10 +41,29 @@ router.post('/:rsoid/:userid', async (req, res) => {
     }
 });
 
+//Add users to rso
+router.post('/:rsoid', async (req, res) => {
+    try {
+        const { rsoid } = req.params;
+        const { user_ids } = req.body;
+    
+        await Promise.all(user_ids.map(async (userid) => {
+          const query = `INSERT INTO rsouser (rso_id, user_id) VALUES ($1, $2)`;
+          const values = [rsoid, userid];
+          await db.query(query, values);
+        }));
+    
+        res.status(200).json({ message: "Members added to RSO successfully" });
+      } catch (err) {
+        console.error(err);
+        res.status(500).json({ status: "error", message: "Internal server error" });
+      }
+});
+
 router.delete('/:rsoid/:userid', async (req, res) => {
     try {
         const {userid, rsoid} = req.params;
-        const query = `DELETE FROM attending * WHERE rso_id = ${rsoid} AND user_id = ${userid}`;
+        const query = `DELETE FROM rsouser * WHERE rso_id = ${rsoid} AND user_id = ${userid}`;
         const results = await db.query(query);
         res.status(200).json(results.rows);
     } catch (err) {

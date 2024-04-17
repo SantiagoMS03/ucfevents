@@ -31,6 +31,7 @@ function UniversityPage(props) {
             <th>Name</th>
             <th>Description</th>
             <th>Location</th>
+            <th>Students</th>
           </tr>
         </thead>
         <tbody>

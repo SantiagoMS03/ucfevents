@@ -6,13 +6,14 @@ import { useNavigate, Link } from 'react-router-dom';
 import { UniversityContext } from '../../context/UniversityContext';
 import AddEvent from '../events/AddEvent';
 import "./RegisterAdmin.css";
+import AddRSO from '../rsos/AddRSO';
 
 function RegisterAdmin(props) {
   const [university_id, setUniversityId] = useState("");
   const [access] = useState("true");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const { unis, setUnis } = useContext(UniversityContext);
+  const [unis, setUnis] = useState([]);
   let navigate = useNavigate()
 
   useEffect(() => {
@@ -20,7 +21,6 @@ function RegisterAdmin(props) {
       try {
         const response = await UniversityFinder.get("/");
         setUnis(response.data.data.universities);
-        console.log(response);
       } catch (err) {
         console.error(err);
       }
@@ -49,50 +49,39 @@ function RegisterAdmin(props) {
   }
 
   return (
-    <div className="container">
-    <Fragment>
-      <h1 className="title">Register Admin</h1>
-      <form className="form-container" action="">
-      <div className="back-arrow">
-          <Link to="/register">Back</Link>
-        </div>
-        <select value={university_id} onChange={handleChange}>
-          <option value=""> Select a University </option>
-          {unis.map((uni) => (
-            <option value={uni.university_id} key={uni.university_id}>
-              {uni.name}
-            </option>
-          ))}
-        </select>
-        <label className="label" htmlFor="email">
-          Email
-        </label>
-        <input
-          className="input"
-          id="email"
-          value={email}
-          type="text"
-          onChange={(e) => setEmail(e.target.value)}
-        />
-        <label className="label" htmlFor="password">
-          Password
-        </label>
-        <input
-          className="input"
-          id="password"
-          value={password}
-          type="password"
-          onChange={(e) => setPassword(e.target.value)}
-        />
-        <button className="button" onClick={handleClick}>
-          Sign Up!
-        </button>
-      </form>
-      <h3>To do: select students</h3>
-      <AddEvent />
-    </Fragment>
-  </div>
-);
+    <div className="container5">
+    <div className="form-container5">
+      <Fragment>
+        <form className="form" action=''>
+        <h2 className="title">Register an RSO</h2> 
+          <select className="input" value={university_id} onChange={handleChange}>
+            <option value=""> Select a University </option>
+            {unis &&
+              unis.map((uni) => (
+              <option value={uni.university_id} key={uni.university_id}>{uni.name}</option>))}
+          </select>
+          <label htmlFor='email' className="label">Email</label>
+          <input
+            id='email'
+            value={email}
+            type='text'
+            className="input"
+            onChange={(e) => setEmail(e.target.value)}
+          />
+          <label htmlFor='password' className="label">Password</label>
+          <input
+            id='password'
+            value={password}
+            type='password'
+            className="input"
+            onChange={(e) => setPassword(e.target.value)}
+          />
+          <button onClick={handleClick} className="button">Sign Up!</button>
+        </form>
+      </Fragment>
+    </div>
+    </div>
+  );
 }
 
 export default RegisterAdmin;

@@ -3,11 +3,10 @@ import EventFinder from '../../apis/EventFinder';
 import UserFinder from '../../apis/UserFinder';
 import { Context } from '../../context/Context';
 import { useNavigate } from "react-router-dom";
+import GetCookies from '../../components/Cookie';
 import Header from "../../components/Header.js";
-import "./EventsPage.css";
-import GetCookies from '../../components/Cookie'
 
-function EventsPage(props) {
+function PublicEventsPage(props) {
   const [userid, setUserID] = useState("");
   const [access, setAccess] = useState("");
   const [uniid, setUniID] = useState("");
@@ -27,10 +26,10 @@ function EventsPage(props) {
         setUniID(uniID);
 
         const response = await EventFinder.get("/");
-        const eventFilter = response.data.data.events.filter(event => {
+        const eventPublic = response.data.data.events.filter(event => {
           return event.visibility === "public";
         });
-        setEvents(eventFilter)
+        setEvents(eventPublic)
       } catch (err) {
         console.error(err);
       }
@@ -73,7 +72,7 @@ function EventsPage(props) {
             <th>Category</th>
             <th>Date</th>
             <th>Length</th>
-            <th>Visibility</th>
+            <th>Type</th>
             <th>Location</th>
           </tr>
         </thead>
@@ -119,4 +118,4 @@ function EventsPage(props) {
   )
 }
 
-export default EventsPage
+export default PublicEventsPage

@@ -11,7 +11,7 @@ function RegisterUser(props) {
   const [access] = useState("false");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const { unis, setUnis } = useContext(UniversityContext);
+  const [unis, setUnis] = useState([]);
 
   let navigate = useNavigate()
 
@@ -58,27 +58,26 @@ function RegisterUser(props) {
         </div>
           <select className="input" value={university_id} onChange={handleChange}>
             <option value="">Select a University</option>
-            {unis.map((uni) => (
+            {unis &&
+              unis.map((uni) => (
               <option value={uni.university_id} key={uni.university_id}>{uni.name}</option>
             ))}
           </select>
-          <label className="label" htmlFor="email">Email</label>
-          <input
-            id="email"
-            className="input"
-            value={email}
-            type="text"
-            onChange={(e) => setEmail(e.target.value)}
-          />
-          <label className="label" htmlFor="password">Password</label>
-          <input
-            id="password"
-            className="input"
-            value={password}
-            type="password"
-            onChange={(e) => setPassword(e.target.value)}
-          />
-          <button className="button" onClick={handleClick}>Sign Up!</button>
+          <label htmlFor='email'>Email</label>
+              <input
+                id='email'
+                value={email}
+                type='text'
+                onChange={(e) => setEmail(e.target.value)}
+              />
+          <label htmlFor='password'>Password</label>
+              <input
+                id='password'
+                value={password}
+                type='password'
+                onChange={(e) => setPassword(e.target.value)}
+              />
+          <button onClick={handleClick}>Sign Up!</button>
         </form>
       </div>
     </div>
