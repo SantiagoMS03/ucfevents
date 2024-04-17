@@ -6,8 +6,10 @@ DROP TABLE IF EXISTS reviews CASCADE;
 DROP TABLE IF EXISTS universityrso CASCADE;
 DROP TABLE IF EXISTS rsoevent CASCADE;
 DROP TABLE IF EXISTS attending CASCADE;
+DROP TRIGGER rsouser_membership_trigger ON rsouser;  
 DROP TABLE IF EXISTS rsouser CASCADE;
 DROP TABLE IF EXISTS eventreview CASCADE;
+
 
 CREATE TABLE users (
   user_id INT PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
@@ -81,19 +83,6 @@ CREATE TABLE rsouser (
   CONSTRAINT fk_rso FOREIGN KEY (rso_id) REFERENCES rsos(rso_id)
 );
 
-CREATE OR REPLACE FUNCTION check_rso_membership()
-RETURNS TRIGGER AS $$
-BEGIN
-    IF (SELECT COUNT(*) FROM rsouser WHERE rso_id = NEW.rso_id) <= 4 THEN
-        RAISE EXCEPTION 'RSO membership limit exceeded';
-    END IF;
-    RETURN NEW;
-END;
-$$ LANGUAGE plpgsql;
-
-CREATE TRIGGER rsouser_membership_trigger
-BEFORE DELETE ON rsouser
-FOR EACH ROW EXECUTE FUNCTION check_rso_membership();
 
 CREATE TABLE eventreview (
   event_id INT,
@@ -207,6 +196,8 @@ INSERT INTO rsouser (user_id, rso_id)
 VALUES
 (1, 1),
 (2, 1),
+(3, 1),
+(4, 1),
 (3, 2),
 (4, 2),
 (5, 3),
@@ -215,3 +206,25 @@ VALUES
 (8, 4),
 (9, 5),
 (10, 5);
+
+CREATE OR REPLACE FUNCTION check_rso_membership()
+RETURNS TRIGGER AS $$
+BEGIN
+    IF TG_OP = 'INSERT' THEN
+        IF (SELECT COUNT(*) FROM rsouser WHERE rso_id = NEW.rso_id) >= 5 THEN
+            UPDATE rsos SET status = 'Active' WHERE rso_id = NEW.rso_id;
+        ELSE
+            UPDATE rsos SET status = 'Inactive' WHERE rso_id = NEW.rso_id;
+        END IF;
+    ELSIF TG_OP = 'DELETE' THEN
+        IF (SELECT COUNT(*) FROM rsouser WHERE rso_id = OLD.rso_id) < 5 THEN
+            UPDATE rsos SET status = 'Inactive' WHERE rso_id = OLD.rso_id;
+        END IF;
+    END IF;
+    RETURN NULL;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER rsouser_membership_trigger
+AFTER INSERT OR DELETE ON rsouser
+FOR EACH ROW EXECUTE FUNCTION check_rso_membership();
